@@ -20,7 +20,7 @@
   </context-param>
   <servlet>
     <servlet-name>AppInitServlet</servlet-name>
-    <servlet-class>spms.servlets.AppInitServlet</servlet-class>
+    <servlet-class>spms.servlet.AppInitServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   

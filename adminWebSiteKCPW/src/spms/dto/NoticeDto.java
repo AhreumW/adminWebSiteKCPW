@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class NoticeDto {
 
-	private int boardNo;
+	private int noticeNo;
 	private String title;
 	private String content;
 	private String email;
@@ -14,17 +14,17 @@ public class NoticeDto {
 		super();
 	}
 	
-	public NoticeDto(int boardNo, String title, String content, String email) {
+	public NoticeDto(int noticeNo, String title, String content, String email) {
 		super();
-		this.boardNo = boardNo;
+		this.noticeNo = noticeNo;
 		this.title = title;
 		this.content = content;
 		this.email = email;
 	}
 	
-	public NoticeDto(int boardNo, String title, String content, String email, Date reg_date) {
+	public NoticeDto(int noticeNo, String title, String content, String email, Date reg_date) {
 		super();
-		this.boardNo = boardNo;
+		this.noticeNo = noticeNo;
 		this.title = title;
 		this.content = content;
 		this.email = email;
@@ -32,10 +32,10 @@ public class NoticeDto {
 	}
 	
 	public int getBoardNo() {
-		return boardNo;
+		return noticeNo;
 	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setBoardNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
 	public String getTitle() {
 		return title;
@@ -65,7 +65,7 @@ public class NoticeDto {
 	
 	@Override
 	public String toString() {
-		return "BoardDto [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", email=" + email
+		return "BoardDto [noticeNo=" + noticeNo + ", title=" + title + ", content=" + content + ", email=" + email
 				+ ", reg_date=" + reg_date + "]";
 	}
 	

@@ -31,12 +31,15 @@ public class NoticeDto {
 		this.createdDate = createdDate;
 	}
 	
-	public int getBoardNo() {
+	
+	public int getNoticeNo() {
 		return noticeNo;
 	}
-	public void setBoardNo(int noticeNo) {
+
+	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
 	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -55,14 +58,17 @@ public class NoticeDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getReg_date() {
+	
+	
+	
+	public Date getCreatedDate() {
 		return createdDate;
 	}
-	public void setReg_date(Date createdDate) {
+
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return "BoardDto [noticeNo=" + noticeNo + ", title=" + title + ", content=" + content + ", email=" + email

@@ -22,24 +22,24 @@ public class BoardListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 
-		Connection conn = null;
-		
-		ServletContext sc = this.getServletContext();
-		conn = (Connection) sc.getAttribute("conn");
-		
-		BoardDao boardDao = new BoardDao();
-		boardDao.setConnection(conn);
-		
-		ArrayList<BoardDto> boardList = null;	
-		boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
-
-		
-		req.setAttribute("boardList", boardList);
-		
-		RequestDispatcher dispatcher = 
-				req.getRequestDispatcher("./BoardListView.jsp");
-		
-		dispatcher.forward(req, res);
+//		Connection conn = null;
+//		
+//		ServletContext sc = this.getServletContext();
+//		conn = (Connection) sc.getAttribute("conn");
+//		
+//		BoardDao boardDao = new BoardDao();
+//		boardDao.setConnection(conn);
+//		
+//		ArrayList<BoardDto> boardList = null;	
+//		boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
+//
+//		
+//		req.setAttribute("boardList", boardList);
+//		
+//		RequestDispatcher dispatcher = 
+//				req.getRequestDispatcher("./BoardListView.jsp");
+//		
+//		dispatcher.forward(req, res);
 		
 	}
 

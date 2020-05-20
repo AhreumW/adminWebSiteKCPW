@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import spms.dto.BoardDto;
+import spms.dto.MemberDto;
 
 public class BoardDao {
 
@@ -116,9 +117,70 @@ public class BoardDao {
 	}
 	
 	
-	public BoardDto boardSelectOne(){
+	public BoardDto boardSelectOne(int no){
 		
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		BoardDto boardDto = null;
+		String sql = "";
+		sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE"; 
+		sql += " FROM BOARD";
+		sql += " WHERE BOARD_NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			String title = "";
+	        String content = "";
+	        String email = "";
+	        Date creDate = null;
+
+	        if (rs.next()) {
+	        	title = rs.getString("TITLE");
+	        	content = rs.getString("CONTENT");
+	        	email = rs.getString("EMAIL");
+	        	creDate = rs.getDate("CRE_DATE");
+	
+	        	boardDto = new BoardDto();
+	
+	        	boardDto.setBoardNo(no);
+	        	boardDto.setEmail(email);
+	        	boardDto.setTitle(title);
+	        	boardDto.setContent(content);
+	        	boardDto.setCreatedDate(creDate);
+	        	
+	        }
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+	            if (rs != null) {
+	               rs.close();
+	            }
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+
+	         try {
+	            if (pstmt != null) {
+	               pstmt.close();
+	            }
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+		}
+			
+		
+		return boardDto;
 	}
 	
 	public int boardInsert(){
@@ -126,9 +188,44 @@ public class BoardDao {
 		return 0;
 	}
 	
-	public int boardUpdate(){
+	public int boardUpdate(BoardDto boardDto, String myEmail){
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
 			
-		return 0;
+		String sql ="";
+		sql += "UPDATE BOARD";
+		sql += " SET TITLE=?, CONTENT=?";
+		sql += " WHERE BOARD_NO=? AND EMAIL=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, boardDto.getTitle());
+	        pstmt.setString(2, boardDto.getContent());
+	        pstmt.setInt(3, boardDto.getBoardNo());
+	        pstmt.setString(4, boardDto.getEmail());
+			
+	        result = pstmt.executeUpdate(sql);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("작성자 일치 확인");
+			e.printStackTrace();
+		} finally {
+	    	try {
+	    		if (pstmt != null) {
+	    			pstmt.close();
+	    		}
+	    	} catch (SQLException e) {
+	        	// TODO Auto-generated catch block
+	        	e.printStackTrace();
+	    	}
+
+	    } // finally 종료
+		
+		return result;
 	}
 	
 	public int boardDelete(){

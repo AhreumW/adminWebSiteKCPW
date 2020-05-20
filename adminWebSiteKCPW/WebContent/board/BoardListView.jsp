@@ -39,6 +39,7 @@
 					<td>${boardDto.boardNo}</td>
 					<td>
 						<a href="#">${boardDto.title}</a>
+						<a href='./update?no=${boardDto.boardNo}'> 수정</a>
 					</td>
 					<td>${boardDto.email}</td>
 					<td>${boardDto.createdDate}</td>

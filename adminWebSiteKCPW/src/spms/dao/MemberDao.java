@@ -172,7 +172,7 @@ public class MemberDao {
 
       String sql = "";
 
-      sql = "SELECT MNO, EMAIL, MNAME, CRE_DATE";
+      sql = "SELECT MNO, EMAIL, MNAME, CRE_DATE, MOD_DATE";
       sql += " FROM MEMBER";
       sql += " WHERE MNO =?";
 
@@ -186,11 +186,13 @@ public class MemberDao {
          String mName = "";
          String email = "";
          Date creDate = null;
+         Date modDate = null;
 
          if (rs.next()) {
             mName = rs.getString("MNAME");
             email = rs.getString("EMAIL");
             creDate = rs.getDate("CRE_DATE");
+            modDate = rs.getDate("MOD_DATE");
 
             memberDto = new MemberDto();
 
@@ -198,6 +200,7 @@ public class MemberDao {
             memberDto.setName(mName);
             memberDto.setEmail(email);
             memberDto.setCreatedDate(creDate);
+            memberDto.setModifiedDate(modDate);
          } else {
             throw new Exception("해당 번호의 회원을 찾을 수 없습니다.");
          }

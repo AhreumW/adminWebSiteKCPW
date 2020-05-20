@@ -29,6 +29,7 @@
 		이름 : <input type='text' name='name' value='${memberDto.name}'><br>
 		이메일 : <input type='text' name='email' value='${memberDto.email}'><br>
 		가입일 : '${requestScope.memberDto.createdDate}'<br>
+		수정일 : '${requestScope.memberDto.modifiedDate}'<br>
 		
 		<input type='submit' value='저장'>
 		<input type='button' value='삭제' onclick="pageMoveDeleteFnc(${memberDto.no});">

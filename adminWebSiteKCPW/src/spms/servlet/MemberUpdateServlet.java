@@ -70,18 +70,20 @@ public class MemberUpdateServlet extends HttpServlet {
 		Connection conn = null;
 		
 		try {
-			System.out.println("이건 되는 거니?");
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");
 
+			
 			int no = Integer.parseInt(req.getParameter("no"));
 			String email = req.getParameter("email");
 			String name = req.getParameter("name");
 			
+			Date modifiedDate = new Date();
+			
 			MemberDao memberDao = new MemberDao();
 			memberDao.setConnection(conn);
 			
-			memberDto = new MemberDto(no, name, email);
+			memberDto = new MemberDto(no, name, email, modifiedDate);
 			int result = memberDao.memberUpdate(memberDto);
 			
 			if(result == 0) {

@@ -8,7 +8,7 @@ public class NoticeDto {
 	private String title;
 	private String content;
 	private String email;
-	private Date reg_date;
+	private Date createdDate;
 	
 	public NoticeDto() {
 		super();
@@ -22,13 +22,13 @@ public class NoticeDto {
 		this.email = email;
 	}
 	
-	public NoticeDto(int noticeNo, String title, String content, String email, Date reg_date) {
+	public NoticeDto(int noticeNo, String title, String content, String email, Date createdDate) {
 		super();
 		this.noticeNo = noticeNo;
 		this.title = title;
 		this.content = content;
 		this.email = email;
-		this.reg_date = reg_date;
+		this.createdDate = createdDate;
 	}
 	
 	public int getBoardNo() {
@@ -56,17 +56,17 @@ public class NoticeDto {
 		this.email = email;
 	}
 	public Date getReg_date() {
-		return reg_date;
+		return createdDate;
 	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public void setReg_date(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "BoardDto [noticeNo=" + noticeNo + ", title=" + title + ", content=" + content + ", email=" + email
-				+ ", reg_date=" + reg_date + "]";
+				+ ", createdDate=" + createdDate + "]";
 	}
 	
 	

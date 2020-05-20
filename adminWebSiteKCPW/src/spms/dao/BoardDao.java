@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import spms.dto.BoardDto;
@@ -20,11 +19,11 @@ public class BoardDao {
 	
 	/*
 	 * -- 일반 게시판 관리 sql 수행문
-	select board_no, title, content, email, reg_date
+	select board_no, title, content, email, cre_date
 	from board
 	order by board_no desc;
 	
-	select board_no, title, content, email, reg_date
+	select board_no, title, content, email, cre_date
 	from board
 	where board_no = 1;
 	
@@ -52,7 +51,7 @@ public class BoardDao {
 		String sql = "";
 		
 		try {
-			sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, REG_DATE";
+			sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE";
 			sql += " FROM BOARD";
 			sql += " ORDER BY BOARD_NO DESC";
 			

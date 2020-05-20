@@ -21,11 +21,11 @@ public class NoticeDao {
 	
 	/*
 	 * -- 공지 게시판 관리 sql 수행문
-		select notice_no, title, content, reg_date
+		select notice_no, title, content, cre_date
 		from noticeboard
 		order by notice_no desc;
 		
-		select notice_no, title, content, reg_date
+		select notice_no, title, content, cre_date
 		from noticeboard
 		where notice_no = 1;
 		

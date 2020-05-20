@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 
 		String email = req.getParameter("email");
 		String pwd = req.getParameter("password");
-
+		
 		ServletContext sc = this.getServletContext();
 		conn = (Connection) sc.getAttribute("conn");
 
@@ -45,8 +45,6 @@ public class LoginServlet extends HttpServlet {
 
 		try {
 			
-			
-
 			MemberDto memberDto = memberDao.memberLogin(email, pwd);
 
 			if (memberDto != null) {

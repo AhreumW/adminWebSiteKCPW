@@ -306,10 +306,11 @@ public class MemberDao {
 	String name = "";
 	String grade ="";
 	MemberDto memberDto = null;
-			
+	int no = 0;
+	
 	try {
 		
-	sql += "SELECT MNAME, EMAIL, GRADE";
+	sql += "SELECT MNAME, EMAIL, GRADE, MNO";
 	sql += " FROM MEMBER";
 	sql += " WHERE EMAIL = ?";
 	sql += " AND PWD = ?";
@@ -327,12 +328,14 @@ public class MemberDao {
 			email = rs.getString("EMAIL");
 			name = rs.getString("MNAME");
 			grade = rs.getString("GRADE");
+			no = rs.getInt("MNO");
 			
 			memberDto = new MemberDto();
 			
 			memberDto.setEmail(email);
 			memberDto.setName(name);
 			memberDto.setGrade(grade);
+			memberDto.setNo(no);
 			
 		} else {
 			System.out.println("오류발생됨!");

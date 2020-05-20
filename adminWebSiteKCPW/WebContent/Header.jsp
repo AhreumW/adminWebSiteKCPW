@@ -26,8 +26,12 @@
 	
 	<c:if test="${memberDto.email ne null}">
 		<span style="float:right;">
-			${memberDto.name}
-			<a style="color:white;" href="<%=request.getContextPath()%>/auth/logout">로그아웃</a>
+			<a style="color:white; text-decoration: none;"
+				 href="<%=request.getContextPath()%>/member/update?no=${memberDto.no}">
+				 	${memberDto.name}</a>
+			<a style="color:white;"
+				 href="<%=request.getContextPath()%>/auth/logout">
+				 	로그아웃</a>
 		</span>
 	</c:if>
 

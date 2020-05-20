@@ -145,7 +145,6 @@ public class BoardDao2 {
 			pstmt.setString(2, content);
 			pstmt.setString(3, email);
 			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

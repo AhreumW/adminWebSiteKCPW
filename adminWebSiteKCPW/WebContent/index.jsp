@@ -26,6 +26,8 @@
 	<a href="./member/add">회원추가</a>
 	
 	<a href="./board/list">게시판</a>
+	
+	<a href="./admin/list">공지 게시판</a>
 
 </body>
 

@@ -24,6 +24,8 @@
 	<a href="./member/list">회원리스트</a>
 	
 	<a href="./member/add">회원추가</a>
+	
+	<a href="./board/list">게시판</a>
 
 </body>
 

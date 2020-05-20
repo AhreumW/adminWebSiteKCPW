@@ -297,6 +297,72 @@ public class MemberDao {
       }
       return null;
    }
+	public MemberDto memberLogin(String email, String pwd) {
+		   
+	PreparedStatement pstmt = null; // 상태
+	ResultSet rs = null; // 결과
+	
+	String sql = "";
+	String name = "";
+	MemberDto memberDto = null;
+			
+	try {
+		
+	sql += "SELECT MNAME, EMAIL";
+	sql += " FROM MEMBER";
+	sql += " WHERE EMAIL = ?";
+	sql += " AND PWD = ?";
+	
+	int colIndex = 1;
 
-   
-}   
+	pstmt = conn.prepareStatement(sql);
+
+	pstmt.setString(colIndex++, email);
+	pstmt.setString(colIndex, pwd);
+	
+	rs = pstmt.executeQuery();
+	
+		if(rs.next()) {
+			email = rs.getString("EMAIL");
+			name = rs.getString("MNAME");
+			
+			memberDto = new MemberDto();
+			
+			memberDto.setEmail(email);
+			memberDto.setName(name);
+			
+		} else {
+			System.out.println("오류발생됨!");
+		}
+	
+	}	catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} finally {
+			
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} 
+	
+		return memberDto;
+
+	}
+
+}
+  

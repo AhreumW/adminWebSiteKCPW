@@ -2,8 +2,6 @@ package spms.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import spms.dao.MemberDao2;
+import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
 @WebServlet(value = "/auth/login")
@@ -43,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 		ServletContext sc = this.getServletContext();
 		conn = (Connection) sc.getAttribute("conn");
 
-		MemberDao2 memberDao = new MemberDao2();
+		MemberDao memberDao = new MemberDao();
 		memberDao.setConnection(conn);
 
 		try {

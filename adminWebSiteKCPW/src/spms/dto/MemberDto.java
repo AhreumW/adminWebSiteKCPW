@@ -9,6 +9,7 @@ public class MemberDto {
 	private String password;
 	private Date createdDate;
 	private Date modifiedDate;
+	private String grade;
 
 	public MemberDto() {
 		super();
@@ -37,6 +38,15 @@ public class MemberDto {
 		this.no = no;
 		this.name = name;
 		this.email = email;
+	}
+	
+	public MemberDto(int no, String name, String email, Date createdDate, String grade) {
+		super();
+		this.no = no;
+		this.name = name;
+		this.email = email;
+		this.createdDate = createdDate;
+		this.grade = grade;
 	}
 
 	public int getNo() {
@@ -87,10 +97,18 @@ public class MemberDto {
 		this.modifiedDate = modifiedDate;
 	}
 
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
 	@Override
 	public String toString() {
-		return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", createdDate="
-				+ createdDate + ", modifiedDate=" + modifiedDate + "]";
+		return "MemberDto [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate + ", grade=" + grade + "]";
 	}
 	
 }

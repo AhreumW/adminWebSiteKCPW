@@ -26,6 +26,7 @@
 				<th>이름</th>
 				<th>이메일</th>
 				<th>가입날짜</th>
+				<th>등급</th>
 				<th>관리</th>
 			</tr>
 		</thead>
@@ -38,6 +39,7 @@
 					</td>
 					<td>${memberDto.email}</td>
 					<td>${memberDto.createdDate}</td>
+					<td>${memberDto.grade}</td>
 					<td>
 						<a href="./delete?no=${memberDto.no}">삭제</a>
 					</td>

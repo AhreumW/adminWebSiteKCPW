@@ -34,12 +34,12 @@
 				<tr>
 					<td>${memberDto.no}</td>
 					<td>
-						<a href="#">${memberDto.name}</a>
+						<a href="./update?no=${memberDto.no}">${memberDto.name}</a>
 					</td>
 					<td>${memberDto.email}</td>
 					<td>${memberDto.createdDate}</td>
 					<td>
-						<a href="#">삭제</a>
+						<a href="./delete?no=${memberDto.no}">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>

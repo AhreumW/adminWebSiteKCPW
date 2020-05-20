@@ -159,8 +159,9 @@ public class MemberDao {
       return result;
    }
 
-   // 회원 상세 정보 조회
-   public MemberDto memberSelectOne(int no) throws Exception {
+   // 회원 상세 정보 조회 update - doGet
+   public MemberDto memberSelectOne(int no) 
+		   throws Exception {
 
       MemberDto memberDto = null;
 
@@ -227,8 +228,9 @@ public class MemberDao {
       return memberDto;
    }
 
-   // 회원 정보 변경
-   public int memberUpdate(MemberDto memberDto) throws SQLException {
+   // 회원 정보 변경  update - doPost
+   public int memberUpdate(MemberDto memberDto) 
+		   throws SQLException {
       int result = 0;
 
       PreparedStatement pstmt = null;

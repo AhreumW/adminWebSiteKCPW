@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spms.dao.SangahDao;
+import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
 @WebServlet(value="/member/list")
@@ -23,7 +23,6 @@ public class MemberListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("doget");
 		Connection conn = null;
 		
 		try {
@@ -31,18 +30,15 @@ public class MemberListServlet extends HttpServlet {
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");
 			
-			SangahDao memberDao = new SangahDao();
+			MemberDao memberDao = new MemberDao();
 			
 			memberDao.setConnection(conn);
 			
 			ArrayList<MemberDto> memberList = null;
 			
 			memberList = (ArrayList<MemberDto>)memberDao.selectList();
-			
-			
-			System.out.println("list"+memberList);
+
 			req.setAttribute("memberList", memberList);
-			
 			
 			RequestDispatcher dispatcher = 
 					req.getRequestDispatcher("/member/MemberListView.jsp");

@@ -24,7 +24,7 @@ public class MemberAddServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		
 		// 337 1번 문제 입력화면 생성 코드 제거	
-		res.sendRedirect("../member/MemberAddForm.jsp");
+		res.sendRedirect("./MemberAddForm.jsp");
 	}
 	
 	@Override

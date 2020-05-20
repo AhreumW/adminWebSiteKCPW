@@ -25,14 +25,10 @@ public class MemberDeleteServlet extends HttpServlet{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		// 사용할 jdbc 드라이버:드라이버 타입:서버주소와 포트:db서비스 아이디
 		ServletContext sc = this.getServletContext();
 
-//		 사용자의 입력을 받는다		
 		String mNo = req.getParameter("no");
 		
-		System.out.println("회원 번호 : " + mNo + " 삭제를 한다");
-
 		try {
 			conn = (Connection) sc.getAttribute("conn");
 			

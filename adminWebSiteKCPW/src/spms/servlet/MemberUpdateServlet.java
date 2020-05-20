@@ -66,11 +66,11 @@ public class MemberUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, 
 			HttpServletResponse res) 
 					throws ServletException, IOException {
-					
+		MemberDto memberDto = null;			
 		Connection conn = null;
 		
 		try {
-			
+			System.out.println("이건 되는 거니?");
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");
 
@@ -81,7 +81,7 @@ public class MemberUpdateServlet extends HttpServlet {
 			MemberDao memberDao = new MemberDao();
 			memberDao.setConnection(conn);
 			
-			MemberDto memberDto = new MemberDto(no, name, email);
+			memberDto = new MemberDto(no, name, email);
 			int result = memberDao.memberUpdate(memberDto);
 			
 			if(result == 0) {

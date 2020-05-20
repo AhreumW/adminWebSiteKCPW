@@ -12,8 +12,17 @@
 <!--  	MemberDto memberDto = (MemberDto)session.getAttribute("memberDto"); -->
 <!-- %> -->
 
-<div style="background-color:#00008b; color:#ffffff; height:20px; padding: 5px;">
-	SPMS(Simple Project Management System)
+<div style="background-color:#ddd; height:20px; padding: 5px;">
+	<span>KCPW</span>
+	<a href="./auth/login">로그인</a>
+	
+	<a href="./member/list">회원리스트</a>
+	
+	<a href="./member/add">회원추가</a>
+	
+	<a href="./board/list">게시판</a>
+	
+	<a href="./admin/list">공지 게시판</a>
 	
 	<c:if test="${memberDto.email ne null}">
 		<span style="float:right;">

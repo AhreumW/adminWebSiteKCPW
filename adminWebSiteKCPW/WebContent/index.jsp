@@ -17,7 +17,13 @@
 
 <body>
 
-	<p onclick="listPageMoveFnc();">web05_384 페이지</p>
+	<p onclick="listPageMoveFnc();">adminWebSite</p>
+	
+	<a href="./member/login">로그인</a>
+	
+	<a href="./member/list">회원리스트</a>
+	
+	<a href="./member/add">회원추가</a>
 
 </body>
 

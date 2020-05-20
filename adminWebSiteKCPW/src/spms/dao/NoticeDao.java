@@ -111,7 +111,7 @@ public class NoticeDao {
 	}
 	
 	
-	public NoticeDto noticeSelectOne(){
+	public NoticeDto noticeSelectOne(int no){
 		
 		return null;
 	}

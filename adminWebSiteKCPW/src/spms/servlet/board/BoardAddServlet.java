@@ -1,6 +1,7 @@
 package spms.servlet.board;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,17 +15,21 @@ public class BoardAddServlet extends HttpServlet{
 
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
 
-		
 		RequestDispatcher rd = req.getRequestDispatcher("./BoardAddForm.jsp");
 		rd.forward(req, res);
 		
 	}
 	
-	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+	
+		Connection conn = null;
+		
+		
 		
 		
 	}

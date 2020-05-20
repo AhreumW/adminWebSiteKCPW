@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 
 		String email = req.getParameter("email");
 		String pwd = req.getParameter("password");
-		String name = "";
 
 		ServletContext sc = this.getServletContext();
 		conn = (Connection) sc.getAttribute("conn");
@@ -57,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 				res.sendRedirect("../member/list");
 			} else {
 				RequestDispatcher rd = 
-						req.getRequestDispatcher("./LoginFail.jsp");
+				req.getRequestDispatcher("../auth/LoginFail.jsp");
 				rd.forward(req, res);
 				
 			}
@@ -65,11 +64,13 @@ public class LoginServlet extends HttpServlet {
 			/*
 			 * RequestDispatcher rd = req.getRequestDispatcher("./LoginFail.jsp");
 			 * rd.forward(req, res);
+			 * 
 			 */
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+	
 		}
 		
 	}

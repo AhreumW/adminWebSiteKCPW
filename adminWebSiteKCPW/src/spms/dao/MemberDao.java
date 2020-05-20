@@ -22,7 +22,7 @@ public class MemberDao {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
 
-      String sql = "SELECT MNO, MNAME, EMAIL, CRE_DATE";
+      String sql = "SELECT MNO, MNAME, EMAIL, CRE_DATE, GRADE";
       sql += " FROM MEMBER";
       sql += " ORDER BY MNO ASC";
 
@@ -37,15 +37,17 @@ public class MemberDao {
          String name = "";
          String email = "";
          Date creDate = null;
+         String grade = "";
 
          while (rs.next()) {
             no = rs.getInt("MNO");
             name = rs.getString("MNAME");
             email = rs.getString("EMAIL");
             creDate = rs.getDate("CRE_DATE");
+            grade = rs.getString("GRADE");
 
             MemberDto memberDto = 
-               new MemberDto(no, name, email, creDate);
+               new MemberDto(no, name, email, creDate, grade);
 
             memberList.add(memberDto);
          }

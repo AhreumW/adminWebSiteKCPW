@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<!-- 337 1번 문제 MemberAddServlet 화면출력 위임 -->
+
 	<jsp:include page="/Header.jsp" />
 	
 	<h1>회원등록</h1>
@@ -20,5 +20,6 @@
 		<input type='reset' value='취소'>
 	</form>
 	<jsp:include page="/Tail.jsp" />
+	
 </body>
 </html>

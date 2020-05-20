@@ -2,29 +2,29 @@ package spms.dto;
 
 import java.util.Date;
 
-public class BoardDto {
+public class NoticeDto {
 
-	private int boardNo;
+	private int noticeNo;
 	private String title;
 	private String content;
 	private String email;
 	private Date createdDate;
 	
-	public BoardDto() {
+	public NoticeDto() {
 		super();
 	}
 	
-	public BoardDto(int boardNo, String title, String content, String email) {
+	public NoticeDto(int noticeNo, String title, String content, String email) {
 		super();
-		this.boardNo = boardNo;
+		this.noticeNo = noticeNo;
 		this.title = title;
 		this.content = content;
 		this.email = email;
 	}
 	
-	public BoardDto(int boardNo, String title, String content, String email, Date createdDate) {
+	public NoticeDto(int noticeNo, String title, String content, String email, Date createdDate) {
 		super();
-		this.boardNo = boardNo;
+		this.noticeNo = noticeNo;
 		this.title = title;
 		this.content = content;
 		this.email = email;
@@ -32,10 +32,10 @@ public class BoardDto {
 	}
 	
 	public int getBoardNo() {
-		return boardNo;
+		return noticeNo;
 	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setBoardNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
 	public String getTitle() {
 		return title;
@@ -65,7 +65,7 @@ public class BoardDto {
 	
 	@Override
 	public String toString() {
-		return "BoardDto [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", email=" + email
+		return "BoardDto [noticeNo=" + noticeNo + ", title=" + title + ", content=" + content + ", email=" + email
 				+ ", createdDate=" + createdDate + "]";
 	}
 	

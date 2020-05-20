@@ -1,6 +1,7 @@
 package spms.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import spms.dao.BoardDao;
+import spms.dto.BoardDto;
+
 @WebServlet(value="/board/list")
 public class BoardListServlet extends HttpServlet{
 
@@ -16,6 +20,13 @@ public class BoardListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 
+		ArrayList<BoardDto> boardList = null;
+		
+		BoardDao boardDao = new BoardDao();
+		boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
+		
+		req.setAttribute("boardList", boardList);
+		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("./BoardListView.jsp");
 		

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import spms.dto.BoardDto;
@@ -64,18 +65,23 @@ public class BoardDao {
 			String title = "";
 			String content = "";
 			String email = "";
+			Date creDate = null;
 			
 			while(rs.next()) {
 				boardNo = rs.getInt("BOARD_NO");
 				title = rs.getString("TITLE");
 				content = rs.getString("CONTENT");
 				email = rs.getString("EMAIL");
+				creDate = rs.getDate("CRE_DATE");
 				
 				BoardDto boardDto = new BoardDto();
 				boardDto.setBoardNo(boardNo);
 				boardDto.setTitle(title);
 				boardDto.setContent(content);
 				boardDto.setEmail(email);
+				boardDto.setCreatedDate(creDate);
+				
+				//System.out.println(boardDto.getBoardNo());
 				
 				boardList.add(boardDto);
 			}

@@ -1,9 +1,11 @@
-package spms.servlet;
+package spms.servlet.board;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +22,17 @@ public class BoardListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 
-		ArrayList<BoardDto> boardList = null;
+		Connection conn = null;
+		
+		ServletContext sc = this.getServletContext();
+		conn = (Connection) sc.getAttribute("conn");
 		
 		BoardDao boardDao = new BoardDao();
+		boardDao.setConnection(conn);
+		
+		ArrayList<BoardDto> boardList = null;	
 		boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
+
 		
 		req.setAttribute("boardList", boardList);
 		

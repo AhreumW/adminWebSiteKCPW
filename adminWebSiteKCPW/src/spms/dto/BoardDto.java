@@ -55,13 +55,13 @@ public class BoardDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getReg_date() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
-	public void setReg_date(Date createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	
+
 	
 	@Override
 	public String toString() {

@@ -19,7 +19,7 @@
 
 	<p onclick="listPageMoveFnc();">adminWebSite</p>
 	
-	<a href="./member/login">로그인</a>
+	<a href="./auth/login">로그인</a>
 	
 	<a href="./member/list">회원리스트</a>
 	

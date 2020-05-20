@@ -304,11 +304,12 @@ public class MemberDao {
 	
 	String sql = "";
 	String name = "";
+	String grade ="";
 	MemberDto memberDto = null;
 			
 	try {
 		
-	sql += "SELECT MNAME, EMAIL";
+	sql += "SELECT MNAME, EMAIL, GRADE";
 	sql += " FROM MEMBER";
 	sql += " WHERE EMAIL = ?";
 	sql += " AND PWD = ?";
@@ -321,15 +322,17 @@ public class MemberDao {
 	pstmt.setString(colIndex, pwd);
 	
 	rs = pstmt.executeQuery();
-	
+		
 		if(rs.next()) {
 			email = rs.getString("EMAIL");
 			name = rs.getString("MNAME");
+			grade = rs.getString("GRADE");
 			
 			memberDto = new MemberDto();
 			
 			memberDto.setEmail(email);
 			memberDto.setName(name);
+			memberDto.setGrade(grade);
 			
 		} else {
 			System.out.println("오류발생됨!");

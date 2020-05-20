@@ -49,7 +49,7 @@ public class NoticeDao {
 		
 		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, EMAIL, CRE_DATE";
 		sql += " FROM NOTICEBOARD";
-		sql += " ORDER BY NOTICE_NO DESC";
+		sql += " ORDER BY NOTICE_NO ASC";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -120,8 +120,6 @@ public class NoticeDao {
 	public int noticeInsert(NoticeDto noticeDto, String myEmail) throws Exception{
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
-		System.out.println("noticeInsert"+myEmail);
 		
 		try {
 			String title = noticeDto.getTitle();

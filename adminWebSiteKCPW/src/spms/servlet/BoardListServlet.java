@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import spms.dao.BoardDao;
+
 @WebServlet(value="/board/list")
 public class BoardListServlet extends HttpServlet{
 
@@ -16,6 +18,10 @@ public class BoardListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 
+		
+		BoardDao boardDao = new BoardDao();
+		boardDao.boardSelectList();
+		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("./BoardListView.jsp");
 		

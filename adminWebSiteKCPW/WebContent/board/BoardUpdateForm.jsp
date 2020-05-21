@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
 
-	function boardDeleteFnc(no);{
+	function boardDeleteFnc(no){
 		location.href = "#";
 	}
 	
@@ -28,18 +28,25 @@
 	<h1>일반 게시판 수정</h1>
 	
 	<form action='./update' method='post'>
-		번호 : <input type='text' name='no' value='${boardDto.getBoardNo()}' readonly='readonly'><br>
-		이메일 : <input type='text' name='email' value='${boardDto.getEmail()}'><br>
-		등록일 : ${boardDto.getCreatedDate()}<br>
-		
+		번호 : <input type='text' name='no' value='${boardDto.boardNo}' readonly='readonly'><br>
+		이메일 : <input type='text' name='email' value='${boardDto.email}' readonly='readonly'><br>
 		<table>
 			<tr>
-				<th>제목</th>
-				<th>${boardDto.getTitle()}</th>
+				<td>제목</td>
+				<td>
+					<input type="text" name="title" 
+						value="${boardDto.title}">
+				</td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<th>${boardDto.getContent()}</th>
+				<td>내용</td>
+				<td>
+					<textarea rows="10" cols="30" name="content">${boardDto.content}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>작성일</td>
+				<td>${boardDto.getCreatedDate()}</td>
 			</tr>
 		</table>
 		

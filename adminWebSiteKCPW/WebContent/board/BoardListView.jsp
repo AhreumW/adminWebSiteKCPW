@@ -26,14 +26,24 @@
 		
 	}
 	
+	<% int current = (Integer) request.getAttribute("currentNo");%>
+	
 	function pageLeftFnc(){
-		<% int current = (Integer) request.getAttribute("currentNo");%>
-		var current = <%=current%>;
-		location.href="./list?currentNo=${currentNo -1}"
+		var currentNo = <%=current%> -1;
+		if(currentNo >= 1){
+			location.href="./list?currentNo="+currentNo;
+		}else{
+			location.href="./list?currentNo=1";
+		}
 	}
 	
 	function pageRightFnc(){
-		
+		var currentNo = <%=current%> +1;
+		if(currentNo <= <%=pageNum%>){
+			location.href="./list?currentNo="+currentNo;
+		}else{
+			location.href="./list?currentNo="+pageNum;
+		}
 	}
 	
 	function boardAddFnc(){
@@ -65,7 +75,7 @@
 				<tr>
 					<td>${boardDto.boardNo}</td>
 					<td>
-						<a href="#">${boardDto.title}</a>
+						<a href='./detail?no=${boardDto.boardNo}'>${boardDto.title}</a>
 						<a href='./update?no=${boardDto.boardNo}'> 수정</a>
 					</td>
 					<td>${boardDto.email}</td>
@@ -79,11 +89,15 @@
 	</table>
 	
 	<div>
-		<a href="./list?currentNo=${currentNo -1}">&lt;</a>
-		<div id="pageleftBtn" onclick="pageLeftFnc();" style="display: inline-block;">&lt;</div>
+		<div id="pageleftBtn" onclick="pageLeftFnc();" 
+			style="display: inline-block;">
+			&lt;
+		</div>
 		<div id="pageNumDiv" style="display: inline-block;"></div>
-		<div id="pageRightBtn" style="display: inline-block;">&gt;</div>
-		<a href="./list?currentNo=${currentNo +1}">&gt;</a>	
+		<div id="pageRightBtn" onclick="pageRightFnc();" 
+			style="display: inline-block;">
+			&gt;
+		</div>
 	</div>
 	
 	<jsp:include page="/Tail.jsp" />

@@ -308,10 +308,12 @@ public class MemberDao {
 	String grade ="";
 	MemberDto memberDto = null;
 	int no = 0;
+	Date modifiedDate = new Date();
+	Date createdDate = new Date();
 	
 	try {
 		
-	sql += "SELECT MNAME, EMAIL, GRADE, MNO";
+	sql += "SELECT MNAME, EMAIL, GRADE, MNO, CRE_DATE, MOD_DATE";
 	sql += " FROM MEMBER";
 	sql += " WHERE EMAIL = ?";
 	sql += " AND PWD = ?";
@@ -330,6 +332,8 @@ public class MemberDao {
 			name = rs.getString("MNAME");
 			grade = rs.getString("GRADE");
 			no = rs.getInt("MNO");
+			modifiedDate = rs.getDate("MOD_DATE");
+			createdDate = rs.getDate("CRE_DATE");
 			
 			memberDto = new MemberDto();
 			
@@ -337,6 +341,8 @@ public class MemberDao {
 			memberDto.setName(name);
 			memberDto.setGrade(grade);
 			memberDto.setNo(no);
+			memberDto.setCreatedDate(createdDate);
+			memberDto.setModifiedDate(modifiedDate);
 			
 			//System.out.println("memberDao grade:"+grade );
 			

@@ -10,9 +10,26 @@
 
 <script type="text/javascript">
 	
+	window.onload = function(){
+		<% int pageNum = (Integer) request.getAttribute("pageNum");%>
+		
+		var pageDiv = document.getElementById("pageNumDiv");
+		
+		for(var i=1; i<=<%=pageNum%>; i++){
+			var aTag = document.createElement("a");
+			aTag.innerHTML = i;
+			aTag.setAttribute("style", "margin: 0 10px;");
+			var url = "./list?currentNo="+i;
+			aTag.setAttribute("href", url);
+			pageDiv.appendChild(aTag);
+		}
+		
+	}
+	
 	function boardAddFnc(){
 		location.href="./add";
 	}
+	
 </script>
 </head>
 
@@ -50,6 +67,12 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<div>
+		<a id="pageLeftBtn">&lt;</a>
+		<div id="pageNumDiv" style="display: inline-block;"></div>
+		<a id="pageRightBtn">&gt;</a>	
+	</div>
 	
 	<jsp:include page="/Tail.jsp" />
 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.BoardDao;
 import spms.dto.BoardDto;
+import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 @WebServlet(value="/board/list")
 public class BoardListServlet extends HttpServlet{
@@ -31,10 +32,39 @@ public class BoardListServlet extends HttpServlet{
 		boardDao.setConnection(conn);
 		
 		ArrayList<BoardDto> boardList = null;	
-		boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
-
 		
+		//게시글 전체 조회 
+		//boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
+		
+		int total = 0;
+		//게시글 전체 개수 조회
+		total = boardDao.boardTotalCount();
+		
+		int pageNum = 0;	//페이지 개수 
+		int currentNo = 0;	//선택 페이지 번호
+		if(req.getParameter("currentNo") != null) {			
+			currentNo = Integer.parseInt(req.getParameter("currentNo"));
+//			System.out.println("get currentNo: "+currentNo);
+		}else {
+			currentNo = 1;
+//			System.out.println("get currentNo: "+currentNo);
+		}
+
+		if(total % 10 == 0 ){
+			pageNum = total/10;
+		}else{
+			pageNum = total/10 + 1;
+		}
+		
+//		System.out.println("total : "+total);
+//		System.out.println("pageNum : "+pageNum);
+		
+		//게시글 10개씩 조회 
+		boardList = (ArrayList<BoardDto>) boardDao.boardSelectTen(currentNo);
 		req.setAttribute("boardList", boardList);
+		
+		//페이지 개수 전달
+		req.setAttribute("pageNum", pageNum);
 		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("./BoardListView.jsp");
@@ -46,8 +76,7 @@ public class BoardListServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		
 	}
 	
 	

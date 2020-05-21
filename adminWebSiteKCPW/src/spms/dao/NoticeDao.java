@@ -18,32 +18,6 @@ public class NoticeDao {
 		this.conn = conn;
 	}
 	
-	/*
-	 * -- 공지 게시판 관리 sql 수행문
-		select notice_no, title, content, cre_date
-		from noticeboard
-		order by notice_no desc;
-		
-		select notice_no, title, content, cre_date
-		from noticeboard
-		where notice_no = 1;
-		
-		insert into noticeboard
-		(notice_no, title, content, email)
-		values(notice_no_seq.NEXTVAL, '제목', '내용', 'dd');
-		
-		update noticeboard
-		set title='tt', content='content'
-		where notice_no = 1 and email='dd';
-		
-		select *
-		from noticeboard;
-		
-		delete from noticeboard
-		where notice_no = 2 and email='dd';
-	 * 
-	 */
-	
 	//게시판 목록
 	public List<NoticeDto> noticeSelectList() throws Exception{
 		PreparedStatement pstmt = null;

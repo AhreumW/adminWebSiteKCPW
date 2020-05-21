@@ -24,7 +24,7 @@
 	</c:if>
 	
 	<c:if test="${memberDto.getGrade() == 'user'}">
-		<p>${memberDto.name}님의 등급은 ${memberDto.getGrade()}입니다.</p>
+		<p>${memberDto.name}님의 일반회원입니다.</p>
 	</c:if>
 	
 	<c:if test="${memberDto.getGrade() != 'user' && memberDto.getGrade() != 'admin'}">
@@ -36,8 +36,7 @@
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
-				<th>내용</th>
-				<th>이메일</th>
+				<th>작성자</th>
 				<th>작성일</th>
 			</tr>
 		</thead>
@@ -48,8 +47,7 @@
 					<td>
 						<a href="./detail?noticeNo=${noticeDto.noticeNo}">${noticeDto.title}</a>
 					</td>
-					<td>${noticeDto.content}</td>
-					<td>${noticeDto.email}</td>
+					<td>${memberDto.name}</td>
 					<td>${noticeDto.createdDate}</td>
 				</tr>
 			</c:forEach>

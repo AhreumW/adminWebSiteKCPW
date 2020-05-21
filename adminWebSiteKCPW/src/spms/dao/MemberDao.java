@@ -297,6 +297,7 @@ public class MemberDao {
       }
       return null;
    }
+   
 	public MemberDto memberLogin(String email, String pwd) {
 		   
 	PreparedStatement pstmt = null; // 상태
@@ -336,6 +337,8 @@ public class MemberDao {
 			memberDto.setName(name);
 			memberDto.setGrade(grade);
 			memberDto.setNo(no);
+			
+			//System.out.println("memberDao grade:"+grade );
 			
 		} else {
 			System.out.println("오류발생됨!");

@@ -37,6 +37,7 @@ public class LoginServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String pwd = req.getParameter("password");
 		
+		
 		ServletContext sc = this.getServletContext();
 		conn = (Connection) sc.getAttribute("conn");
 
@@ -52,6 +53,8 @@ public class LoginServlet extends HttpServlet {
 				
 				HttpSession session = req.getSession();
 				session.setAttribute("memberDto", memberDto);
+				
+				//System.out.println("memberDto session grade:"+memberDto.getGrade());
 				
 				res.sendRedirect("../member/list");
 			} else {

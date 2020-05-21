@@ -8,7 +8,10 @@ public class BoardDto {
 	private String title;
 	private String content;
 	private String email;
+	private String myName;
 	private Date createdDate;
+	private Date modifiedDate;
+	private int readCount;
 	
 	public BoardDto() {
 		super();
@@ -31,6 +34,19 @@ public class BoardDto {
 		this.createdDate = createdDate;
 	}
 	
+	public BoardDto(int boardNo, String title, String content, String email, Date createdDate, String myName,
+			Date modifiedDate, int readCount) {
+		super();
+		this.boardNo = boardNo;
+		this.title = title;
+		this.content = content;
+		this.email = email;
+		this.createdDate = createdDate;
+		this.myName = myName;
+		this.modifiedDate = modifiedDate;
+		this.readCount = readCount;
+	}
+
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -61,12 +77,32 @@ public class BoardDto {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	public String getMyName() {
+		return myName;
+	}
+	public void setMyName(String myName) {
+		this.myName = myName;
+	}
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+	public int getReadCount() {
+		return readCount;
+	}
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
+	}
 
+	
 	
 	@Override
 	public String toString() {
 		return "BoardDto [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", email=" + email
-				+ ", createdDate=" + createdDate + "]";
+				+ ", createdDate=" + createdDate + ", myName=" + myName + ", modifiedDate=" + modifiedDate
+				+ ", readCount=" + readCount + "]";
 	}
 	
 	

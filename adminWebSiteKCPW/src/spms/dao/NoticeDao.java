@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import spms.dto.MemberDto;
 import spms.dto.NoticeDto;
 
 public class NoticeDao {
@@ -162,23 +163,32 @@ public class NoticeDao {
 	}
 	
 	//게시글 쓰기
-	public int noticeInsert(NoticeDto noticeDto, String myEmail) throws Exception{
+	public int noticeInsert(NoticeDto noticeDto, MemberDto memberDto) throws Exception{
 		int result = 0;
 		PreparedStatement pstmt = null;
+		
+		String myName = "";
+		String myEmail = "";
 		
 		try {
 			String title = noticeDto.getTitle();
 			String content = noticeDto.getContent();
 			
 			String sql = "INSERT INTO NOTICEBOARD";
-			sql += " (NOTICE_NO, TITLE, CONTENT, CRE_EMAIL, CRE_DATE)";
-			sql += " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, ?, SYSDATE)";
+			sql += " (NOTICE_NO, TITLE, CONTENT, CRE_EMAIL, MY_NAME, CRE_DATE, MOD_DATE)";
+			sql += " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, ?, ?, SYSDATE, SYSDATE)";
 			
 			pstmt = conn.prepareStatement(sql);
+			
+			myEmail = memberDto.getEmail();
+			myName = memberDto.getName();
 			
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setString(3, myEmail);
+			pstmt.setString(4, myName);
+			
+			System.out.println(myName);
 			
 			result = pstmt.executeUpdate();
 			
@@ -205,6 +215,7 @@ public class NoticeDao {
 		return result;
 	}
 	
+	//게시글 수정
 	public int noticeUpdate(NoticeDto noticeDto, String myEmail) throws SQLException{
 		
 		int result = 0;

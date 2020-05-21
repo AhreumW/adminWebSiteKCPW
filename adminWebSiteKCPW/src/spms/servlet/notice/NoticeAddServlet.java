@@ -57,10 +57,7 @@ public class NoticeAddServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			MemberDto me = (MemberDto) session.getAttribute("memberDto");
 			
-			String myEmail = me.getEmail();
-			System.out.println(myEmail);
-			
-			result = noticeDao.noticeInsert(noticeDto, myEmail); 
+			result = noticeDao.noticeInsert(noticeDto, me); 
 			
 			if(result == 0){
 				System.out.println("글쓰기 실패");

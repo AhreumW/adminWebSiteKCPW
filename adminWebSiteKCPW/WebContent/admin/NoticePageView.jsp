@@ -31,8 +31,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td>작성자</td>
+				<td>
+					${noticeDto.myName}
+				</td>
+			</tr>
+			<tr>
 				<td>작성일</td>
-				<td>${requestScope.noticeDto.createdDate}</td>
+				<td>${noticeDto.createdDate}</td>
 			</tr>
 		</tbody>
 	</table>

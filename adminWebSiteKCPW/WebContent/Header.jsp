@@ -12,20 +12,20 @@
 <!--  	MemberDto memberDto = (MemberDto)session.getAttribute("memberDto"); -->
 <!-- %> -->
 
-<div style="background-color:#ddd; height:20px; padding: 5px;">
-	<span>KCPW</span>
-	<a href="<%=request.getContextPath()%>/auth/login">로그인</a>
+<div id='header'>
+	<span id='logo'>KCPW</span>
+	<a href="<%=request.getContextPath()%>/auth/login" class='depth1'>로그인</a>
 	
 	<c:if test="${memberDto.email ne null}">
 		<c:if test="${memberDto.grade == 'admin'}">
-			<a href="<%=request.getContextPath()%>/member/list">회원리스트</a>
-			<a href="<%=request.getContextPath()%>/member/add">회원추가</a>
+			<a href="<%=request.getContextPath()%>/member/list" class='depth1'>회원리스트</a>
+			<a href="<%=request.getContextPath()%>/member/add" class='depth1'>회원추가</a>
 		</c:if>
 	</c:if>
 	
-	<a href="<%=request.getContextPath()%>/board/list">게시판</a>
+	<a href="<%=request.getContextPath()%>/board/list" class='depth1'>게시판</a>
 	
-	<a href="<%=request.getContextPath()%>/admin/list">공지 게시판</a>
+	<a href="<%=request.getContextPath()%>/admin/list" class='depth1'>공지 게시판</a>
 	
 	<c:if test="${memberDto.email ne null}">
 		<c:if test="${memberDto.grade == 'user'}">

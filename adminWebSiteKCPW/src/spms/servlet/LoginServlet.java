@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 			if (memberDto != null) {
 				HttpSession session = req.getSession();
 				session.setAttribute("memberDto", memberDto);
+				
 					System.out.println(memberDto.getGrade());
 					if (memberDto.getGrade().equals("user")) {
 						res.sendRedirect("../member/list");

@@ -7,6 +7,7 @@
 
 <meta charset="UTF-8">
 <title>공지 게시판</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 </head>
 
@@ -48,13 +49,25 @@
 					<td>
 						<a href="./detail?noticeNo=${noticeDto.noticeNo}">${noticeDto.title}</a>
 					</td>
-					<td>${memberDto.name}</td>
+					<td>${noticeDto.myName}</td>
 					<td>${noticeDto.createdDate}</td>
 					<td>${noticeDto.modifiedDate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<div>
+		<div id="pageleftBtn" onclick="pageLeftFnc();" 
+			style="display: inline-block;">
+			&lt;
+		</div>
+		<div id="pageNumDiv" style="display: inline-block;"></div>
+		<div id="pageRightBtn" onclick="pageRightFnc();" 
+			style="display: inline-block;">
+			&gt;
+		</div>
+	</div>
 	
 	<jsp:include page="/Tail.jsp" />
 

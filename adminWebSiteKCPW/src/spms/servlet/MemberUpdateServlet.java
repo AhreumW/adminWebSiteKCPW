@@ -39,6 +39,15 @@ public class MemberUpdateServlet extends HttpServlet {
 
 			conn = (Connection) sc.getAttribute("conn");
 			
+			MemberDao memberDao = new MemberDao();
+			memberDao.setConnection(conn);
+			
+			MemberDto memberDto = new MemberDto();
+			int no =  Integer.parseInt(req.getParameter("no"));
+			memberDto = memberDao.memberSelectOne(no);
+			
+			req.setAttribute("memberDto", memberDto);
+			
 			rd = req.getRequestDispatcher("./MemberUpdateForm.jsp");
 			rd.forward(req, res);
 
@@ -59,6 +68,8 @@ public class MemberUpdateServlet extends HttpServlet {
 					throws ServletException, IOException {
 		MemberDto memberDto = null;			
 		Connection conn = null;
+		
+		System.out.println("난 수행되지 않을것이다");
 		
 		try {
 			ServletContext sc = this.getServletContext();

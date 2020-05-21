@@ -19,13 +19,14 @@
 	<jsp:include page="/Header.jsp"/>
 
 	<h1>회원정보</h1>
+
+		<p>회원번호 : ${memberDto.no}</p>
+		<p>이름 : ${memberDto.name}</p>
+		<p>이메일 : ${memberDto.email}</p>
+		<p>가입일 : ${memberDto.createdDate}</p>
 	
 	<form action='./update' method='get'>
-		회원번호 : ${memberDto.no}<br>
-		이름 : ${memberDto.name}<br>
-		이메일 : ${memberDto.email}<br>
-		가입일 : ${memberDto.createdDate}<br><br>
-	
+		<input type="hidden" name="no" value="${memberDto.no}">
 		<input type='submit' value='수정하기'>
 		<input type="button" onclick="pageMoveListFnc();" value='뒤로가기'>
 	

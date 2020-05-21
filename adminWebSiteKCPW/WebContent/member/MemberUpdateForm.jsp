@@ -33,19 +33,19 @@
 
 	<h1>회원정보 수정</h1>
 	
-	<form action='' method='post'>
+	<form action='./update' method='post'>
 		번호 : <input type='text' name='no' 
-			value='${sessionScope.memberDto.no}' readonly='readonly'><br>
+			value='${memberDto.no}' readonly='readonly'><br>
 		이름 : <input type='text' name='name' 
-			value='${sessionScope.memberDto.name}'><br>
+			value='${memberDto.name}'><br>
 		이메일 : <input type='text' name='email' 
-			value='${sessionScope.memberDto.email}'><br>
-		가입일 : '${sessionScope.memberDto.createdDate}'<br>
-		수정일 : '${sessionScope.memberDto.modifiedDate}'<br><br>
+			value='${memberDto.email}'><br>
+		가입일 : '${memberDto.createdDate}'<br>
+		수정일 : '${memberDto.modifiedDate}'<br><br>
 		
 		<input type='submit' value='저장하기'>
 		<input type='button' value='탈퇴하기' 
-			onclick="pageMoveDeleteFnc(${sessionScope.memberDto.no});">
+			onclick="pageMoveDeleteFnc(${memberDto.no});">
 		<input type='button' value='뒤로가기' 
 			onclick="backPageMoveFnc();">
 	</form>

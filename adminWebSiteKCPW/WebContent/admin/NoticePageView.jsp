@@ -10,6 +10,36 @@
 </head>
 
 <body>
+
+	<jsp:include page="/Header.jsp" />
+
+	<h1>게시글 상세보기</h1>
+	
+	<table>
+		<tbody>
+			<tr>
+				<td>제목</td>
+				<td>
+					${noticeDto.title}
+				</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td>
+					${noticeDto.content}
+				</td>
+			</tr>
+			<tr>
+				<td>작성일</td>
+				<td>${requestScope.noticeDto.createdDate}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<a href="./update?noticeNo=${noticeDto.noticeNo}">수정</a>
+	<a href="./list">목록</a>
+	
+	<jsp:include page="/Tail.jsp" />
 	
 </body>
 

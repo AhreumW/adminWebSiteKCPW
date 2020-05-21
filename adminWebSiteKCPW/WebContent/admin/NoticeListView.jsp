@@ -25,9 +25,6 @@
 	
 	<c:if test="${memberDto.getGrade() == 'user'}">
 		<p>${memberDto.name}님의 등급은 ${memberDto.getGrade()}입니다.</p>
-		<p>
-			<a href="./add">글쓰기</a>
-		</p>
 	</c:if>
 	
 	<c:if test="${memberDto.getGrade() != 'user' && memberDto.getGrade() != 'admin'}">
@@ -48,7 +45,9 @@
 			<c:forEach var="noticeDto" items="${noticeList}">
 				<tr>
 					<td>${noticeDto.noticeNo}</td>
-					<td>${noticeDto.title}</td>
+					<td>
+						<a href="./detail?noticeNo=${noticeDto.noticeNo}">${noticeDto.title}</a>
+					</td>
 					<td>${noticeDto.content}</td>
 					<td>${noticeDto.email}</td>
 					<td>${noticeDto.createdDate}</td>

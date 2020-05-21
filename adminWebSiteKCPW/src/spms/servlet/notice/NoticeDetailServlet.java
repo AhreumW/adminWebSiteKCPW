@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import spms.dao.NoticeDao;
 import spms.dto.NoticeDto;
 
-@WebServlet(value="/notice/view")
-public class NoticeViewServlet extends HttpServlet {
+@WebServlet(value="/admin/detail")
+public class NoticeDetailServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
@@ -25,22 +25,21 @@ public class NoticeViewServlet extends HttpServlet {
 		Connection conn = null;
 		RequestDispatcher rd = null;
 		
-		
 		try {
 			
 			ServletContext sc = this.getServletContext();
 			
 			conn = (Connection) sc.getAttribute("conn");
 			
-			int no = Integer.parseInt(req.getParameter("no"));
+			int noticeNo = Integer.parseInt(req.getParameter("noticeNo"));
 			
 			NoticeDao noticeDao = new NoticeDao();
 			noticeDao.setConnection(conn);
 			
-			NoticeDto noticeDto = noticeDao.noticeSelectOne(no);
+			NoticeDto noticeDto = noticeDao.noticeSelectOne(noticeNo);
 			
-			req.setAttribute("noticeDton", noticeDto);
-			rd = req.getRequestDispatcher("./NoticeUpdateForm.jsp");
+			req.setAttribute("noticeDto", noticeDto);
+			rd = req.getRequestDispatcher("./NoticePageView.jsp");
 			
 			rd.forward(req, res);
 			

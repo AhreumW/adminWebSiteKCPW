@@ -30,8 +30,14 @@ public class NoticeDto {
 		this.email = email;
 		this.createdDate = createdDate;
 	}
-	
-	
+
+	public NoticeDto(int noticeNo, String title, String content) {
+		super();
+		this.noticeNo = noticeNo;
+		this.title = title;
+		this.content = content;
+	}
+
 	public int getNoticeNo() {
 		return noticeNo;
 	}

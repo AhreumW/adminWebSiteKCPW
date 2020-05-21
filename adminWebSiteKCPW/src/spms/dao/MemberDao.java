@@ -293,6 +293,35 @@ public class MemberDao {
 
 		return name;
 	}
+	
+	// 이메일로 해당 등급 찾기
+	public String findGradeByEmail(String myEmail) {
+
+		String grade = "";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT EMAIL, GRADE";
+		sql += " FROM MEMBER";
+		sql += " WHERE EMAIL = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+				
+			pstmt.setString(1, myEmail);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				grade = rs.getString("GRADE");
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return grade;
+	}
 
 	//회원찾기
 	public MemberDto memberExist(String email, String pwd) {

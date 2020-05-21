@@ -265,9 +265,40 @@ public class NoticeDao {
 	    return result;
 	}
 	
-	public int noticeDelete(){
+	public int noticeDelete(int noticeNo, String myEmail) throws SQLException {
+		int result = 0;
 		
-		return 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM NOTICEBOARD"; 
+		sql += " WHERE NOTICE_NO = ? AND EMAIL = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, noticeNo);
+			pstmt.setString(2, myEmail);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		} finally {
+
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} // finally 종료
+
+		return result;
 	}
 	
 	public NoticeDto noticeExist(String title, String content, String email) {

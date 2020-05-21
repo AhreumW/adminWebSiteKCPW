@@ -282,9 +282,12 @@ public class MemberDao {
 			pstmt.setString(1, myEmail);
 			
 			rs = pstmt.executeQuery();
-		} catch (Exception e) {
-			// TODO: handle exception
 			
+			if(rs.next()) {
+				name = rs.getString("MNAME");
+			}
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

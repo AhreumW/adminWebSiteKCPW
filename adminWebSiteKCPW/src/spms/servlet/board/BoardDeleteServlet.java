@@ -2,6 +2,7 @@ package spms.servlet.board;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -10,65 +11,49 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import spms.dao.BoardDao2;
 import spms.dto.BoardDto;
+import spms.dto.MemberDto;
 
-@WebServlet("/board/add")
-public class BoardAddServlet extends HttpServlet{
-
+@WebServlet("/board/delete")
+public class BoardDeleteServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
-
-		RequestDispatcher rd = req.getRequestDispatcher("./BoardAddForm.jsp");
-		rd.forward(req, res);
-
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
-			throws ServletException, IOException {
-	
+		
 		Connection conn = null;
 		
-		String title = req.getParameter("title");
-		String content = req.getParameter("content");
-		String email = req.getParameter("email");
-		
-		BoardDto boardDto = new BoardDto();
-		
-		boardDto.setTitle(title);
-		boardDto.setContent(content);
-		boardDto.setEmail(email);
-		
 		ServletContext sc = this.getServletContext();
-		
 		conn = (Connection) sc.getAttribute("conn");
-		
+
 		BoardDao2 boardDao2 = new BoardDao2();
-		
 		boardDao2.setConnection(conn);
 		
 		int result;
 		
 		try {
-			result = boardDao2.boardInsert(boardDto);
+			HttpSession session = req.getSession();
+			MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
+			String myEmail = memberDto.getEmail();
 			
+			int no = Integer.parseInt(req.getParameter("no"));
 			
-			if(result == 0) {
-				System.out.println("글쓰기 추가 실패");
+			result = boardDao2.boardDelete(no, myEmail);
+			
+			if (result == 0) {
+				System.out.println("게시판글이 삭제되지 않았습니다.");
 			}
 			res.sendRedirect("./list");
+			
 		} catch (Exception e) {
 			req.setAttribute("error", e);
-			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("/Error.jsp");
-			dispatcher.forward(req, res);
-			 
+			RequestDispatcher rd = req.getRequestDispatcher("./Error.jsp");
+			rd.forward(req, res);
 		}
 		
 	}
-	
+
 }

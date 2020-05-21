@@ -64,12 +64,6 @@ public class LoginServlet extends HttpServlet {
 				
 			}
 
-			/*
-			 * RequestDispatcher rd = req.getRequestDispatcher("./LoginFail.jsp");
-			 * rd.forward(req, res);
-			 * 
-			 */
-
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

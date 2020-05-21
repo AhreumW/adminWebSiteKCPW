@@ -123,7 +123,6 @@ public class BoardDao2 {
 	
 	public int boardInsert(BoardDto boardDto) throws Exception {
 		
-		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		String title = boardDto.getTitle();
@@ -158,13 +157,6 @@ public class BoardDao2 {
 					e.printStackTrace();
 				}
 			}
-			if(conn != null) {
-				try {
-					pstmt.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
 			
 		} // finally 종료
 	
@@ -177,9 +169,42 @@ public class BoardDao2 {
 		return 0;
 	}
 	
-	public int boardDelete(){
+	public int boardDelete(int no, String myEmail){
+		int result = 0;
 		
-		return 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from board";
+		sql += " where board_no = ?";
+		sql += " and email= ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			pstmt.setString(2, myEmail);
+			result = pstmt.executeUpdate();
+
+			if(result == 0) {
+				System.out.println("이메일 정보가 일치하지 않습니다.");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+				pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	
+		return result;
 	}
 	
 	public BoardDto boardExist(String title, String content, String email) {

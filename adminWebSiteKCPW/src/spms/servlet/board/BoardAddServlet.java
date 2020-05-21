@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spms.dao.BoardDao2;
+import spms.dao.BoardDao;
 import spms.dto.BoardDto;
 
 @WebServlet("/board/add")
@@ -47,14 +47,14 @@ public class BoardAddServlet extends HttpServlet{
 		
 		conn = (Connection) sc.getAttribute("conn");
 		
-		BoardDao2 boardDao2 = new BoardDao2();
+		BoardDao boardDao = new BoardDao();
 		
-		boardDao2.setConnection(conn);
+		boardDao.setConnection(conn);
 		
 		int result;
 		
 		try {
-			result = boardDao2.boardInsert(boardDto);
+			result = boardDao.boardInsert(boardDto);
 			
 			
 			if(result == 0) {

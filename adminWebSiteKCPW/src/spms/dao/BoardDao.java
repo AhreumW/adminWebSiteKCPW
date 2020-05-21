@@ -322,9 +322,47 @@ public class BoardDao {
 		return boardDto;
 	}
 	
-	public int boardInsert(){
+	public int boardInsert(BoardDto boardDto) throws Exception {
 		
-		return 0;
+		PreparedStatement pstmt = null;
+		
+		String title = boardDto.getTitle();
+		String content = boardDto.getContent();
+		String email = boardDto.getEmail();
+		
+		String sql = "";
+		
+		int result = 0;
+	
+		try {
+			sql  = "insert into board";
+			sql += " (board_no, title, content, email)";		
+			sql += " values(board_no_seq.NEXTVAL, ?, ?, ?)";
+			
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, email);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw e;
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		} // finally 종료
+	
+	return result;
+
 	}
 	
 	public int boardUpdate(BoardDto boardDto, String myEmail){
@@ -367,9 +405,43 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int boardDelete(){
+	public int boardDelete(int no, String myEmail){
+		int result = 0;
 		
-		return 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from board";
+		sql += " where board_no = ?";
+		sql += " and email= ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			pstmt.setString(2, myEmail);
+			result = pstmt.executeUpdate();
+
+			if(result == 0) {
+				System.out.println("이메일 정보가 일치하지 않습니다.");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+				pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	
+		return result;
+
 	}
 	
 	public BoardDto boardExist(String title, String content, String email) {

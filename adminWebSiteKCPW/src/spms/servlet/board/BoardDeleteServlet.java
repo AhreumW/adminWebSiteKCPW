@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import spms.dao.BoardDao2;
+import spms.dao.BoardDao;
 import spms.dto.MemberDto;
 
 @WebServlet("/board/delete")
@@ -27,8 +27,8 @@ public class BoardDeleteServlet extends HttpServlet {
 		ServletContext sc = this.getServletContext();
 		conn = (Connection) sc.getAttribute("conn");
 
-		BoardDao2 boardDao2 = new BoardDao2();
-		boardDao2.setConnection(conn);
+		BoardDao boardDao = new BoardDao();
+		boardDao.setConnection(conn);
 		
 		int result;
 		
@@ -39,7 +39,7 @@ public class BoardDeleteServlet extends HttpServlet {
 			
 			int no = Integer.parseInt(req.getParameter("no"));
 			
-			result = boardDao2.boardDelete(no, myEmail);
+			result = boardDao.boardDelete(no, myEmail);
 			
 			if (result == 0) {
 				System.out.println("게시판글이 삭제되지 않았습니다.");

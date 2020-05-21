@@ -16,9 +16,12 @@
 	<span>KCPW</span>
 	<a href="<%=request.getContextPath()%>/auth/login">로그인</a>
 	
-	<a href="<%=request.getContextPath()%>/member/list">회원리스트</a>
-	
-	<a href="<%=request.getContextPath()%>/member/add">회원추가</a>
+	<c:if test="${memberDto.email ne null}">
+		<c:if test="${memberDto.grade == 'admin'}">
+			<a href="<%=request.getContextPath()%>/member/list">회원리스트</a>
+			<a href="<%=request.getContextPath()%>/member/add">회원추가</a>
+		</c:if>
+	</c:if>
 	
 	<a href="<%=request.getContextPath()%>/board/list">게시판</a>
 	

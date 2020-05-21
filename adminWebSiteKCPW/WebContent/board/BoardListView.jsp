@@ -67,7 +67,9 @@
 				<th>제목</th>
 				<th>이메일</th>
 				<th>등록일</th>
-				<th>관리</th>
+				<c:if test="${memberDto.getGrade() == 'admin'}">
+					<th>관리</th>
+				</c:if>
 			</tr>
 		</thead>
 		<tbody>
@@ -76,13 +78,17 @@
 					<td>${boardDto.boardNo}</td>
 					<td>
 						<a href='./detail?no=${boardDto.boardNo}'>${boardDto.title}</a>
-						<a href='./update?no=${boardDto.boardNo}'> 수정</a>
+						<c:if test="${memberDto.getGrade() == 'admin'}">
+							<a href='./update?no=${boardDto.boardNo}'> 수정</a>
+						</c:if>
 					</td>
 					<td>${boardDto.email}</td>
 					<td>${boardDto.createdDate}</td>
-					<td>
-						<a href="./delete?no=${boardDto.boardNo}"> 삭제</a>  
-					</td>
+					<c:if test="${memberDto.getGrade() == 'admin'}">
+						<td>
+							<a href="./delete?no=${boardDto.boardNo}"> 삭제</a> 
+						</td>
+					</c:if> 
 				</tr>
 			</c:forEach>
 		</tbody>

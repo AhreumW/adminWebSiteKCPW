@@ -75,12 +75,12 @@ public class BoardUpdateServlet extends HttpServlet{
 			boardDto.setBoardNo(boardNo);
 			boardDto.setTitle(title);
 			boardDto.setContent(content);
-			System.out.println(boardDto);
+//			System.out.println(boardDto);
 			
 			HttpSession session = req.getSession();
 			MemberDto me = (MemberDto) session.getAttribute("memberDto");
 			String myEmail = me.getEmail();
-			System.out.println(myEmail);
+//			System.out.println(myEmail);
 			
 			
 			int result = boardDao.boardUpdate(boardDto, myEmail);

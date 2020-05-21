@@ -11,9 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import spms.dao.BoardDao;
+import spms.dao.MemberDao;
 import spms.dto.BoardDto;
+import spms.dto.MemberDto;
 import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 @WebServlet(value="/board/list")
@@ -66,6 +69,7 @@ public class BoardListServlet extends HttpServlet{
 		//페이지 개수 전달
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("currentNo", currentNo);
+		
 		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("./BoardListView.jsp");

@@ -27,7 +27,7 @@
 	<c:if test="${memberDto.email ne null}">
 		<span style="float:right;">
 			<a style="color:white; text-decoration: none;"
-				 href="<%=request.getContextPath()%>/member/update?no=${memberDto.no}">
+				 href="<%=request.getContextPath()%>/member/info?no=${memberDto.no}">
 				 	${memberDto.name}</a>
 			<a style="color:white;"
 				 href="<%=request.getContextPath()%>/auth/logout">

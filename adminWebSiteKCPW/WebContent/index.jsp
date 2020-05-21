@@ -21,7 +21,6 @@
 	
 	<a href="./auth/login">로그인</a>
 	
-	
 	<a href="./member/list">회원리스트</a>
 	
 	<a href="./member/add">회원추가</a>

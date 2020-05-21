@@ -135,7 +135,7 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				totalNum = rs.getInt("COUNT(*)");
 			}
 			
@@ -176,21 +176,21 @@ public class BoardDao {
 		try {                 
 			sql =  "SELECT *";
 			sql += " FROM (";
-			sql += " SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE, rownum rnum";
+			sql += " SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE, ROWNUM rnum";
 			sql += " FROM BOARD";
 			sql += " ORDER BY BOARD_NO DESC";
 			sql += " )";
 			sql += " WHERE rnum BETWEEN ? AND ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			
+
 			int rnum1 = 0;
 			int rnum2 = 0;
 			if(pageNum == 1) {
 				rnum1 = 1;
 				rnum2 = 10;
 			}else {
-				rnum1 = (pageNum-1) * 10;
+				rnum1 = (pageNum-1) * 10 + 1;
 				rnum2 = pageNum * 10;
 			}
 			pstmt.setInt(1, rnum1);
@@ -263,11 +263,11 @@ public class BoardDao {
 		
 		BoardDto boardDto = null;
 		String sql = "";
-		sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE"; 
-		sql += " FROM BOARD";
-		sql += " WHERE BOARD_NO = ?";
 		
 		try {
+			sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE"; 
+			sql += " FROM BOARD";
+			sql += " WHERE BOARD_NO = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
@@ -280,6 +280,7 @@ public class BoardDao {
 	        Date creDate = null;
 
 	        if (rs.next()) {
+	        	no = rs.getInt("BOARD_NO");
 	        	title = rs.getString("TITLE");
 	        	content = rs.getString("CONTENT");
 	        	email = rs.getString("EMAIL");
@@ -344,13 +345,19 @@ public class BoardDao {
 			pstmt.setString(1, boardDto.getTitle());
 	        pstmt.setString(2, boardDto.getContent());
 	        pstmt.setInt(3, boardDto.getBoardNo());
-	        pstmt.setString(4, boardDto.getEmail());
+	        pstmt.setString(4, myEmail);
 			
-	        result = pstmt.executeUpdate(sql);
+	        result = pstmt.executeUpdate();
+	        
+	        if(result == 0) {
+	        	System.out.println("boardUpdate sql 실패");
+	        	System.out.println("result:"+result);
+	        }
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("작성자 일치 확인");
+			System.out.println("작성자 일치 실패 ");
 			e.printStackTrace();
 		} finally {
 	    	try {

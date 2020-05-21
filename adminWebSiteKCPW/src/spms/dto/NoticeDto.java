@@ -39,6 +39,18 @@ public class NoticeDto {
 	}
 	
 
+	public NoticeDto(int noticeNo, String title, String content, String creEmail, 
+			String modEmail, String myName, Date createdDate, Date modifiedDate) {
+		super();
+		this.noticeNo = noticeNo;
+		this.title = title;
+		this.content = content;
+		this.creEmail = creEmail;
+		this.modEmail = modEmail;
+		this.myName = myName;
+		this.createdDate = createdDate;
+		this.modifiedDate = modifiedDate;
+	}
 	public int getNoticeNo() {
 		return noticeNo;
 	}

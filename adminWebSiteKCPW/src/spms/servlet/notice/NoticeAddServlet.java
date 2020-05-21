@@ -24,9 +24,6 @@ public class NoticeAddServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		HttpSession session = req.getSession();
-		MemberDto me = (MemberDto) session.getAttribute("memberDto");
-		
 		res.sendRedirect("./NoticeAddForm.jsp");
 	}
 	

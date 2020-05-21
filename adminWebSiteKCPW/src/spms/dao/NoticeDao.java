@@ -23,7 +23,8 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, EMAIL, CRE_DATE";
+		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, CRE_EMAIL,";
+		sql += " CRE_DATE, MY_NAME, MOD_DATE, MOD_EMAIL";
 		sql += " FROM NOTICEBOARD";
 		sql += " ORDER BY CRE_DATE DESC";
 		
@@ -37,18 +38,25 @@ public class NoticeDao {
 			int noticeNo = 0;
 			String title = "";
 			String content = "";
-			String email = "";
+			String creEmail = "";
 			Date creDate = null;
+			String myName = "";
+			Date modDate = null;
+			String modEmail = "";
 			
 			while (rs.next()) {
 				noticeNo = rs.getInt("NOTICE_NO");
 				title = rs.getString("TITLE");
 				content = rs.getString("CONTENT");
-				email = rs.getString("EMAIL");
+				creEmail = rs.getString("CRE_EMAIL");
 				creDate = rs.getDate("CRE_DATE");
+				myName = rs.getString("MY_NAME");
+				modDate = rs.getDate("MOD_DATE");
+				modEmail = rs.getString("MOD_EMAIL");
 				
 				NoticeDto noticeDto = 
-						new NoticeDto(noticeNo, title, content, email, creDate);
+						new NoticeDto(noticeNo, title, content, creEmail, 
+								modEmail, myName, creDate, modDate);
 				
 				noticeList.add(noticeDto);
 			}
@@ -94,7 +102,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, EMAIL, CRE_DATE";
+		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, CRE_EMAIL";
 		sql += " FROM NOTICEBOARD";
 		sql += " WHERE NOTICE_NO = ?";
 		
@@ -107,22 +115,19 @@ public class NoticeDao {
 			
 			String title = "";
 			String content = "";
-			String email = "";
-			Date creDate = null;
+			String creEmail = "";
 			
 			if (rs.next()) {
 				title = rs.getString("TITLE");
 				content = rs.getString("CONTENT");
-				email = rs.getString("EMAIL");
-				creDate = rs.getDate("CRE_DATE");
+				creEmail = rs.getString("CRE_EMAIL");
 				
 				noticeDto = new NoticeDto();
 				
 				noticeDto.setNoticeNo(noticeNo);
 				noticeDto.setTitle(title);
 				noticeDto.setContent(content);
-				noticeDto.setEmail(email);
-				noticeDto.setCreatedDate(creDate);
+				noticeDto.setCreEmail(creEmail);
 			} else {
 				throw new Exception("해당 번호의 게시글을 찾을 수 없습니다.");
 			}
@@ -166,7 +171,7 @@ public class NoticeDao {
 			String content = noticeDto.getContent();
 			
 			String sql = "INSERT INTO NOTICEBOARD";
-			sql += " (NOTICE_NO, TITLE, CONTENT, EMAIL, CRE_DATE)";
+			sql += " (NOTICE_NO, TITLE, CONTENT, CRE_EMAIL, CRE_DATE)";
 			sql += " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, ?, SYSDATE)";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -208,7 +213,7 @@ public class NoticeDao {
 		
 		String sql = "UPDATE NOTICEBOARD";
 		sql += " SET TITLE = ?, CONTENT = ?";
-		sql += " WHERE NOTICE_NO = ? AND EMAIL = ?";
+		sql += " WHERE NOTICE_NO = ? AND CRE_EMAIL = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -245,7 +250,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		
 		String sql = "DELETE FROM NOTICEBOARD"; 
-		sql += " WHERE NOTICE_NO = ? AND EMAIL = ?";
+		sql += " WHERE NOTICE_NO = ? AND CRE_EMAIL = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

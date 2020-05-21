@@ -38,6 +38,7 @@
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성일</th>
+				<th>수정일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,6 +50,7 @@
 					</td>
 					<td>${memberDto.name}</td>
 					<td>${noticeDto.createdDate}</td>
+					<td>${noticeDto.modifiedDate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -45,9 +45,7 @@
 				<tr>
 					<td>내용</td>
 					<td>
-						<textarea rows="10" cols="30" name="content">
-							${noticeDto.content}
-						</textarea>
+						<textarea rows="10" cols="30" name="content">${noticeDto.content}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +57,8 @@
 		
 		<input type="submit" value="적용">
 		<input type="reset" value="초기화">
-		<input type="button" value="삭제" onclick="location.href='./delete?noticeNo=${noticeDto.noticeNo}'">
+		<input type="button" value="삭제" 
+			onclick="location.href='./delete?noticeNo=${noticeDto.noticeNo}'">
 		<a href="./list">목록</a>
 	</form>
 	

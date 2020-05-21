@@ -2,7 +2,6 @@ package spms.servlet.board;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import spms.dao.BoardDao2;
-import spms.dto.BoardDto;
 import spms.dto.MemberDto;
 
 @WebServlet("/board/delete")

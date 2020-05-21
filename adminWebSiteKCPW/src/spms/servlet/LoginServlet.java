@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import javafx.scene.control.Alert;
 import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
@@ -49,14 +50,16 @@ public class LoginServlet extends HttpServlet {
 			MemberDto memberDto = memberDao.memberLogin(email, pwd);
 
 			if (memberDto != null) {
-				System.out.println("확인");
-				
 				HttpSession session = req.getSession();
 				session.setAttribute("memberDto", memberDto);
+					System.out.println(memberDto.getGrade());
+					if (memberDto.getGrade().equals("user")) {
+						res.sendRedirect("../member/list");
+					} else {
+						res.sendRedirect("../admin/member/list");
+					}
 				
-				//System.out.println("memberDto session grade:"+memberDto.getGrade());
 				
-				res.sendRedirect("../member/list");
 			} else {
 				RequestDispatcher rd = 
 				req.getRequestDispatcher("../auth/LoginFail.jsp");

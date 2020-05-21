@@ -25,14 +25,27 @@
 	<a href="<%=request.getContextPath()%>/admin/list">공지 게시판</a>
 	
 	<c:if test="${memberDto.email ne null}">
-		<span style="float:right;">
-			<a style="color:white; text-decoration: none;"
-				 href="<%=request.getContextPath()%>/member/info?no=${memberDto.no}">
-				 	${memberDto.name}</a>
-			<a style="color:white;"
-				 href="<%=request.getContextPath()%>/auth/logout">
-				 	로그아웃</a>
-		</span>
+		<c:if test="${memberDto.grade == 'user'}">
+			<span style="float:right;">
+				<a style="color:white; text-decoration: none;"
+					 href="<%=request.getContextPath()%>/member/info?no=${memberDto.no}">
+					 	${memberDto.name}</a>
+				<a style="color:white;"
+					 href="<%=request.getContextPath()%>/auth/logout">
+					 	로그아웃</a>
+			</span>
+		</c:if>
+		
+		<c:if test="${memberDto.grade == 'admin'}">
+			<span style="float:right;">
+				<a style="color:white; text-decoration: none;"
+					 href="<%=request.getContextPath()%>/member/info?no=${memberDto.no}">
+					 	관리자</a>
+				<a style="color:white;"
+					 href="<%=request.getContextPath()%>/auth/logout">
+					 	로그아웃</a>
+			</span>
+		</c:if>
 	</c:if>
 
 </div>

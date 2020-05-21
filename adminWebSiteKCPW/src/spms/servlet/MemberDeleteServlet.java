@@ -43,7 +43,7 @@ public class MemberDeleteServlet extends HttpServlet{
 			
 			System.out.println("수행결과 : " + resultNum);
 			
-			res.sendRedirect("./list");
+			res.sendRedirect("../auth/logout");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

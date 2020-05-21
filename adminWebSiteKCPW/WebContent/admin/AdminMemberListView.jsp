@@ -4,11 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css">
-	tr {
-		text-align: center;
-	}
-</style>
+
 <meta charset="UTF-8">
 <title>회원 목록</title>
 
@@ -31,6 +27,7 @@
 				<th>이메일</th>
 				<th>가입날짜</th>
 				<th>등급</th>
+				<th>관리</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,6 +40,9 @@
 					<td>${memberDto.email}</td>
 					<td>${memberDto.createdDate}</td>
 					<td>${memberDto.grade}</td>
+					<td>
+						<a href="./delete?no=${memberDto.no}">삭제</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

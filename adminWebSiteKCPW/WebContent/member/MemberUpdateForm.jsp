@@ -41,7 +41,7 @@
 		이메일 : <input type='text' name='email' 
 			value='${sessionScope.memberDto.email}'><br>
 		가입일 : '${sessionScope.memberDto.createdDate}'<br>
-		수정일 : '${sessionScope.memberDto.modifiedDate}'<br>
+		수정일 : '${sessionScope.memberDto.modifiedDate}'<br><br>
 		
 		<input type='submit' value='저장하기'>
 		<input type='button' value='탈퇴하기' 

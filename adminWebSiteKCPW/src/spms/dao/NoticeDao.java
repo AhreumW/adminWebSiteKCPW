@@ -49,7 +49,7 @@ public class NoticeDao {
 		
 		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, EMAIL, CRE_DATE";
 		sql += " FROM NOTICEBOARD";
-		sql += " ORDER BY NOTICE_NO ASC";
+		sql += " ORDER BY CRE_DATE DESC";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

@@ -1,4 +1,4 @@
-package spms.servlet;
+package spms.servlet.notice;
 
 import java.io.IOException;
 import java.sql.Connection;

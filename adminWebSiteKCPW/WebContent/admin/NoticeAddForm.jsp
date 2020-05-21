@@ -27,7 +27,7 @@
 				<tr>
 					<td>내용</td>
 					<td>
-						<input type="text" name="content">
+						<textarea rows="10" cols="30" name="content"></textarea>
 					</td>
 				</tr>
 			</tbody>

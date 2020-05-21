@@ -16,9 +16,23 @@
 
 	<h1>공지 게시판</h1>
 	
-	<p>
-		<a href="./add">글쓰기</a>
-	</p>
+	<c:if test="${memberDto.getGrade() == 'admin'}">
+		<p>관리자 로그인 되었습니다.</p>
+		<p>
+			<a href="./add">글쓰기</a>
+		</p>
+	</c:if>
+	
+	<c:if test="${memberDto.getGrade() == 'user'}">
+		<p>${memberDto.name}님의 등급은 ${memberDto.getGrade()}입니다.</p>
+		<p>
+			<a href="./add">글쓰기</a>
+		</p>
+	</c:if>
+	
+	<c:if test="${memberDto.getGrade() != 'user' && memberDto.getGrade() != 'admin'}">
+		<p>로그인해주세요.</p>
+	</c:if>
 
 	<table>
 		<thead>

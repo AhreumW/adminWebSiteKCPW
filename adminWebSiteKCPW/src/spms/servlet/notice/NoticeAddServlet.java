@@ -1,4 +1,4 @@
-package spms.servlet;
+package spms.servlet.notice;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -27,16 +27,7 @@ public class NoticeAddServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		MemberDto me = (MemberDto) session.getAttribute("memberDto");
 		
-		String grade = me.getName();
-		
-		System.out.println(grade);
-		
-		if(grade.equals("디디")) {
-			System.out.println("관리자만 작성가능");
-			res.sendRedirect("./list");
-		} else {
-			res.sendRedirect("./NoticeAddForm.jsp");
-		}
+		res.sendRedirect("./NoticeAddForm.jsp");
 	}
 	
 	@Override

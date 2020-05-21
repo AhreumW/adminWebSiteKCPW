@@ -65,6 +65,7 @@ public class BoardListServlet extends HttpServlet{
 		
 		//페이지 개수 전달
 		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("currentNo", currentNo);
 		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("./BoardListView.jsp");

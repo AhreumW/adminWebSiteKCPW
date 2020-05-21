@@ -26,6 +26,16 @@
 		
 	}
 	
+	function pageLeftFnc(){
+		<% int current = (Integer) request.getAttribute("currentNo");%>
+		var current = <%=current%>;
+		location.href="./list?currentNo=${currentNo -1}"
+	}
+	
+	function pageRightFnc(){
+		
+	}
+	
 	function boardAddFnc(){
 		location.href="./add";
 	}
@@ -61,7 +71,7 @@
 					<td>${boardDto.email}</td>
 					<td>${boardDto.createdDate}</td>
 					<td>
-						<a href="#">삭제</a>
+						<a href="./delete?no=${boardDto.boardNo}"> 삭제</a>  
 					</td>
 				</tr>
 			</c:forEach>
@@ -69,9 +79,11 @@
 	</table>
 	
 	<div>
-		<a id="pageLeftBtn">&lt;</a>
+		<a href="./list?currentNo=${currentNo -1}">&lt;</a>
+		<div id="pageleftBtn" onclick="pageLeftFnc();" style="display: inline-block;">&lt;</div>
 		<div id="pageNumDiv" style="display: inline-block;"></div>
-		<a id="pageRightBtn">&gt;</a>	
+		<div id="pageRightBtn" style="display: inline-block;">&gt;</div>
+		<a href="./list?currentNo=${currentNo +1}">&gt;</a>	
 	</div>
 	
 	<jsp:include page="/Tail.jsp" />

@@ -50,7 +50,22 @@
 						</td>
 						<td class='textOFlow'>${memberDto.email}</td>
 						<td>${memberDto.createdDate}</td>
-						<td>${memberDto.grade}</td>
+						
+						<td>
+							<c:if test="${memberDto.grade == 'admin'}">
+								<select name='grade'>
+									<option value='admin' selected>관리자</option>
+									<option value='user'>사용자</option>
+								</select>
+							</c:if>
+							
+							<c:if test="${memberDto.grade == 'user'}">
+								<select name='grade'>
+									<option value='user' selected>사용자</option>
+									<option value='admin'>관리자</option>
+								</select>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

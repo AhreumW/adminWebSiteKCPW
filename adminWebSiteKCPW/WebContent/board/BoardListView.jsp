@@ -7,6 +7,7 @@
 
 <meta charset="UTF-8">
 <title>일반게시판 리스트</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 <script type="text/javascript">
 	

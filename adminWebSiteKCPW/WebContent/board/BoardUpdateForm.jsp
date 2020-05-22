@@ -6,6 +6,7 @@
 
 <meta charset="UTF-8">
 <title>게시판 수정</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 <script type="text/javascript">
 

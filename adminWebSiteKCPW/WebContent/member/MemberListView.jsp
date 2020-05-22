@@ -28,8 +28,8 @@
 		<table id='table'>
 			<colgroup>
 				<col width="15%">
-				<col width="20%">
-				<col width="30%">
+				<col width="15%">
+				<col width="35%">
 				<col width="20%">
 				<col width="15%">
 			</colgroup>
@@ -49,7 +49,7 @@
 						<td>
 							<a href="./update?no=${memberDto.no}">${memberDto.name}</a>
 						</td>
-						<td>
+						<td style='text-align: left;'>
 							<p class='textOFlow'>${memberDto.email}</p>
 						</td>
 						<td>${memberDto.createdDate}</td>

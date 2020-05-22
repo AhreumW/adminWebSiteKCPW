@@ -30,6 +30,11 @@
 			var aTag = document.createElement("a");
 			aTag.innerHTML = i;
 			aTag.setAttribute("style", "margin: 0 10px;");
+			
+			if(i == currentNo){
+				aTag.style.backgroundColor = "#a3a3c2";
+			}
+			
 			var url = "./list?currentNo="+i;
 			aTag.setAttribute("href", url);
 			pageDiv.appendChild(aTag);
@@ -37,11 +42,15 @@
 		
 		
 		if(currentNo == 1){
+			var firstMoveBtnObj = document.getElementById("firstMoveBtn");
+			firstMoveBtnObj.style.color = "#fff";
 			var leftBtnObj = document.getElementById("pageleftBtn");
 			leftBtnObj.style.color = "#fff";
 		}
 		
 		if(currentNo == totalPage){
+			var lastMoveBtnObj = document.getElementById("lastMoveBtn");
+			lastMoveBtnObj.style.color="#fff";
 			var rightBtnObj = document.getElementById("pageRightBtn");
 			rightBtnObj.style.color="#fff";
 		}
@@ -61,13 +70,20 @@
 	}
 	
 	function pageRightFnc(){
-		
-		var currentNo = <%=current%> +1;
-		if(currentNo <= <%=pageNum%>){
-			location.href="./list?currentNo="+currentNo;
-		}else{
-			location.href="./list?currentNo="+pageNum;
-		}
+	      var currentNo = <%=current%> +1;
+	      var endNo = <%=pageNum%>;
+	      if(currentNo <= endNo){
+	         location.href="./list?currentNo="+currentNo;
+	      }else{
+	         location.href="./list?currentNo="+endNo;
+	      }
+	}
+	   
+	function firstMoveFnc(){
+	    location.href="./list";
+	}
+	function lastMoveFnc(){
+	    location.href="./list?currentNo="+<%=pageNum%>;
 	}
 	
 	function boardAddFnc(){

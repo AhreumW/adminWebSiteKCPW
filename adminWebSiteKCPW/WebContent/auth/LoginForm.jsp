@@ -62,6 +62,9 @@
 		
 	}
 	
+	function findPageFnc(){
+		location.href="../auth/find";
+	}
 	
 </script>
 
@@ -82,6 +85,8 @@
 				<input type="submit" id='loginBtn' value="로그인" onclick="validationChk();">
 			</div>
 		</form>
+		
+		<button onclick="findPageFnc()">비밀번호 찾기</button>
 	</div>
 
 	<jsp:include page="/Tail.jsp"/>

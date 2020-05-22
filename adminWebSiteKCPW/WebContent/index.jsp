@@ -11,16 +11,10 @@
 	href="<%=request.getContextPath()%>/css/style.css">
 
 <script type="text/javascript">
-<<<<<<< HEAD
+
 	function listPageMoveFnc() {
-		location.href 
-		= '<%=request.getContextPath()%>/auth/login';
+		location.href = '<%=request.getContextPath()%>/auth/login';
 	}
-=======
-// 	function listPageMoveFnc() {
-<%-- 		location.href = '<%=request.getContextPath()%>/auth/login'; --%>
-// 	}
->>>>>>> branch 'master' of https://github.com/AhreumW/adminWebSiteKCPW.git
 </script>
 
 </head>

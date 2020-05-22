@@ -18,39 +18,37 @@
 	
 	<div id='membersTable'>
 		<h1 id='pageTitle'>Members</h1>
-		<p style="margin: 10px 0px 30px">
-			<a href='../../member/add' id='addLink'>신규 회원</a>
-		</p>
 
 		<table id='table'>
-			<colgroup>
-				<col width="15%">
-				<col width="20%">
-				<col width="30%">
-				<col width="20%">
-				<col width="15%">
-			</colgroup>
+<%-- 			<colgroup> --%>
+<%-- 				<col width="15%"> --%>
+<%-- 				<col width="20%"> --%>
+<%-- 				<col width="30%"> --%>
+<%-- 				<col width="20%"> --%>
+<%-- 				<col width="15%"> --%>
+<%-- 			</colgroup> --%>
 			<thead>
 				<tr>
 					<th>회원번호</th>
 					<th>이름</th>
 					<th>이메일</th>
 					<th>가입날짜</th>
-					<th>등급</th>
+					<th>정보수정</th>
+					<th>등급변경</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="memberDto" items="${memberList}">
 					<tr>
 						<td>${memberDto.no}</td>
-						<td>
-							<a href="<%=request.getContextPath()%>
-								/member/update?no=${memberDto.no}">
-									${memberDto.name}</a>
-						</td>
+						<td>${memberDto.name}</td>
 						<td class='textOFlow'>${memberDto.email}</td>
 						<td>${memberDto.createdDate}</td>
-						
+						<td>
+							<a href="<%=request.getContextPath()%>
+								/member/update?no=${memberDto.no}">수정하기</a>
+						</td>
 						<td>
 							<c:if test="${memberDto.grade == 'admin'}">
 								<select name='grade'>
@@ -65,6 +63,10 @@
 									<option value='admin'>관리자</option>
 								</select>
 							</c:if>
+						</td>
+						<td>
+							<a href="<%=request.getContextPath()%>
+								/member/delete?no=${memberDto.no}">Y</a>
 						</td>
 					</tr>
 				</c:forEach>

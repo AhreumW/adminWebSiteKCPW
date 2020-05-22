@@ -39,7 +39,7 @@ public class MemberDeleteServlet extends HttpServlet{
 			int no = Integer.parseInt(req.getParameter("no"));
 			memberDao.memberDelete(no);
 			
-			res.sendRedirect("../");
+			res.sendRedirect("../admin/member/list");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

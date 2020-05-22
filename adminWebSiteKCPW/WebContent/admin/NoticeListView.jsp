@@ -21,6 +21,7 @@
 			var aTag = document.createElement("a");
 			aTag.innerHTML = i;
 			aTag.setAttribute("style", "margin: 0 3px;");
+			
 			var url = "./list?currentNo="+i;
 			aTag.setAttribute("href", url);
 			pageDiv.appendChild(aTag);
@@ -60,15 +61,8 @@
 		<h1 id='pageTitle'>Notice Board</h1>
 		
 		<c:if test="${memberDto.getGrade() == 'admin'}">
-			<p style="font-size: 13px; color: #333;">관리자 로그인 되었습니다.</p>
 			<p style="margin: 10px 0px 30px">
 				<a href="./add" id='addLink'>글쓰기</a>
-			</p>
-		</c:if>
-		
-		<c:if test="${memberDto.getGrade() == 'user'}">
-			<p style="font-size: 13px; color: #333; margin: 10px 0px 30px">
-				${memberDto.name}님은 일반회원입니다.
 			</p>
 		</c:if>
 		
@@ -82,8 +76,8 @@
 			<table id='table'>
 				<colgroup>
 					<col width="10%">
-					<col width="40%">
-					<col width="20%">
+					<col width="45%">
+					<col width="15%">
 					<col width="15%">
 					<col width="15%">
 				</colgroup>
@@ -100,12 +94,12 @@
 					<c:forEach var="noticeDto" items="${noticeList}">
 						<tr>
 							<td class='tCenter'>${noticeDto.noticeNo}</td>
-							<td>
+							<td class='textOFlow'>
 								<a href="./detail?noticeNo=${noticeDto.noticeNo}">
 									${noticeDto.title}
 								</a>
 							</td>
-							<td>${noticeDto.myName}</td>
+							<td class='tCenter'>${noticeDto.myName}</td>
 							<td class='tCenter'>${noticeDto.createdDate}</td>
 							<td class='tCenter'>${noticeDto.modifiedDate}</td>
 						</tr>

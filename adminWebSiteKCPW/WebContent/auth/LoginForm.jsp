@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +56,7 @@
 		
 		if(emailInputValue ==''){
 			alert('이메일을 입력하세요');
-		}
-		if(pwdInputValue == ''){
+		}else if(pwdInputValue == ''){
 			alert('패스워드를 입력하세요');
 		}
 		
@@ -81,12 +81,18 @@
 			<input type="text" class='inputText' name="email">
 			<label>암호</label>
 			<input type="password" class='inputText' name="password">
+			
+			<c:if test="${errorMsg ne null}">
+				<span>${errorMsg}</span>
+			</c:if>
+			
 			<div id='btnWrap'>
 				<input type="submit" id='loginBtn' value="로그인" onclick="validationChk();">
 			</div>
 		</form>
 		
-		<button onclick="findPageFnc()">비밀번호 찾기</button>
+		
+		<input type="button" value="비밀번호 찾기" onclick="findPageFnc()"/>
 	</div>
 
 	<jsp:include page="/Tail.jsp"/>

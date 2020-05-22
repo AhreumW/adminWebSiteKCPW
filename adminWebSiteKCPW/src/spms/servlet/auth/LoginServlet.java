@@ -23,6 +23,9 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		String errorMsg = "";
+		req.setAttribute("errorMsg", errorMsg);
+		
 		RequestDispatcher rd = req.getRequestDispatcher("./LoginForm.jsp");
 		rd.forward(req, res);
 	}
@@ -44,7 +47,9 @@ public class LoginServlet extends HttpServlet {
 
 		MemberDao memberDao = new MemberDao();
 		memberDao.setConnection(conn);
-
+		
+		String errorMsg = "";
+		
 		try {
 			
 			MemberDto memberDto = memberDao.memberLogin(email, pwd);
@@ -53,24 +58,36 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("memberDto", memberDto);
 				
-					System.out.println("나의 등급은 :" + memberDto.getGrade());
-					if (memberDto.getGrade().equals("user")) {
-						res.sendRedirect("../");
-					} else {
-						res.sendRedirect("../admin/member/list");
-					}
+				System.out.println("나의 등급은 :" + memberDto.getGrade());
+				if (memberDto.getGrade().equals("user")) {
+					res.sendRedirect("../");
+				} else {
+					res.sendRedirect("../admin/member/list");
+				}
 				
 				
 			} else {
-				RequestDispatcher rd = 
-				req.getRequestDispatcher("../auth/LoginFail.jsp");
-				rd.forward(req, res);
-				
+				if(email.length() != 0 && pwd.length() != 0 ) {
+//					System.out.println("1");
+					errorMsg = "아이디와 비밀번호를 확인해주세요.";
+					req.setAttribute("errorMsg", errorMsg);
+					RequestDispatcher rd = 
+							req.getRequestDispatcher("./LoginForm.jsp");
+					rd.forward(req, res);
+				}else {						
+//					System.out.println("2");
+					errorMsg ="";
+					req.setAttribute("errorMsg", errorMsg);
+					RequestDispatcher rd = 
+							req.getRequestDispatcher("./LoginForm.jsp");
+					rd.forward(req, res);
+				}
 			}
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			System.out.println("여기로 오나?");
 	
 		}
 		

@@ -60,7 +60,7 @@ public class MemberAddServlet extends HttpServlet{
 				System.out.println("회원가입 실패");
 			}
 			
-			res.sendRedirect("./list");
+			res.sendRedirect("../admin/member/list");
 		} catch (Exception e) {
 			req.setAttribute("error", e);
 			RequestDispatcher dispatcher = 

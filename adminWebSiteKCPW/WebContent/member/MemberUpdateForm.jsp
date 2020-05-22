@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
-
+<link rel="stylesheet" type="text/css" 
+	href="<%=request.getContextPath()%>/css/style.css">
+	
 <script type="text/javascript">
 	function backPageMoveFnc() {
 		location.href= "../admin/member/list";
@@ -31,24 +33,33 @@
 <!-- 	Dao로 가서 값가져오기 -->
 	<jsp:include page="/Header.jsp"/>
 
-	<h1>회원정보 수정</h1>
+	<div id='memberWrap'>
+		<h1 id='pageTitle'>Update Member</h1>
 	
-	<form action='./update' method='post'>
-		번호 : <input type='text' name='no' 
-			value='${memberDto.no}' readonly='readonly'><br>
-		이름 : <input type='text' name='name' 
-			value='${memberDto.name}'><br>
-		이메일 : <input type='text' name='email' 
-			value='${memberDto.email}' readonly='readonly'><br>
-		가입일 : '${memberDto.createdDate}'<br>
-		수정일 : '${memberDto.modifiedDate}'<br><br>
-		
-		<input type='submit' value='저장하기'>
-		<input type='button' value='탈퇴하기' 
-			onclick="pageMoveDeleteFnc(${memberDto.no});">
-		<input type='button' value='뒤로가기' 
-			onclick="backPageMoveFnc();">
-	</form>
+		<form action='./update' method='post'>
+			<label>번호</label>
+			<input type='text' name='no' class='inputText'
+				value='${memberDto.no}' readonly='readonly'>
+			<label>이름</label>
+			<input type='text' name='name' class='inputText'
+				value='${memberDto.name}'>
+			<label>이메일</label>
+			<input type='text' name='email' class='inputText'
+				value='${memberDto.email}' readonly='readonly'>
+			<label>가입일</label>
+			<p class='fixedValue'>${memberDto.createdDate}</p>
+			<label>수정일</label>
+			<p class='fixedValue'>${memberDto.modifiedDate}</p>
+			
+			<div id='btnsWrap'>
+				<input type='submit' value='저장' class='btns'>
+				<input type='button' value='탈퇴' class='btns' 
+					onclick="pageMoveDeleteFnc(${memberDto.no});">
+				<input type='button' value='뒤로' class='btns'
+					onclick="backPageMoveFnc();">
+			</div>
+		</form>
+	</div>
 	
 	<jsp:include page="/Tail.jsp"/>
 

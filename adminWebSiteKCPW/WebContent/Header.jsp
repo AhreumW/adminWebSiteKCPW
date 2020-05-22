@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div id='header'>
-	<span id='logo'>KCPW</span>
+	<a href="<%=request.getContextPath()%>/" id='logo'>KCPW</a>
 	
 	<c:if test="${memberDto ne null}">
 		<c:if test="${memberDto.grade == 'admin'}">

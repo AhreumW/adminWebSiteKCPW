@@ -36,11 +36,12 @@ a {
 	display: inline-block;
 	width: 15px;
 	line-height: 15px;
-	border: 1px solid #000;
+	border: 1px solid #a3a3c2;
+	color: #333;
 	transition: all 0.3s;
 }
 #pagingWrap > div > a:hover{
-	background: #000;
+	background: #a3a3c2;
 	color: #fff;
 }
 

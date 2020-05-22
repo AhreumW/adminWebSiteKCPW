@@ -11,14 +11,15 @@
 
 <style type="text/css">
 	#addLink {
-		border: 1px solid #000;
+		border: 1px solid #a3a3c2;
 		padding: 5px 20px; 
 		font-weight: bold;
 		font-size: 12px;
+		color: #333;
 		transition: all 0.3s;
 	}
 	#addLink:hover {
-		background-color: #000;
+		background-color: #a3a3c2;
 		color: #fff;
 	}
 	
@@ -29,18 +30,12 @@
 		font-size: 12px;
 	}
 	#table th, #table td {
-		border: 1px solid #000;
+		border: 1px solid #e0e0eb;
 		padding: 5px 10px;
 	}
 	#table th {
-		background-color: #c2c2d6;
+		background-color: #f0f0f5;
 		padding: 7px 0px;
-	}
-	#table th:first-child {
-		border-left-color: #000;
-	}
-	#table th:last-child {
-		border-right-color: #000;
 	}
 	#table a:hover {
 		text-decoration: underline;

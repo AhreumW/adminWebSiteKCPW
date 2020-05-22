@@ -10,6 +10,15 @@
 <link rel="stylesheet" type="text/css"
 	 href="<%=request.getContextPath()%>/css/style.css">
 
+<style type="text/css">
+
+#table select {
+	height: 20px;
+	font-size: 10px;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -20,13 +29,15 @@
 		<h1 id='pageTitle'>Members</h1>
 
 		<table id='table'>
-<%-- 			<colgroup> --%>
-<%-- 				<col width="15%"> --%>
-<%-- 				<col width="20%"> --%>
-<%-- 				<col width="30%"> --%>
-<%-- 				<col width="20%"> --%>
-<%-- 				<col width="15%"> --%>
-<%-- 			</colgroup> --%>
+			<colgroup>
+				<col width="12%">
+				<col width="13%">
+				<col width="25%">
+				<col width="15%">
+				<col width="10%">
+				<col width="15%">
+				<col width="10%">
+			</colgroup>
 			<thead>
 				<tr>
 					<th>회원번호</th>
@@ -41,30 +52,30 @@
 			<tbody>
 				<c:forEach var="memberDto" items="${memberList}">
 					<tr>
-						<td>${memberDto.no}</td>
-						<td>${memberDto.name}</td>
+						<td class='tCenter'>${memberDto.no}</td>
+						<td class='tCenter'>${memberDto.name}</td>
 						<td class='textOFlow'>${memberDto.email}</td>
-						<td>${memberDto.createdDate}</td>
-						<td>
+						<td class='tCenter'>${memberDto.createdDate}</td>
+						<td class='tCenter'>
 							<a href="<%=request.getContextPath()%>
-								/member/update?no=${memberDto.no}">수정하기</a>
+								/member/update?no=${memberDto.no}">수정</a>
 						</td>
-						<td>
+						<td class='tCenter'>
 							<c:if test="${memberDto.grade == 'admin'}">
-								<select name='grade'>
+								<select name='grade' class='selectTag'>
 									<option value='admin' selected>관리자</option>
 									<option value='user'>사용자</option>
 								</select>
 							</c:if>
 							
 							<c:if test="${memberDto.grade == 'user'}">
-								<select name='grade'>
+								<select name='grade' class='selectTag'>
 									<option value='user' selected>사용자</option>
 									<option value='admin'>관리자</option>
 								</select>
 							</c:if>
 						</td>
-						<td>
+						<td class='tCenter'>
 							<a href="<%=request.getContextPath()%>
 								/member/delete?no=${memberDto.no}">Y</a>
 						</td>

@@ -29,10 +29,11 @@
 		for(var i=startNum; i<=endNum; i++){
 			var aTag = document.createElement("a");
 			aTag.innerHTML = i;
-			aTag.setAttribute("style", "margin: 0 10px;");
+			aTag.setAttribute("style", "margin: 0 3px;");
 			
 			if(i == currentNo){
 				aTag.style.backgroundColor = "#a3a3c2";
+				aTag.style.color = "#fff";
 			}
 			
 			var url = "./list?currentNo="+i;
@@ -100,83 +101,132 @@
 
 	<jsp:include page="/Header.jsp" />
 
-	<h1>일반 게시판</h1>
-	
-	<c:if test="${memberDto ne null}">
-		<button onclick="boardAddFnc();">글쓰기</button>
-	</c:if>
-	<c:if test="${memberDto == null}">
-		<button onclick="moveLoginFnc();">글쓰기</button>
-	</c:if>
-	
-	
-	
-	<c:set var="orderBy" value='<%=orderBy%>'/>
-	${orderBy}
-	<c:if test="${orderBy == null}">
-		<a href="./list?orderBy=latest">최신순으로 보기</a>
-	</c:if>
-	<c:if test="${orderBy == 'boardNo'}">
-		<a href="./list?orderBy=latest">최신순으로 보기</a>
-	</c:if>
-	<c:if test="${orderBy == 'latest'}">
-		<a href="./list?orderBy=boardNo">등록순으로 보기</a>
-	</c:if>
-	
-	
-	<table>
-		<thead>
-			<tr>
-				<th>게시글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>등록일</th>
-				<c:if test="${memberDto.getGrade() == 'admin'}">
-					<th>관리</th>
+	<div id='wrap'>
+		<h1 id='pageTitle'>Member Board</h1>
+		
+		<c:if test="${memberDto.getGrade() != 'user' && memberDto.getGrade() != 'admin'}">
+			<p style="font-size: 13px; color: #333; margin: 10px 0px 30px">
+				로그인해주세요.
+			</p>
+		</c:if>
+		
+		<c:if test="${memberDto.getGrade() == 'user' || memberDto.getGrade() == 'admin'}">
+			<div style="overflow: hidden; margin: 10px 0px 15px;">
+				<c:if test="${memberDto ne null}">
+					<p style="float: left;">
+						<button id='addLink' onclick="boardAddFnc();">글쓰기</button>
+					</p>
 				</c:if>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="boardDto" items="${boardList}">
-				<tr>
-					<td>${boardDto.boardNo}</td>
-					<td>
-						<a href='./detail?no=${boardDto.boardNo}'>${boardDto.title}</a>
-						<c:if test="${memberDto.getGrade() == 'admin'}">
-							<a href='./update?no=${boardDto.boardNo}'> 수정</a>
-						</c:if>
-					</td>
-					<td>${boardDto.myName}</td>
-					<td>${boardDto.createdDate}</td>
+				<c:if test="${memberDto == null}">
+					<p style="float: left;">
+						<button id='addLink' onclick="moveLoginFnc();">글쓰기</button>
+					</p>
+				</c:if>
+				
+				<c:set var="orderBy" value='<%=orderBy%>'/>
+	<%-- 			${orderBy} --%>
+				<c:if test="${orderBy == null}">
+					<div class='optionWrap' style="float: right;">
+						<a href="./list?orderBy=latest">최신순</a>
+					</div>
+				</c:if>
+				<c:if test="${orderBy == 'boardNo'}">
+					<div class='optionWrap' style="float: right;">
+						<a href="./list?orderBy=latest">최신순</a>
+					</div>
+				</c:if>
+				<c:if test="${orderBy == 'latest'}">
+					<div class='optionWrap' style="float: right;">
+						<a href="./list?orderBy=boardNo">등록순</a>
+					</div>
+				</c:if>
+			</div>
+			
+			
+			<table id='table'>
+				<colgroup>
 					<c:if test="${memberDto.getGrade() == 'admin'}">
-						<td>
-							<a href="./delete?no=${boardDto.boardNo}"> 삭제</a> 
-						</td>
-					</c:if> 
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	
-	<div>
-		<div id="firstMoveBtn" onclick="firstMoveFnc();" 
-			style="display: inline-block;">
-			&lt;&lt;
-		</div>
-		<div id="pageleftBtn" onclick="pageLeftFnc();" 
-			style="display: inline-block;">
-			&lt;
-		</div>
-		<div id="pageNumDiv" style="display: inline-block;"></div>
-		<div id="pageRightBtn" onclick="pageRightFnc();" 
-			style="display: inline-block;">
-			&gt;
-		</div>
-		<div id="lastMoveBtn" onclick="lastMoveFnc();" 
-			style="display: inline-block;">
-			&gt;&gt;
-		</div>
+						<col width="15%">
+						<col width="45%">
+						<col width="15%">
+						<col width="15%">
+						<col width="10%">
+					</c:if>
+					<c:if test="${memberDto.getGrade() != 'admin'}">
+						<col width="15%">
+						<col width="50%">
+						<col width="20%">
+						<col width="15%">
+					</c:if>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>게시글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>등록일</th>
+						<c:if test="${memberDto.getGrade() == 'admin'}">
+							<th>관리</th>
+						</c:if>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="boardDto" items="${boardList}">
+						<tr>
+							<td class='tCenter'>${boardDto.boardNo}</td>
+							<td>
+								<p class='textOFlow' style="display: inline-block; max-width: calc(100% - 40px);
+									vertical-align: middle;">
+									<a href='./detail?no=${boardDto.boardNo}'>
+											${boardDto.title}
+									</a>
+								</p>
+								<c:if test="${memberDto.getGrade() == 'admin'}">
+									<a href='./update?no=${boardDto.boardNo}'
+										style="display:inline-block; font-size: 10px;
+										vertical-align: middle;">
+										[수정]
+									</a>
+								</c:if>
+							</td>
+							<td class='tCenter'>${boardDto.myName}</td>
+							<td class='tCenter'>${boardDto.createdDate}</td>
+							<c:if test="${memberDto.getGrade() == 'admin'}">
+								<td class='tCenter'>
+									<a href="./delete?no=${boardDto.boardNo}"
+										style="display:inline-block; font-size: 10px;">
+										삭제
+									</a> 
+								</td>
+							</c:if> 
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			
+			<div id='pagingWrap'>
+				<div id="firstMoveBtn" onclick="firstMoveFnc();" 
+					style="display: inline-block;">
+					&lt;&lt;
+				</div>
+				<div id="pageleftBtn" onclick="pageLeftFnc();" 
+					style="display: inline-block;">
+					&lt;
+				</div>
+				<div id="pageNumDiv" style="display: inline-block;"></div>
+				<div id="pageRightBtn" onclick="pageRightFnc();" 
+					style="display: inline-block;">
+					&gt;
+				</div>
+				<div id="lastMoveBtn" onclick="lastMoveFnc();" 
+					style="display: inline-block;">
+					&gt;&gt;
+				</div>
+			</div>
+		</c:if>
+		
 	</div>
+	
 	
 	<jsp:include page="/Tail.jsp" />
 

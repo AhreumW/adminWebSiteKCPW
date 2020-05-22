@@ -15,6 +15,22 @@
 		height: 20px;
 	}
 </style>
+<script type="text/javascript">
+	function validationChk() {
+		var titleInputValue = document.getElementsByName('title')[0].value;
+		var contentInputValue = document.getElementsByName('content')[0].value;
+
+		if (titleInputValue == "") {
+			alert('제목을 입력하세요');
+		}
+
+		if (contentInputValue == "") {
+			alert('내용을 입력하세요');
+		}
+	}
+</script>
+
+
 </head>
 <body>
 
@@ -26,7 +42,7 @@
 		내용: <input type="text" name="content" class="mainInput"><br>
 		작성자: <input type="text" name="name" value="${memberDto.name}" 
 					class="mainInput" readonly="readonly"><br>
-			<input type="submit" value="추가">
+			<input type="submit" value="추가" onclick="validationChk();">
 			<input type="reset" value="취소">		
 	</form>
 	<jsp:include page="/Tail.jsp"/>

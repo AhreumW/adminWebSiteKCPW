@@ -28,7 +28,7 @@
 		<a href="./auth/logout">로그아웃</a>
 		
 		<c:if test="${memberDto.grade == 'admin'}">
-			<a href="./member/list">회원리스트</a>
+			<a href="./admin/member/list">회원리스트</a>
 			<a href="./member/add">회원추가</a>
 		</c:if>
 		

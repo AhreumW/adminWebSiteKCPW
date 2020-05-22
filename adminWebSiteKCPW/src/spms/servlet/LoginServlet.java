@@ -53,9 +53,9 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("memberDto", memberDto);
 				
-					System.out.println(memberDto.getGrade());
+					System.out.println("나의 등급은 :" + memberDto.getGrade());
 					if (memberDto.getGrade().equals("user")) {
-						res.sendRedirect("../member/list");
+						res.sendRedirect("../");
 					} else {
 						res.sendRedirect("../admin/member/list");
 					}

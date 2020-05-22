@@ -5,9 +5,8 @@
 
 <div id='header'>
 	<span id='logo'>KCPW</span>
-	<a href="<%=request.getContextPath()%>/auth/login" class='depth1'>로그인</a>
 	
-	<c:if test="${memberDto.email ne null}">
+	<c:if test="${memberDto ne null}">
 		<c:if test="${memberDto.grade == 'admin'}">
 			<a href="<%=request.getContextPath()%>/member/list" class='depth1'>
 				회원리스트
@@ -26,7 +25,14 @@
 		공지 게시판
 	</a>
 	
-	<c:if test="${memberDto.email ne null}">
+	
+	<c:if test="${memberDto eq null}">
+		<span style="float:right;">
+			<a href="<%=request.getContextPath()%>/auth/login" class='rightLinks'>로그인</a>
+		</span>
+	</c:if>
+	
+	<c:if test="${memberDto ne null}">
 		<c:if test="${memberDto.grade == 'user'}">
 			<span style="float:right;">
 				<a href="<%=request.getContextPath()%>/member/info?no=${memberDto.no}"

@@ -35,11 +35,23 @@
 			pageDiv.appendChild(aTag);
 		}
 		
+		
+		if(currentNo == 1){
+			var leftBtnObj = document.getElementById("pageleftBtn");
+			leftBtnObj.style.color = "#fff";
+		}
+		
+		if(currentNo == totalPage){
+			var rightBtnObj = document.getElementById("pageRightBtn");
+			rightBtnObj.style.color="#fff";
+		}
+		
 	}
 	
 	
 	
 	function pageLeftFnc(){
+		
 		var currentNo = <%=current%> -1;
 		if(currentNo >= 1){
 			location.href="./list?currentNo="+currentNo;
@@ -49,6 +61,7 @@
 	}
 	
 	function pageRightFnc(){
+		
 		var currentNo = <%=current%> +1;
 		if(currentNo <= <%=pageNum%>){
 			location.href="./list?currentNo="+currentNo;
@@ -130,6 +143,10 @@
 	</table>
 	
 	<div>
+		<div id="firstMoveBtn" onclick="firstMoveFnc();" 
+			style="display: inline-block;">
+			&lt;&lt;
+		</div>
 		<div id="pageleftBtn" onclick="pageLeftFnc();" 
 			style="display: inline-block;">
 			&lt;
@@ -138,6 +155,10 @@
 		<div id="pageRightBtn" onclick="pageRightFnc();" 
 			style="display: inline-block;">
 			&gt;
+		</div>
+		<div id="lastMoveBtn" onclick="lastMoveFnc();" 
+			style="display: inline-block;">
+			&gt;&gt;
 		</div>
 	</div>
 	

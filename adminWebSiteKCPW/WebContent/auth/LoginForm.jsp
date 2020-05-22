@@ -62,16 +62,19 @@
 </style>
 
 <script type="text/javascript">
-	function emailChk() {
-		var emailInputValue = document.getElementsByName('email').value;
-		var pwdInputValue = document.getElementsByName('password').value;
-	}
+	function validationChk() {
+		var emailInputValue = document.getElementsByName('email')[0].value;
+		var pwdInputValue = document.getElementsByName('password')[0].value;
 		
-	function pwdChk() {
-		var pwdChk = document.getElementsByName('password');		
+		if(emailInputValue ==''){
+			alert('이메일을 입력하세요');
+		}
+		if(pwdInputValue == ''){
+			alert('패스워드를 입력하세요');
+		}
 	}
-
-
+	
+	
 </script>
 
 </head>
@@ -88,7 +91,7 @@
 			<label>암호</label>
 			<input type="password" class='inputText' name="password">
 			<div id='btnWrap'>
-				<input type="submit" id='loginBtn' value="로그인">
+				<input type="submit" id='loginBtn' value="로그인" onclick="validationChk();">
 			</div>
 		</form>
 	</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>비밀번호 찾기</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 <style type="text/css">
@@ -12,12 +12,12 @@
 		width: 250px;
 		margin: 100px auto 0px;
 	}
-
 	#loginForm label {
 		display: block;
 		font-size: 13px;
 		padding:15px 0px 3px;
 	}
+
 	#loginBtn {
 		display: block;
 		width: 100%;
@@ -48,38 +48,21 @@
 	}
 </style>
 
-<script type="text/javascript">
-	function validationChk() {
-		var emailInputValue = document.getElementsByName('email')[0].value;
-		var pwdInputValue = document.getElementsByName('password')[0].value;
-		
-		if(emailInputValue ==''){
-			alert('이메일을 입력하세요');
-		}
-		if(pwdInputValue == ''){
-			alert('패스워드를 입력하세요');
-		}
-		
-	}
-	
-	
-</script>
-
 </head>
 <body>
 
 	<jsp:include page="/Header.jsp"/>
 
 	<div id='wrap'>
-		<h2 id='pageTitle'>Login</h2>
+		<h2 id='pageTitle'>Find Password</h2>
 	
 		<form action="" method="post" id='loginForm'>
 			<label>이메일</label>
 			<input type="text" class='inputText' name="email">
-			<label>암호</label>
+			<label>비밀번호</label>
 			<input type="password" class='inputText' name="password">
 			<div id='btnWrap'>
-				<input type="submit" id='loginBtn' value="로그인" onclick="validationChk();">
+				<input type="submit" id='loginBtn' value="확인">
 			</div>
 		</form>
 	</div>

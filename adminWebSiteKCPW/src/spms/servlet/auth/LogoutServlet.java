@@ -1,4 +1,4 @@
-package spms.servlet;
+package spms.servlet.auth;
 
 import java.io.IOException;
 

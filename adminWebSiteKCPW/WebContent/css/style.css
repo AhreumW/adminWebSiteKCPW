@@ -5,28 +5,63 @@
 	padding: 0px;
 	margin: 0px;
 }
+body{
+	padding: 10px;
+}
 a {
 	color: #000;
 	text-decoration: none;
 }
+#wrap{
+	width: 700px;
+	margin: 0px auto;
+}
 #pageTitle {
-	font-size: 25px;
+	padding: 100px 0px 30px;
+	font-size: 30px;
+	font-family: "Times New Roman", Times, serif
+}
+.tCenter{
+	text-align: center;
+}
+#pagingWrap{
+	margin-top: 30px;
+	text-align: center;
+}
+#pagingWrap > div{
+	display: inline-block;
+	font-size: 10px;
+}
+#pagingWrap > div > a{
+	display: inline-block;
+	width: 15px;
+	line-height: 15px;
+	border: 1px solid #000;
+	transition: all 0.3s;
+}
+#pagingWrap > div > a:hover{
+	background: #000;
+	color: #fff;
 }
 
 /* header */
 #header {
-	background: #e0e0eb;
-	padding: 25px 0px 30px
+	background: #a3a3c2;
+	padding: 25px 10px 30px 0px;
+	box-sizing: border-box;
 }
 #logo {
 	display: inline-block;
 	padding: 0px 30px 0 50px;
 	font-weight: bold;
+	color:#fff;
+	font-size: 18px;
 }
 #header a{
 	display: inline-block;
 	margin-right: 10px;
 	font-size: 13px;
+	color: #fff;
 }
 #header .depth1 {
 	position: relative;
@@ -39,7 +74,7 @@ a {
 	bottom: -2px;
 	width: 0;
 	height: 1px;
-	background: #000;
+	background: #fff;
 	transition: all 0.3s;
 }
 #header .depth1:hover:after{
@@ -57,7 +92,7 @@ a {
 	top: 2px;
 	width: 1px;
 	height: 10px;
-	background: #000;
+	background: #fff;
 }
 .rightLinks:last-child:after{
 	display: none;
@@ -69,6 +104,56 @@ a {
 	margin-top: 100px;
 	background: #f0f0f5;
 	font-size: 12px;
+}
+
+/* 게시판 상세보기 */
+#viewWrap {
+	width: 700px;
+	margin: 0px auto;
+}
+#viewTable {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+}
+#viewTable td {
+	border: 1px solid #e0e0eb;
+	font-size: 13px;
+	padding: 5px 10px;
+}
+#viewTable td.th {
+	background: #f0f0f5;
+}
+#viewTable input, #viewTable textarea {
+	width: 100%;
+	border: 1px solid #f0f0f5;
+	padding: 3px;
+	box-sizing: border-box;
+}
+#viewTable input.readonly {
+	border: none;
+}
+#viewTable textarea {
+	resize: none;
+	font-size: 13px;
+	font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+#btnsWrap {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 0;
+}
+.btns {
+	display: inline-block;
+	width: 75px;
+	line-height: 30px;
+	margin: 0 3px;
+	background-color: #000;
+	color: #fff;
+	font-size: 11px;
+	border: 0;
+	cursor: pointer;
+	vertical-align: top;
 }
 
 

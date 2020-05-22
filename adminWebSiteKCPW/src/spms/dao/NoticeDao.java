@@ -101,7 +101,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, CRE_EMAIL";
+		String sql = "SELECT NOTICE_NO, TITLE, CONTENT, MY_NAME, CRE_EMAIL, CRE_DATE";
 		sql += " FROM NOTICEBOARD";
 		sql += " WHERE NOTICE_NO = ?";
 
@@ -114,19 +114,25 @@ public class NoticeDao {
 
 			String title = "";
 			String content = "";
+			String myName = "";
 			String creEmail = "";
+			Date creDate = null;
 
 			if (rs.next()) {
 				title = rs.getString("TITLE");
 				content = rs.getString("CONTENT");
+				myName = rs.getString("MY_NAME");
 				creEmail = rs.getString("CRE_EMAIL");
+				creDate = rs.getDate("CRE_DATE");
 
 				noticeDto = new NoticeDto();
 
 				noticeDto.setNoticeNo(noticeNo);
 				noticeDto.setTitle(title);
 				noticeDto.setContent(content);
+				noticeDto.setMyName(myName);
 				noticeDto.setCreEmail(creEmail);
+				noticeDto.setCreatedDate(creDate);
 			} else {
 				throw new Exception("해당 번호의 게시글을 찾을 수 없습니다.");
 			}
@@ -220,7 +226,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "UPDATE NOTICEBOARD";
-		sql += " SET TITLE = ?, CONTENT = ?";
+		sql += " SET TITLE = ?, CONTENT = ?, MOD_DATE = SYSDATE";
 		sql += " WHERE NOTICE_NO = ? AND CRE_EMAIL = ?";
 
 		try {

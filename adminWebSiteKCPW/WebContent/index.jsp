@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +22,14 @@
 	
 	<a href="./auth/login">로그인</a>
 	
-	
-	<a href="./member/list">회원리스트</a>
-	
-	<a href="./member/add">회원추가</a>
-	
-	<a href="">마이페이지</a>
+	<c:if test="${memberDto.email ne null}">
+		<c:if test="${memberDto.grade == 'admin'}">
+			<a href="./member/list">회원리스트</a>
+			<a href="./member/add">회원추가</a>
+		</c:if>
+		
+		<a href="./member/info?no=${memberDto.no} ">마이페이지</a>
+	</c:if>	
 	
 	<a href="./board/list">게시판</a>
 	

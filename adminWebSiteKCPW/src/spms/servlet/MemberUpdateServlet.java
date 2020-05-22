@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import spms.dao.MemberDao;
 import spms.dto.MemberDto;
+import spms.dao.MemberDao;
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns= {"/member/update"})
@@ -87,6 +87,14 @@ public class MemberUpdateServlet extends HttpServlet {
 			
 			memberDto = new MemberDto(no, name, email, modifiedDate);
 			int result = memberDao.memberUpdate(memberDto);
+			
+			String newName = memberDao.findNameByEmail(memberDto.getEmail());
+			
+			HttpSession session = req.getSession();
+			MemberDto newMemberDto = new MemberDto();
+			newMemberDto = (MemberDto) session.getAttribute("memberDto");
+			newMemberDto.setName(newName);
+			session.setAttribute("memberDto", newMemberDto);
 			
 			if(result == 0) {
 				System.out.println("회원 정보 조회가 실패하였습니다.");

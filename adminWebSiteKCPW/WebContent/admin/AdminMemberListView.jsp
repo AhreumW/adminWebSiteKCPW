@@ -15,10 +15,7 @@
 	<jsp:include page="/Header.jsp" />
 	
 	<h1>회원목록</h1>
-	<p>
-		<a href='../member/add'>신규 회원</a>
-	</p>
-	
+
 	<table>
 		<thead>
 			<tr>
@@ -35,13 +32,17 @@
 				<tr>
 					<td>${memberDto.no}</td>
 					<td>
-						<a href="../member/update?no=${memberDto.no}">${memberDto.name}</a>
+						<a href="<%=request.getContextPath()%>
+							/member/update?no=${memberDto.no}">
+								${memberDto.name}</a>
 					</td>
 					<td>${memberDto.email}</td>
 					<td>${memberDto.createdDate}</td>
 					<td>${memberDto.grade}</td>
 					<td>
-						<a href="../member/delete?no=${memberDto.no}">삭제</a>
+						<a href="<%=request.getContextPath()%>
+							/member/delete?no=${memberDto.no}">
+								삭제</a>
 					</td>
 				</tr>
 			</c:forEach>

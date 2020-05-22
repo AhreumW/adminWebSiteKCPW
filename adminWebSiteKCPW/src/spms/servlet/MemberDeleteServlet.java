@@ -39,11 +39,9 @@ public class MemberDeleteServlet extends HttpServlet{
 			
 			pstmt.setString(1, mNo);		
 			
-			int resultNum = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			
-			System.out.println("수행결과 : " + resultNum);
-			
-			res.sendRedirect("../auth/logout");
+			res.sendRedirect("../");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,7 +66,6 @@ public class MemberDeleteServlet extends HttpServlet{
 			HttpServletResponse res) 
 					throws ServletException, IOException {
 		
-		System.out.println("나중에 여기서 삭제 처리하자");
 		
 	}
 }

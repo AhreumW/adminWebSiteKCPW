@@ -69,8 +69,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		MemberDto memberDto = null;			
 		Connection conn = null;
 		
-		System.out.println("난 수행되지 않을것이다");
-		
 		try {
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");

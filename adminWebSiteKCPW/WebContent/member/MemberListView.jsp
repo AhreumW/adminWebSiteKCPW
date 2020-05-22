@@ -11,7 +11,8 @@
 </style>
 <meta charset="UTF-8">
 <title>회원 목록</title>
-
+<link rel="stylesheet" type="text/css"
+	 href="<%=request.getContextPath()%>/css/style.css">
 </head>
 
 <body>

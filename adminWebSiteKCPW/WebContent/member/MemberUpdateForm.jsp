@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 	function backPageMoveFnc() {
-		location.href= "./list";
+		location.href= "../admin/member/list";
 	}
 	
 	function pageMoveDeleteFnc(no) {
@@ -39,7 +39,7 @@
 		이름 : <input type='text' name='name' 
 			value='${memberDto.name}'><br>
 		이메일 : <input type='text' name='email' 
-			value='${memberDto.email}'><br>
+			value='${memberDto.email}' readonly='readonly'><br>
 		가입일 : '${memberDto.createdDate}'<br>
 		수정일 : '${memberDto.modifiedDate}'<br><br>
 		

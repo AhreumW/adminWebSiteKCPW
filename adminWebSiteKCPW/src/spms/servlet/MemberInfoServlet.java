@@ -48,7 +48,7 @@ public class MemberInfoServlet extends HttpServlet {
 			
 			MemberDto memberDto = memberDao.memberSelectOne(no);
 			
-			req.setAttribute("memberDto", memberDto);
+			req.setAttribute("member", memberDto);
 			rd = req.getRequestDispatcher("./MemberInfoView.jsp");
 			rd.forward(req, res);
 

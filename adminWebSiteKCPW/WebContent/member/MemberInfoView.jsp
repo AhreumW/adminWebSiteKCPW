@@ -26,18 +26,18 @@
 
 		<label>번호</label>
 		<input type='text' name='no' class='inputText'
-				value='${memberDto.no}' readonly='readonly'>
+				value='${member.no}' readonly='readonly'>
 		<label>이름</label>
 		<input type='text' name='name' class='inputText'
-				value='${memberDto.name}' readonly='readonly'>
+				value='${member.name}' readonly='readonly'>
 		<label>이메일</label>
 		<input type='text' name='email' class='inputText'
-				value='${memberDto.email}' readonly='readonly'>
+				value='${member.email}' readonly='readonly'>
 		<label>가입일</label>
-		<p class='fixedValue'>${memberDto.createdDate}</p>
+		<p class='fixedValue'>${member.createdDate}</p>
 	
 		<form action='./update' method='get'>
-			<input type="hidden" name="no" value="${memberDto.no}">
+			<input type="hidden" name="no" value="${member.no}">
 			
 			<div id='btnsWrap'>
 				<input type='submit' class='btns' value='수정'>

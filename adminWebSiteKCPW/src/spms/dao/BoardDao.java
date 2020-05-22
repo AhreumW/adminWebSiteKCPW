@@ -176,7 +176,7 @@ public class BoardDao {
 		try {                 
 			sql =  "SELECT *";
 			sql += " FROM (";
-			sql += " SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE, ROWNUM rnum";
+			sql += " SELECT BOARD_NO, TITLE, CONTENT, EMAIL, MY_NAME, CRE_DATE, ROWNUM rnum";
 			sql += " FROM BOARD";
 			sql += " ORDER BY BOARD_NO DESC";
 			sql += " )";
@@ -204,6 +204,7 @@ public class BoardDao {
 			String title = "";
 			String content = "";
 			String email = "";
+			String myName = "";
 			Date creDate = null;
 			
 			while(rs.next()) {
@@ -211,6 +212,7 @@ public class BoardDao {
 				title = rs.getString("TITLE");
 				content = rs.getString("CONTENT");
 				email = rs.getString("EMAIL");
+				myName = rs.getString("MY_NAME");
 				creDate = rs.getDate("CRE_DATE");
 				
 				BoardDto boardDto = new BoardDto();
@@ -218,6 +220,7 @@ public class BoardDao {
 				boardDto.setTitle(title);
 				boardDto.setContent(content);
 				boardDto.setEmail(email);
+				boardDto.setMyName(myName);
 				boardDto.setCreatedDate(creDate);
 				
 				//System.out.println(boardDto.getBoardNo());
@@ -265,7 +268,7 @@ public class BoardDao {
 		String sql = "";
 		
 		try {
-			sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, CRE_DATE"; 
+			sql = "SELECT BOARD_NO, TITLE, CONTENT, EMAIL, MY_NAME, CRE_DATE, MOD_DATE"; 
 			sql += " FROM BOARD";
 			sql += " WHERE BOARD_NO = ?";
 			
@@ -277,22 +280,28 @@ public class BoardDao {
 			String title = "";
 	        String content = "";
 	        String email = "";
+	        String myName = "";
 	        Date creDate = null;
+	        Date modDate = null;
 
 	        if (rs.next()) {
 	        	no = rs.getInt("BOARD_NO");
 	        	title = rs.getString("TITLE");
 	        	content = rs.getString("CONTENT");
 	        	email = rs.getString("EMAIL");
+	        	myName = rs.getString("MY_NAME");
 	        	creDate = rs.getDate("CRE_DATE");
+	        	modDate = rs.getDate("MOD_DATE");
 	
 	        	boardDto = new BoardDto();
 	
 	        	boardDto.setBoardNo(no);
 	        	boardDto.setEmail(email);
+	        	boardDto.setMyName(myName);
 	        	boardDto.setTitle(title);
 	        	boardDto.setContent(content);
 	        	boardDto.setCreatedDate(creDate);
+	        	boardDto.setModifiedDate(modDate);
 	        	
 	        }
 			
@@ -330,21 +339,23 @@ public class BoardDao {
 		String title = boardDto.getTitle();
 		String content = boardDto.getContent();
 		String email = boardDto.getEmail();
+		String myName = boardDto.getMyName();
 		
 		String sql = "";
 		
 		int result = 0;
 	
 		try {
-			sql  = "insert into board";
-			sql += " (board_no, title, content, email)";		
-			sql += " values(board_no_seq.NEXTVAL, ?, ?, ?)";
+			sql  = "INSERT INTO BOARD";
+			sql += " (BOARD_NO, TITLE, CONTENT, EMAIL, MY_NAME)";		
+			sql += " VALUES(BOARD_NO_SEQ.NEXTVAL, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setString(3, email);
+			pstmt.setString(4, myName);
 			
 			result = pstmt.executeUpdate();
 
@@ -374,7 +385,7 @@ public class BoardDao {
 			
 		String sql ="";
 		sql += "UPDATE BOARD";
-		sql += " SET TITLE=?, CONTENT=?";
+		sql += " SET TITLE=?, CONTENT=?, MOD_DATE=sysdate";
 		sql += " WHERE BOARD_NO=? AND EMAIL=?";
 		
 		try {

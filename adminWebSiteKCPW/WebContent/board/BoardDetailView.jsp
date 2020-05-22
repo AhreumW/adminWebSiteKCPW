@@ -22,21 +22,28 @@
 	<jsp:include page="/Header.jsp"/>
 	
 	<h1>게시판 상세보기 페이지</h1>
+	<!--  상세페이지에 제목 작성자 내용 등록일 수정일  -->
 	
 	<form action="./detail" method="post">
 		<input type="hidden" name="no" value="${boardDto.getBoardNo()}">
 		<table>
 			<tr>
 				<th>제목</th>
-				<th>${boardDto.getTitle()}</th>
+				<th colspan='3'>${boardDto.getTitle()}</th>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<th>${boardDto.getEmail()}</th>
+				<th>${boardDto.getMyName()}</th>
+			</tr>
+			<tr>
+				<th>등록일</th>
+				<th>${boardDto.getCreatedDate()}</th>
+				<th>수정일</th>
+				<th>${boardDto.getModifiedDate()}</th>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<th>${boardDto.getContent()}</th>
+				<th colspan='3'>${boardDto.getContent()}</th>
 			</tr>
 		</table>
 		<c:if test='${memberDto.email == boardDto.email || memberDto.grade == "admin"}'>

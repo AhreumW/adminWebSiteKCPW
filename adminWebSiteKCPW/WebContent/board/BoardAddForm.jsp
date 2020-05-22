@@ -21,9 +21,11 @@
 	<jsp:include page="/Header.jsp"/>
 	<h1>새글쓰기</h1>
 	<form action="./add" method="post">
+		<input type="hidden" name="email" value="${memberDto.email}">
 		제목: <input type="text" name="title" class="mainInput"><br>
 		내용: <input type="text" name="content" class="mainInput"><br>
-		이멜: <input type="text" name="email" class="mainInput"><br>
+		작성자: <input type="text" name="name" value="${memberDto.name}" 
+					class="mainInput" readonly="readonly"><br>
 			<input type="submit" value="추가">
 			<input type="reset" value="취소">		
 	</form>

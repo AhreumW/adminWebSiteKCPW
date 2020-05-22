@@ -48,6 +48,8 @@
 			<tr>
 				<td>작성일</td>
 				<td>${boardDto.getCreatedDate()}</td>
+				<td>수정일</td>
+				<td>${boardDto.getModifiedDate()}</td>
 			</tr>
 		</table>
 		

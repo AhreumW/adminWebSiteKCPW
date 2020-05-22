@@ -51,6 +51,9 @@
 		location.href="./add";
 	}
 	
+	function moveLoginFnc(){
+		location.href="../auth/login";
+	}
 </script>
 </head>
 
@@ -59,14 +62,20 @@
 	<jsp:include page="/Header.jsp" />
 	
 	<h1>일반 게시판</h1>
-	<button onclick="boardAddFnc();">글쓰기</button>
+	
+	<c:if test="${memberDto ne null}">
+		<button onclick="boardAddFnc();">글쓰기</button>
+	</c:if>
+	<c:if test="${memberDto == null}">
+		<button onclick="moveLoginFnc();">글쓰기</button>
+	</c:if>
 	
 	<table>
 		<thead>
 			<tr>
 				<th>게시글번호</th>
 				<th>제목</th>
-				<th>이메일</th>
+				<th>작성자</th>
 				<th>등록일</th>
 				<c:if test="${memberDto.getGrade() == 'admin'}">
 					<th>관리</th>
@@ -83,7 +92,7 @@
 							<a href='./update?no=${boardDto.boardNo}'> 수정</a>
 						</c:if>
 					</td>
-					<td>${boardDto.email}</td>
+					<td>${boardDto.myName}</td>
 					<td>${boardDto.createdDate}</td>
 					<c:if test="${memberDto.getGrade() == 'admin'}">
 						<td>

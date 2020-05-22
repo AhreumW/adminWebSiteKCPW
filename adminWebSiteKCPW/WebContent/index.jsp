@@ -10,7 +10,8 @@
 
 <script type="text/javascript">
 	function listPageMoveFnc() {
-		location.href = '<%=request.getContextPath()%>/auth/login';
+		location.href 
+		= '<%=request.getContextPath()%>/auth/login';
 	}
 </script>
 

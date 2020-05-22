@@ -11,27 +11,11 @@
 <style type="text/css">
 	#wrap {
 		width: 250px;
-		margin: 100px auto 0px;
 	}
-
 	#loginForm label {
 		display: block;
 		font-size: 13px;
 		padding:15px 0px 3px;
-	}
-	#loginBtn {
-		display: block;
-		width: 100%;
-		line-height: 35px;
-		margin-top: 35px;
-		border: 1px solid #000;
-		box-sizing: border-box;
-		background-color: #000;
-		font-size: 13px;
-		font-weight: bold;
-		color: #fff;
-		cursor: pointer;
-		transition: all 0.3s;
 	}
 	
 	#btnWrap:hover #loginBtn {
@@ -88,13 +72,12 @@
 				<span style="font-size:12px; color:red;">${errorMsg}</span>
 			</c:if>
 			
-			<div id='btnWrap'>
-				<input type="submit" id='loginBtn' value="로그인" onclick="validationChk();">
+			<div id='btnWrap' style='margin-top: 35px;'>
+				<input type="submit" class='loginBtn' value="로그인" onclick="validationChk();">
 			</div>
 		</form>
 		
-		
-		<input type="button" value="비밀번호 찾기" onclick="findPageFnc()"/>
+		<input type="button" class='loginBtn' value="비밀번호 찾기" onclick="findPageFnc()"/>
 	</div>
 
 	<jsp:include page="/Tail.jsp"/>

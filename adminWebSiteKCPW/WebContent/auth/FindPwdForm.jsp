@@ -10,43 +10,22 @@
 <style type="text/css">
 	#wrap {
 		width: 250px;
-		margin: 100px auto 0px;
 	}
 	#loginForm label {
 		display: block;
 		font-size: 13px;
 		padding:15px 0px 3px;
 	}
-
-	#confirmBtn {
-		display: block;
-		width: 100%;
-		line-height: 35px;
-		margin-top: 35px;
-		border: 1px solid #000;
-		box-sizing: border-box;
-		background-color: #000;
-		font-size: 13px;
-		font-weight: bold;
-		color: #fff;
-		cursor: pointer;
-		transition: all 0.3s;
-	}
 	
-	#btnWrap:hover #loginBtn {
-		animation: hoverAni 1s;
-	}
-	@keyframes hoverAni {
-		0% {
-			background-color: #000;
-			color: #fff;
-		}
-		20% {
-			background-color: #fff;
-			color: #000;
-		}
-	}
 </style>
+
+<script type="text/javascript">
+
+	function toLoginFnc() {
+		location.href="./login";
+	}
+
+</script>
 
 </head>
 <body>
@@ -60,10 +39,12 @@
 			<input type="text" class='inputText' name="email" value="${email}">
 			<label>비밀번호</label>
 			<input type="text" class='inputText' name="password" value="${password}" style="color:red;">
-			<div id='btnWrap'>
-				<input type="submit" id='confirmBtn' value="찾기">
+			<div id='btnWrap' style='margin-top: 35px;'>
+				<input type="submit" class='loginBtn' id='confirmBtn' value="찾기">
 			</div>
 		</form>
+		
+		<input type="button" class='loginBtn' value="로그인 페이지" onclick="toLoginFnc();"/>
 	</div>
 
 	<jsp:include page="/Tail.jsp"/>

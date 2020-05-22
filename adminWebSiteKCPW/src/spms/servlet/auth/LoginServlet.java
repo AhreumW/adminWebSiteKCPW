@@ -23,8 +23,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String errorMsg = "";
-		req.setAttribute("errorMsg", errorMsg);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("./LoginForm.jsp");
 		rd.forward(req, res);
@@ -51,39 +49,43 @@ public class LoginServlet extends HttpServlet {
 		String errorMsg = "";
 		
 		try {
-			
-			MemberDto memberDto = memberDao.memberLogin(email, pwd);
-
-			if (memberDto != null) {
-				HttpSession session = req.getSession();
-				session.setAttribute("memberDto", memberDto);
+			if(email.length() != 0 && pwd.length() != 0 ) {
 				
-				System.out.println("나의 등급은 :" + memberDto.getGrade());
-				if (memberDto.getGrade().equals("user")) {
-					res.sendRedirect("../");
+				MemberDto memberDto = memberDao.memberLogin(email.trim(), pwd);
+	
+				if (memberDto != null) {
+					HttpSession session = req.getSession();
+					session.setAttribute("memberDto", memberDto);
+					
+					System.out.println("나의 등급은 :" + memberDto.getGrade());
+					if (memberDto.getGrade().equals("user")) {
+						res.sendRedirect("../");
+					} else {
+						res.sendRedirect("../admin/member/list");
+					}
+					
+					
 				} else {
-					res.sendRedirect("../admin/member/list");
-				}
-				
-				
-			} else {
-				if(email.length() != 0 && pwd.length() != 0 ) {
-//					System.out.println("1");
+					req.setAttribute("emailStr", email.trim());
+					req.setAttribute("pwdStr", pwd);		
+					
 					errorMsg = "아이디와 비밀번호를 확인해주세요.";
 					req.setAttribute("errorMsg", errorMsg);
 					RequestDispatcher rd = 
 							req.getRequestDispatcher("./LoginForm.jsp");
 					rd.forward(req, res);
-				}else {						
-//					System.out.println("2");
-					errorMsg ="";
-					req.setAttribute("errorMsg", errorMsg);
-					RequestDispatcher rd = 
-							req.getRequestDispatcher("./LoginForm.jsp");
-					rd.forward(req, res);
 				}
+			}else {
+				errorMsg = "";
+				req.setAttribute("errorMsg", errorMsg);
+				
+				req.setAttribute("emailStr", email.trim());
+				req.setAttribute("pwdStr", pwd);				
+				
+				RequestDispatcher rd = 
+						req.getRequestDispatcher("./LoginForm.jsp");
+				rd.forward(req, res);
 			}
-
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

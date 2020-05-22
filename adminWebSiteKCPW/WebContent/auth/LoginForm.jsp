@@ -50,12 +50,14 @@
 </style>
 
 <script type="text/javascript">
+
 	function validationChk() {
 		var emailInputValue = document.getElementsByName('email')[0].value;
 		var pwdInputValue = document.getElementsByName('password')[0].value;
 		
-		if(emailInputValue ==''){
+		if(emailInputValue.trim() ==''){
 			alert('이메일을 입력하세요');
+			document.getElementsByName('password')[0].value = "";
 		}else if(pwdInputValue == ''){
 			alert('패스워드를 입력하세요');
 		}
@@ -78,12 +80,12 @@
 	
 		<form action="" method="post" id='loginForm'>
 			<label>이메일</label>
-			<input type="text" class='inputText' name="email">
+			<input type="text" class='inputText' name="email" value="${emailStr}">
 			<label>암호</label>
-			<input type="password" class='inputText' name="password">
+			<input type="password" class='inputText' name="password" value="${pwdStr}">
 			
 			<c:if test="${errorMsg ne null}">
-				<span>${errorMsg}</span>
+				<span style="font-size:12px; color:red;">${errorMsg}</span>
 			</c:if>
 			
 			<div id='btnWrap'>

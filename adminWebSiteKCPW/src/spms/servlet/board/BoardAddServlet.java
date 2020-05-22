@@ -58,7 +58,6 @@ public class BoardAddServlet extends HttpServlet{
 		try {
 			result = boardDao.boardInsert(boardDto);
 			
-			
 			if(result == 0) {
 				System.out.println("글쓰기 추가 실패");
 			}

@@ -8,10 +8,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 <style type="text/css">
-	* {
-		padding: 0px;
-		margin: 0px;
-	}
 	#wrap {
 		width: 250px;
 		margin: 100px auto 0px;

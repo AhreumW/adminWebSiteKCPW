@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 /* common */
+* {
+	padding: 0px;
+	margin: 0px;
+}
 a {
 	color: #000;
 	text-decoration: none;

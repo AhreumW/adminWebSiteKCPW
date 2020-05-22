@@ -5,47 +5,90 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-	<script type="text/javascript">
-/* 	
-	var emailInput = document.getElementsByName('email');
-	var pwdInput = document.getElementsByName('password');
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+
+<style type="text/css">
+	* {
+		padding: 0px;
+		margin: 0px;
+	}
+	#wrap {
+		width: 250px;
+		margin: 100px auto 0px;
+	}
+	#pageTitle {
+		margin-bottom: 40px;
+		font-size:30px;
+		font-family: "Times New Roman", Times, serif;
+	}
+	#loginForm label {
+		display: block;
+		font-size: 13px;
+		padding:15px 0px 3px;
+	}
+	.inputText {
+		width: 100%;
+		height: 30px;
+		padding: 0px 8px;
+		border: none;
+		border-bottom: 1px solid #ddd;
+		box-sizing: border-box;
+		outline: none;
+	}
+	#loginBtn {
+		display: block;
+		width: 100%;
+		line-height: 35px;
+		margin-top: 35px;
+		border: 1px solid #000;
+		box-sizing: border-box;
+		background-color: #000;
+		font-size: 13px;
+		font-weight: bold;
+		color: #fff;
+		cursor: pointer;
+		transition: all 0.3s;
+	}
 	
-		window.onload = function() {
-			emailInput.setAttribute('onclick','emailChkFnc();');
-			pwdInput.setAttribute('onclick','pwdChkFnc();');
+	#btnWrap:hover #loginBtn {
+		animation: hoverAni 1s;
+	}
+	@keyframes hoverAni {
+		0% {
+			background-color: #000;
+			color: #fff;
 		}
-	
-		function emailChkFnc() {
-			if(emailInput.value == "") {
-				alert("이메일을 입력해주세요");
-				emailInput.value.focus();
-			}
+		20% {
+			background-color: #fff;
+			color: #000;
 		}
-	
-		function pwdChkFnc() {
-			if(pwdInput =="") {
-				alert("패스워드를 입력해주세요");
-				pwdInput.value.focus();
-			}
-			
-		} */
-	
-	</script>
+	}
+</style>
+
+<script type="text/javascript">
+
+</script>
 
 </head>
 <body>
 
-<jsp:include page="/Header.jsp"/>
+	<jsp:include page="/Header.jsp"/>
 
-	<h2>사용자 로그인</h2>
+	<div id='wrap'>
+		<h2 id='pageTitle'>Login</h2>
 	
-	<form action="" method="post">
-		이메일 : 		<input type="email" name="email"><br/>
-		패스워드 :		<input type="password" name="password"><br/> 
-					<input type="submit" value="로그인">
-	</form>
+		<form action="" method="post" id='loginForm'>
+			<label>이메일</label>
+			<input type="email" class='inputText' name="email">
+			<label>암호</label>
+			<input type="text" class='inputText' name="password">
+			<div id='btnWrap'>
+				<input type="submit" id='loginBtn' value="로그인">
+			</div>
+		</form>
+	</div>
 
-<jsp:include page="/Tail.jsp"/>
+	<jsp:include page="/Tail.jsp"/>
 	
 </body>
 </html>

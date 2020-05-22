@@ -36,9 +36,36 @@ public class NoticeListServlet extends HttpServlet {
 			
 			ArrayList<NoticeDto> noticeList = null;
 			
+			int total = 0;
+			//게시글 전체 개수 조회
+			total = noticeDao.boardTotalCount();
+			
+			int pageNum = 0;	//페이지 개수 
+			int currentNo = 0;	//선택 페이지 번호
+			if(req.getParameter("currentNo") != null) {			
+				currentNo = Integer.parseInt(req.getParameter("currentNo"));
+//				System.out.println("get currentNo: "+currentNo);
+			}else {
+				currentNo = 1;
+//				System.out.println("get currentNo: "+currentNo);
+			}
+
+			if(total % 10 == 0 ){
+				pageNum = total/10;
+			}else{
+				pageNum = total/10 + 1;
+			}
+			
+//			System.out.println("total : "+total);
+//			System.out.println("pageNum : "+pageNum);
+			
 			noticeList = (ArrayList<NoticeDto>)noticeDao.noticeSelectList();
 			
 			req.setAttribute("noticeList", noticeList);
+			
+			//페이지 개수 전달
+			req.setAttribute("pageNum", pageNum);
+			req.setAttribute("currentNo", currentNo);
 			
 			RequestDispatcher dispatcher =
 					req.getRequestDispatcher("/admin/NoticeListView.jsp");

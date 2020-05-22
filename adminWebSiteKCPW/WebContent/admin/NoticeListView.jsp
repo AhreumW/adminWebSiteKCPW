@@ -9,6 +9,46 @@
 <title>공지 게시판</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
+<script type="text/javascript">
+	
+	window.onload = function(){
+		<% int pageNum = (Integer) request.getAttribute("pageNum");%>
+		
+		var pageDiv = document.getElementById("pageNumDiv");
+		
+		for(var i=1; i<=<%=pageNum%>; i++){
+			var aTag = document.createElement("a");
+			aTag.innerHTML = i;
+			aTag.setAttribute("style", "margin: 0 10px;");
+			var url = "./list?currentNo="+i;
+			aTag.setAttribute("href", url);
+			pageDiv.appendChild(aTag);
+		}
+		
+	}
+	
+	<% int current = (Integer) request.getAttribute("currentNo");%>
+	
+	function pageLeftFnc(){
+		var currentNo = <%=current%> -1;
+		if(currentNo >= 1){
+			location.href="./list?currentNo="+currentNo;
+		}else{
+			location.href="./list?currentNo=1";
+		}
+	}
+	
+	function pageRightFnc(){
+		var currentNo = <%=current%> +1;
+		if(currentNo <= <%=pageNum%>){
+			location.href="./list?currentNo="+currentNo;
+		}else{
+			location.href="./list?currentNo="+pageNum;
+		}
+	}
+	
+</script>
+
 </head>
 
 <body>

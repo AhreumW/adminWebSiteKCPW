@@ -9,12 +9,11 @@
 
 <script type="text/javascript">
 
-// 	function deletePostFnc(noticeNo) {
-// 		if(confirm("삭제하시겠습니까?")){
-// 			location.href = "./delete?noticeNo=" + noticeNo;
-// 		}
-		
-// 	}
+	function deletePostFnc(noticeNo) {
+		if(confirm("삭제하시겠습니까?")){
+			location.href = "./delete?noticeNo=" + noticeNo;
+		}
+	}
 
 </script>
 </head>
@@ -58,7 +57,7 @@
 		<input type="submit" value="적용">
 		<input type="reset" value="초기화">
 		<input type="button" value="삭제" 
-			onclick="location.href='./delete?noticeNo=${noticeDto.noticeNo}'">
+			onclick="deletePostFnc(${noticeDto.noticeNo});">
 		<a href="./list">목록</a>
 	</form>
 	

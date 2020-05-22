@@ -20,9 +20,13 @@
 
 	<p onclick="listPageMoveFnc();">adminWebSite</p>
 	
-	<a href="./auth/login">로그인</a>
+	<c:if test="${memberDto.email == null}">
+		<a href="./auth/login">로그인</a>
+	</c:if>
 	
 	<c:if test="${memberDto.email ne null}">
+		<a href="./auth/logout">로그아웃</a>
+		
 		<c:if test="${memberDto.grade == 'admin'}">
 			<a href="./member/list">회원리스트</a>
 			<a href="./member/add">회원추가</a>

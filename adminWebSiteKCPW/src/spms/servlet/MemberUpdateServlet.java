@@ -97,12 +97,11 @@ public class MemberUpdateServlet extends HttpServlet {
 			if(result == 0) {
 				System.out.println("회원 정보 조회가 실패하였습니다.");
 			}
-			res.sendRedirect("./list");
+			res.sendRedirect("../admin/member/list");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 			req.setAttribute("error", e);
 			RequestDispatcher rd = req.getRequestDispatcher("/Error.jsp");
 			rd.forward(req, res);

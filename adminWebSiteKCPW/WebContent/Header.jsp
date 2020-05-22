@@ -8,7 +8,7 @@
 	
 	<c:if test="${memberDto ne null}">
 		<c:if test="${memberDto.grade == 'admin'}">
-			<a href="<%=request.getContextPath()%>/member/list" class='depth1'>
+			<a href="<%=request.getContextPath()%>/admin/member/list" class='depth1'>
 				회원리스트
 			</a>
 			<a href="<%=request.getContextPath()%>/member/add" class='depth1'>

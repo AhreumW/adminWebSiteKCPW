@@ -7,12 +7,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import spms.dao.MemberDao;
+import spms.dto.MemberDto;
 
 @WebServlet(value="/member/delete")
 public class MemberDeleteServlet extends HttpServlet{
@@ -23,42 +27,28 @@ public class MemberDeleteServlet extends HttpServlet{
 					throws ServletException, IOException {
 		
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		ServletContext sc = this.getServletContext();
 
-		String mNo = req.getParameter("no");
-		
 		try {
+			ServletContext sc = this.getServletContext();
+			
 			conn = (Connection) sc.getAttribute("conn");
 			
-			String sql = "DELETE FROM MEMBER ";
-				   sql += "WHERE MNO = ?";
+			MemberDao memberDao = new MemberDao();
+			memberDao.setConnection(conn);
 			
-			pstmt = conn.prepareStatement(sql);
+			int no = Integer.parseInt(req.getParameter("no"));
+			memberDao.memberDelete(no);
 			
-			pstmt.setString(1, mNo);		
-			
-			pstmt.executeUpdate();
-			
-			res.sendRedirect("../");
-
+			res.sendRedirect("../admin/member/list");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("insert into member 실패");
-		}finally {
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					System.out.println("pstmt 종료 실패");
-				}
-			}
-
-		} // finally end	
+			
+			req.setAttribute("error", e);
+			RequestDispatcher rd = 
+					req.getRequestDispatcher("/Error.jsp");
+			rd.forward(req, res);
+		}
 	}
 	
 	@Override

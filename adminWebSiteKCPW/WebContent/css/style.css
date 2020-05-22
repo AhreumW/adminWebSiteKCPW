@@ -19,34 +19,15 @@ a {
 #pageTitle {
 	padding: 100px 0px 30px;
 	font-size: 30px;
-	font-family: "Times New Roman", Times, serif
+	font-family: "Times New Roman", Times, serif;
 }
 .tCenter{
 	text-align: center;
 }
-#pagingWrap{
-	margin-top: 30px;
-	text-align: center;
-}
-#pagingWrap > div{
-	display: inline-block;
-	font-size: 10px;
-}
-#pagingWrap > div > a{
-	display: inline-block;
-	width: 15px;
-	line-height: 15px;
-	border: 1px solid #000;
-	transition: all 0.3s;
-}
-#pagingWrap > div > a:hover{
-	background: #000;
-	color: #fff;
-}
 
 /* header */
 #header {
-	background: #a3a3c2;
+	background: #333;
 	padding: 25px 10px 30px 0px;
 	box-sizing: border-box;
 }
@@ -56,6 +37,7 @@ a {
 	font-weight: bold;
 	color:#fff;
 	font-size: 18px;
+	font-family: "Times New Roman", Times, serif;
 }
 #header a{
 	display: inline-block;
@@ -102,8 +84,46 @@ a {
 #footer{
 	padding: 15px 25px 15px 50px;
 	margin-top: 100px;
-	background: #f0f0f5;
 	font-size: 12px;
+}
+
+/* 게시판 목록 */
+#addLink {
+	border: 1px solid #a3a3c2;
+	padding: 5px 20px; 
+	font-weight: bold;
+	font-size: 12px;
+	color: #333;
+	transition: all 0.3s;
+}
+#addLink:hover {
+	background-color: #a3a3c2;
+	color: #fff;
+}
+
+#table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+#table th, #table td {
+	border: 1px solid #e0e0eb;
+	padding: 5px 10px;
+}
+#table th {
+	background-color: #f0f0f5;
+	padding: 7px 0px;
+}
+#table a:hover {
+	text-decoration: underline;
+}
+.manageBtn {
+	display: inline-block;
+	position: relative;
+}
+.manageBtn:hover {
+	font-weight: bold;
 }
 
 /* 게시판 상세보기 */
@@ -154,6 +174,28 @@ a {
 	border: 0;
 	cursor: pointer;
 	vertical-align: top;
+}
+
+/* 페이징 */
+#pagingWrap{
+	margin-top: 30px;
+	text-align: center;
+}
+#pagingWrap > div{
+	display: inline-block;
+	font-size: 10px;
+}
+#pagingWrap > div > a{
+	display: inline-block;
+	width: 15px;
+	line-height: 15px;
+	border: 1px solid #a3a3c2;
+	color: #333;
+	transition: all 0.3s;
+}
+#pagingWrap > div > a:hover{
+	background: #a3a3c2;
+	color: #fff;
 }
 
 

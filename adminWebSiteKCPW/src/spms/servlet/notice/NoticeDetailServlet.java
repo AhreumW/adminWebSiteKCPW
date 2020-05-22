@@ -39,7 +39,7 @@ public class NoticeDetailServlet extends HttpServlet {
 			NoticeDto noticeDto = noticeDao.noticeSelectOne(noticeNo);
 			
 			req.setAttribute("noticeDto", noticeDto);
-			rd = req.getRequestDispatcher("./NoticePageView.jsp");
+			rd = req.getRequestDispatcher("./NoticeDetailView.jsp");
 			
 			rd.forward(req, res);
 			

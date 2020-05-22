@@ -352,7 +352,8 @@ public class NoticeDao {
 		try {
 			sql = "SELECT *";
 			sql += " FROM (";
-			sql += " SELECT NOTICE_NO, TITLE, CONTENT, CRE_EMAIL, CRE_DATE, ROWNUM rnum";
+			sql += " SELECT NOTICE_NO, TITLE, CONTENT, MY_NAME,";
+			sql += " CRE_EMAIL, CRE_DATE, MOD_DATE, ROWNUM rnum";
 			sql += " FROM NOTICEBOARD";
 			sql += " ORDER BY NOTICE_NO DESC";
 			sql += " )";
@@ -379,22 +380,28 @@ public class NoticeDao {
 			int noticeNo = 0;
 			String title = "";
 			String content = "";
+			String myName = "";
 			String creEmail = "";
 			Date creDate = null;
+			Date modDate = null;
 
 			while (rs.next()) {
 				noticeNo = rs.getInt("NOTICE_NO");
 				title = rs.getString("TITLE");
 				content = rs.getString("CONTENT");
+				myName = rs.getString("MY_NAME");
 				creEmail = rs.getString("CRE_EMAIL");
 				creDate = rs.getDate("CRE_DATE");
+				modDate = rs.getDate("MOD_DATE");
 
 				NoticeDto noticeDto = new NoticeDto();
 				noticeDto.setNoticeNo(noticeNo);
 				noticeDto.setTitle(title);
 				noticeDto.setContent(content);
+				noticeDto.setMyName(myName);;
 				noticeDto.setCreEmail(creEmail);
 				noticeDto.setCreatedDate(creDate);
+				noticeDto.setModifiedDate(modDate);
 
 				// System.out.println(boardDto.getBoardNo());
 

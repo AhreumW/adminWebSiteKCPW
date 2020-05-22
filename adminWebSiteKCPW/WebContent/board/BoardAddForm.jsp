@@ -6,15 +6,9 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" type="text/css" 
+	href="<%=request.getContextPath()%>/css/style.css">
 
-<style type="text/css">
-	.mainInput {
-		width: 500px; 
-		margin-bottom: 20px;
-		height: 20px;
-	}
-</style>
 <script type="text/javascript">
 	function validationChk() {
 		var titleInputValue = document.getElementsByName('title')[0].value;
@@ -28,6 +22,10 @@
 			alert('내용을 입력하세요');
 		}
 	}
+	
+	function toListFnc() {
+		location.href="./list";
+	}
 </script>
 
 
@@ -35,16 +33,50 @@
 <body>
 
 	<jsp:include page="/Header.jsp"/>
-	<h1>새글쓰기</h1>
-	<form action="./add" method="post">
-		<input type="hidden" name="email" value="${memberDto.email}">
-		제목: <input type="text" name="title" class="mainInput"><br>
-		내용: <input type="text" name="content" class="mainInput"><br>
-		작성자: <input type="text" name="name" value="${memberDto.name}" 
-					class="mainInput" readonly="readonly"><br>
-			<input type="submit" value="추가" onclick="validationChk();">
-			<input type="reset" value="취소">		
-	</form>
+	
+	<div id='viewWrap'>
+		<h1 id='pageTitle'>Write Post</h1>
+			
+		<form action="./add" method="post">
+			<input type="hidden" name="email" value="${memberDto.email}">
+			<table id='viewTable'>
+				<colgroup>
+					<col width="20%">
+					<col width="80%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class='th'>제목</td>
+						<td class='td'>
+							<input type="text" name="title">
+						</td>
+					</tr>
+					<tr>
+						<td class='th'>내용</td>
+						<td class='td'>
+							<textarea rows="10" cols="30" name="content"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class='th'>작성자</td>
+						<td class='td'>
+							<input type="text" name="name" class="readonly"
+								value="${memberDto.name}" readonly="readonly">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div id='btnsWrap'>
+				<input type="submit" value="글쓰기" class='btns'
+					 onclick="validationChk();">
+				<input type="reset" value="초기화" class='btns'>
+				<input type="button" class='btns' 
+					value="뒤로" onclick='toListFnc();'>
+			</div>		
+		</form>
+	</div>
+	
 	<jsp:include page="/Tail.jsp"/>
 
 </body>

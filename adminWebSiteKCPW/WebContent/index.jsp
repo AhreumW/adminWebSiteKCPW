@@ -11,9 +11,10 @@
 	href="<%=request.getContextPath()%>/css/style.css">
 
 <script type="text/javascript">
-// 	function listPageMoveFnc() {
-<%-- 		location.href = '<%=request.getContextPath()%>/auth/login'; --%>
-// 	}
+
+	function listPageMoveFnc() {
+		location.href = '<%=request.getContextPath()%>/auth/login';
+	}
 </script>
 
 </head>

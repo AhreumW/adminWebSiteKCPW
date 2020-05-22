@@ -18,7 +18,7 @@
 		padding:15px 0px 3px;
 	}
 
-	#loginBtn {
+	#confirmBtn {
 		display: block;
 		width: 100%;
 		line-height: 35px;
@@ -55,14 +55,13 @@
 
 	<div id='wrap'>
 		<h2 id='pageTitle'>Find Password</h2>
-	
 		<form action="" method="post" id='loginForm'>
 			<label>이메일</label>
-			<input type="text" class='inputText' name="email">
+			<input type="text" class='inputText' name="email" value="${email}">
 			<label>비밀번호</label>
-			<input type="password" class='inputText' name="password">
+			<input type="text" class='inputText' name="password" value="${password}" style="color:red;">
 			<div id='btnWrap'>
-				<input type="submit" id='loginBtn' value="확인">
+				<input type="submit" id='confirmBtn' value="찾기">
 			</div>
 		</form>
 	</div>

@@ -9,6 +9,12 @@
 <link rel="stylesheet" type="text/css" 
 	href="<%=request.getContextPath()%>/css/style.css">
 
+<script type="text/javascript">
+	function toListFnc() {
+		location.href="./list";
+	}
+</script>
+
 </head>
 
 <body>
@@ -42,7 +48,9 @@
 			
 			<div id='btnsWrap'>
 				<input type="submit" class='btns' value="글쓰기">
-				<input type="reset" class='btns' value="취소">
+				<input type="reset" class='btns' value="초기화">
+				<input type="button" class='btns' 
+					value="뒤로" onclick='toListFnc();'>
 			</div>
 		</form>
 	</div>

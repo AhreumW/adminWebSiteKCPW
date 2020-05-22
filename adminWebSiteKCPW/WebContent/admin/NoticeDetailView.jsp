@@ -7,7 +7,8 @@
 
 <meta charset="UTF-8">
 <title>게시글 상세보기</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" type="text/css" 
+	href="<%=request.getContextPath()%>/css/style.css">
 
 </head>
 
@@ -43,7 +44,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class='th'>작성일</td>
+					<td class='th'>등록일</td>
 					<td class='td'>${noticeDto.createdDate}</td>
 				</tr>
 			</tbody>

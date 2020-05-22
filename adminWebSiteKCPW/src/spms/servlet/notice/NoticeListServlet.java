@@ -59,7 +59,7 @@ public class NoticeListServlet extends HttpServlet {
 //			System.out.println("total : "+total);
 //			System.out.println("pageNum : "+pageNum);
 			
-			noticeList = (ArrayList<NoticeDto>)noticeDao.noticeSelectList();
+			noticeList = (ArrayList<NoticeDto>)noticeDao.boardSelectTen(currentNo);
 			
 			req.setAttribute("noticeList", noticeList);
 			

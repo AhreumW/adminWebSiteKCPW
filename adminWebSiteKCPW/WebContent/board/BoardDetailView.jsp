@@ -7,7 +7,8 @@
 
 <meta charset="UTF-8">
 <title>게시판 상세 페이지</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" type="text/css" 
+	href="<%=request.getContextPath()%>/css/style.css">
 
 <script type="text/javascript">
 	function moveListFnc() {
@@ -21,36 +22,48 @@
 
 	<jsp:include page="/Header.jsp"/>
 	
-	<h1>게시판 상세보기 페이지</h1>
+	<div id='viewWrap'>
+		<h1 id='pageTitle'>View Post</h1>
 	<!--  상세페이지에 제목 작성자 내용 등록일 수정일  -->
 	
-	<form action="./detail" method="post">
-		<input type="hidden" name="no" value="${boardDto.getBoardNo()}">
-		<table>
-			<tr>
-				<th>제목</th>
-				<th colspan='3'>${boardDto.getTitle()}</th>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<th>${boardDto.getMyName()}</th>
-			</tr>
-			<tr>
-				<th>등록일</th>
-				<th>${boardDto.getCreatedDate()}</th>
-				<th>수정일</th>
-				<th>${boardDto.getModifiedDate()}</th>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<th colspan='3'>${boardDto.getContent()}</th>
-			</tr>
-		</table>
-		<c:if test='${memberDto.email == boardDto.email || memberDto.grade == "admin"}'>
-			<input type="submit" value="수정">
-		</c:if>	
-		<input onclick="moveListFnc();" type="button" value="게시판목록">		
-	</form>
+		<form action="./detail" method="post">
+			<input type="hidden" name="no" value="${boardDto.getBoardNo()}">
+			<table id='viewTable'>
+				<colgroup>
+					<col width="20%">
+					<col width="80%">
+				</colgroup>
+				<tr>
+					<td class='th'>제목</td>
+					<td colspan='3'>${boardDto.getTitle()}</td>
+				</tr>
+				<tr>
+					<td class='th'>내용</td>
+					<td colspan='3'>${boardDto.getContent()}</td>
+				</tr>
+				<tr>
+					<td class='th'>작성자</td>
+					<td>${boardDto.getMyName()}</td>
+				</tr>
+				<tr>
+					<td class='th'>등록일</td>
+					<td>${boardDto.getCreatedDate()}</td>
+				</tr>
+				<tr>
+					<td class='th'>수정일</td>
+					<td>${boardDto.getModifiedDate()}</td>
+				</tr>
+			</table>
+			
+			<div id='btnsWrap'>
+				<c:if test='${memberDto.email == boardDto.email || memberDto.grade == "admin"}'>
+					<input type="submit" value="수정" class='btns'>
+				</c:if>	
+				<input onclick="moveListFnc();" type="button" 
+					class='btns' value="목록">
+			</div>		
+		</form>
+	</div>
 	
 	<jsp:include page="/Tail.jsp"/>
 

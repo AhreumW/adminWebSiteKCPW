@@ -62,6 +62,15 @@
 </style>
 
 <script type="text/javascript">
+	function emailChk() {
+		var emailInputValue = document.getElementsByName('email').value;
+		var pwdInputValue = document.getElementsByName('password').value;
+	}
+		
+	function pwdChk() {
+		var pwdChk = document.getElementsByName('password');		
+	}
+
 
 </script>
 
@@ -75,9 +84,9 @@
 	
 		<form action="" method="post" id='loginForm'>
 			<label>이메일</label>
-			<input type="email" class='inputText' name="email">
+			<input type="text" class='inputText' name="email">
 			<label>암호</label>
-			<input type="text" class='inputText' name="password">
+			<input type="password" class='inputText' name="password">
 			<div id='btnWrap'>
 				<input type="submit" id='loginBtn' value="로그인">
 			</div>

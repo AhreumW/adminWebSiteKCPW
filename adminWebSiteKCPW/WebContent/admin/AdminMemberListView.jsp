@@ -45,7 +45,7 @@
 					<th>이메일</th>
 					<th>가입날짜</th>
 					<th>정보수정</th>
-					<th>등급변경</th>
+					<th>등급</th>
 					<th>삭제</th>
 				</tr>
 			</thead>
@@ -62,17 +62,11 @@
 						</td>
 						<td class='tCenter'>
 							<c:if test="${memberDto.grade == 'admin'}">
-								<select name='grade' class='selectTag'>
-									<option value='admin' selected>관리자</option>
-									<option value='user'>사용자</option>
-								</select>
+								관리자
 							</c:if>
 							
 							<c:if test="${memberDto.grade == 'user'}">
-								<select name='grade' class='selectTag'>
-									<option value='user' selected>사용자</option>
-									<option value='admin'>관리자</option>
-								</select>
+								사용자
 							</c:if>
 						</td>
 						<td class='tCenter'>

@@ -121,8 +121,7 @@ public class MemberDao {
 	}
 
 	// 회원삭제
-	public int memberDelete(int no) throws SQLException {
-		int result = 0;
+	public void memberDelete(int no) throws SQLException {
 
 		PreparedStatement pstmt = null;
 
@@ -154,7 +153,6 @@ public class MemberDao {
 
 		} // finally 종료
 
-		return result;
 	}
 
 	// 회원 상세 정보 조회 update - doGet

@@ -36,12 +36,14 @@ public class BoardAddServlet extends HttpServlet{
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		String email = req.getParameter("email");
+		String name = req.getParameter("name");
 		
 		BoardDto boardDto = new BoardDto();
 		
 		boardDto.setTitle(title);
 		boardDto.setContent(content);
 		boardDto.setEmail(email);
+		boardDto.setMyName(name);
 		
 		ServletContext sc = this.getServletContext();
 		

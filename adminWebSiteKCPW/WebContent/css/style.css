@@ -109,6 +109,10 @@ a {
 	box-sizing: border-box;
 	outline: none;
 }
+.fixedValue	{
+	font-size: 13px;
+	font-weight: bold;
+}
 
 /* 게시판 목록 */
 #addLink {

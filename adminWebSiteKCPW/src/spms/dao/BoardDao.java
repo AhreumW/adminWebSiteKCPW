@@ -164,7 +164,7 @@ public class BoardDao {
 		return totalNum;
 	}
 	
-	//게시글 10개 조회
+	//게시글 10개 조회 - 게시글번호순서
 	public List<BoardDto> boardSelectTen(int pageNum){
 		
 		PreparedStatement pstmt = null;
@@ -257,6 +257,98 @@ public class BoardDao {
 		return boardList;
 	}
 	
+	//게시글 10개 조회 - 최신순 , 수정일순서??? - 보류
+	public List<BoardDto> boardSelectTenLatest(int pageNum){
+			
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			
+		ArrayList<BoardDto> boardList = null;
+		String sql = "";
+			
+		try {                 
+			sql =  "SELECT *";
+			sql += " FROM (";
+			sql += " SELECT BOARD_NO, TITLE, CONTENT, EMAIL, MY_NAME, CRE_DATE, ROWNUM rnum";
+			sql += " FROM BOARD";
+			sql += " ORDER BY CRE_DATE DESC";
+			sql += " )";
+			sql += " WHERE rnum BETWEEN ? AND ?";
+			
+			pstmt = conn.prepareStatement(sql);
+	
+			int rnum1 = 0;
+			int rnum2 = 0;
+			if(pageNum == 1) {
+				rnum1 = 1;
+				rnum2 = 10;
+			}else {
+				rnum1 = (pageNum-1) * 10 + 1;
+				rnum2 = pageNum * 10;
+			}
+			pstmt.setInt(1, rnum1);
+			pstmt.setInt(2, rnum2);
+			
+			rs = pstmt.executeQuery();
+			
+			boardList = new ArrayList<BoardDto>();
+			
+			int boardNo = 0;
+			String title = "";
+			String content = "";
+			String email = "";
+			String myName = "";
+			Date creDate = null;
+			
+			while(rs.next()) {
+				boardNo = rs.getInt("BOARD_NO");
+				title = rs.getString("TITLE");
+				content = rs.getString("CONTENT");
+				email = rs.getString("EMAIL");
+				myName = rs.getString("MY_NAME");
+				creDate = rs.getDate("CRE_DATE");
+				
+				BoardDto boardDto = new BoardDto();
+				boardDto.setBoardNo(boardNo);
+				boardDto.setTitle(title);
+				boardDto.setContent(content);
+				boardDto.setEmail(email);
+				boardDto.setMyName(myName);
+				boardDto.setCreatedDate(creDate);
+				
+				//System.out.println(boardDto.getBoardNo());
+				
+				boardList.add(boardDto);
+			}
+					
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("boardSelectTen 에러");
+			e.printStackTrace();
+		}finally {
+			try {
+			        if (pstmt != null) {
+			           pstmt.close();
+			        }
+	
+			     } catch (SQLException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			     }
+			
+			try {
+			        if (rs != null) {
+			           rs.close();
+			        }
+	
+			     } catch (SQLException e) {
+			        // TODO Auto-generated catch block
+			        e.printStackTrace();
+			     }
+		}
+		
+		return boardList;
+	}
 	
 	//게시글 한 개 조회
 	public BoardDto boardSelectOne(int no){

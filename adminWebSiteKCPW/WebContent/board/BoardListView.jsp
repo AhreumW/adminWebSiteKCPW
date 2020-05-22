@@ -13,10 +13,20 @@
 	
 	window.onload = function(){
 		<% int pageNum = (Integer) request.getAttribute("pageNum");%>
+		<% int startNum = (Integer) request.getAttribute("startNum");%>
+		<% int endNum = (Integer) request.getAttribute("endNum");%>
+		<% int current = (Integer) request.getAttribute("currentNo");%>
+		
+		<% String orderBy = request.getParameter("orderBy"); %>
 		
 		var pageDiv = document.getElementById("pageNumDiv");
 		
-		for(var i=1; i<=<%=pageNum%>; i++){
+		var totalPage = <%=pageNum%>;
+		var currentNo = <%=current%>;
+		var startNum = <%=startNum%>;
+		var endNum = <%=endNum%>;
+		
+		for(var i=startNum; i<=endNum; i++){
 			var aTag = document.createElement("a");
 			aTag.innerHTML = i;
 			aTag.setAttribute("style", "margin: 0 10px;");
@@ -27,7 +37,7 @@
 		
 	}
 	
-	<% int current = (Integer) request.getAttribute("currentNo");%>
+	
 	
 	function pageLeftFnc(){
 		var currentNo = <%=current%> -1;
@@ -60,7 +70,7 @@
 <body>
 
 	<jsp:include page="/Header.jsp" />
-	
+
 	<h1>일반 게시판</h1>
 	
 	<c:if test="${memberDto ne null}">
@@ -69,6 +79,21 @@
 	<c:if test="${memberDto == null}">
 		<button onclick="moveLoginFnc();">글쓰기</button>
 	</c:if>
+	
+	
+	
+	<c:set var="orderBy" value='<%=orderBy%>'/>
+	${orderBy}
+	<c:if test="${orderBy == null}">
+		<a href="./list?orderBy=latest">최신순으로 보기</a>
+	</c:if>
+	<c:if test="${orderBy == 'boardNo'}">
+		<a href="./list?orderBy=latest">최신순으로 보기</a>
+	</c:if>
+	<c:if test="${orderBy == 'latest'}">
+		<a href="./list?orderBy=boardNo">등록순으로 보기</a>
+	</c:if>
+	
 	
 	<table>
 		<thead>

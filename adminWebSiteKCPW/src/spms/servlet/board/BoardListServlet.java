@@ -35,6 +35,7 @@ public class BoardListServlet extends HttpServlet{
 		boardDao.setConnection(conn);
 		
 		ArrayList<BoardDto> boardList = null;	
+		ArrayList<BoardDto> boardListLatest = null;	
 		
 		//게시글 전체 조회 
 		//boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();
@@ -66,8 +67,41 @@ public class BoardListServlet extends HttpServlet{
 		boardList = (ArrayList<BoardDto>) boardDao.boardSelectTen(currentNo);
 		req.setAttribute("boardList", boardList);
 		
+		//게시글 10개씩 등록일 순서 조회
+//		boardListLatest = (ArrayList<BoardDto>) boardDao.boardSelectTenLatest(currentNo);
+//		req.setAttribute("boardList", boardListLatest);
+		
+		
+		int startNum = 1;
+		int endNum = pageNum;
+		if(pageNum <= 5) {
+//			System.out.println("페이지 1-5");
+			startNum = 1;
+			endNum = pageNum;
+		}else if(pageNum > 5 && currentNo == 1) {
+//			System.out.println("페이지 1-5");
+			startNum = 1;
+			endNum = 5;
+		}else if(pageNum > 5 && currentNo != 1 && currentNo <= 5) {
+//			System.out.println("페이지 23456");
+			startNum = 1;
+			endNum = 5;
+		}else if(pageNum > 5 && pageNum >= currentNo + 5 && currentNo != 1 && currentNo > 5) {
+//			System.out.println("페이지 678910");
+			startNum = currentNo-2;
+			endNum = currentNo+2;
+		}else if(pageNum > 5 && pageNum < currentNo + 5 &&  currentNo != 1 && currentNo > 5) {
+//			System.out.println("페이지 11 12 13 14 마지막페이지");
+			startNum = pageNum - 4;
+			endNum = pageNum;
+		}else {
+			System.out.println("조건추가하기");
+		}
+		
 		//페이지 개수 전달
 		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("startNum", startNum);
+		req.setAttribute("endNum", endNum);
 		req.setAttribute("currentNo", currentNo);
 		
 		

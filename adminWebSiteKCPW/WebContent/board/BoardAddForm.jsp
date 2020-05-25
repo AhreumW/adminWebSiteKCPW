@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,13 +48,19 @@
 					<tr>
 						<td class='th'>제목</td>
 						<td class='td'>
-							<input type="text" name="title">
+							<c:if test="${title != ''}">
+								<input type="text" name="title" value="${title}">
+							</c:if>
+							<c:if test="${title == ''}">
+								<input type="text" name="title" value="">
+							</c:if>
 						</td>
 					</tr>
 					<tr>
 						<td class='th'>내용</td>
 						<td class='td'>
-							<textarea rows="10" cols="30" name="content"></textarea>
+							<c:if test="${content != ''}">
+								<textarea rows="10" cols="30" name="content">${content}</textarea>							</c:if>
 						</td>
 					</tr>
 					<tr>

@@ -22,8 +22,8 @@
 <script type="text/javascript">
 
 	function validationChk() {
-		var emailInputValue = document.getElementsByName('email')[0].value;
-		var pwdInputValue = document.getElementsByName('password')[0].value;
+		var emailInput = document.getElementsByName('email')[0];
+		var pwdInput = document.getElementsByName('password')[0];
 		
 		if(emailInputValue.trim() ==''){
 			alert('이메일을 입력하세요');
@@ -48,7 +48,7 @@
 	<div id='wrap'>
 		<h2 id='pageTitle'>Login</h2>
 	
-		<form action="" method="post" id='loginForm'>
+		<form action="" method="post" id='loginForm' onsubmit="return validationChk();">
 			<label>이메일</label>
 			<input type="text" class='inputText' name="email" value="${emailStr}">
 			<label>암호</label>

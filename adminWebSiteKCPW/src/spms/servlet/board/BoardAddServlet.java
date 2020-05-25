@@ -46,25 +46,33 @@ public class BoardAddServlet extends HttpServlet{
 		boardDto.setMyName(name);
 		
 		ServletContext sc = this.getServletContext();
-		
 		conn = (Connection) sc.getAttribute("conn");
 		
 		BoardDao boardDao = new BoardDao();
-		
 		boardDao.setConnection(conn);
 		
 		int result;
 		
 		try {
+			if(title.length() != 0 && content.length() != 0) {
+			
 			result = boardDao.boardInsert(boardDto);
 			
 			if(result == 0) {
 				System.out.println("글쓰기 추가 실패");
 			}
 			res.sendRedirect("./list");
+			} else {
+				req.setAttribute("title", title);
+				req.setAttribute("content", content);
+				
+				RequestDispatcher rd = 
+						req.getRequestDispatcher("./BoardAddForm.jsp");
+				rd.forward(req, res);
+			}
+			
 		} catch (Exception e) {
-			res.sendRedirect("./add");
-			 
+			e.printStackTrace();
 		}
 		
 	}

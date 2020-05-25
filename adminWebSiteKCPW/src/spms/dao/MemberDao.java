@@ -211,8 +211,7 @@ public class MemberDao {
 	}
 	
 	// 회원등록
-	public int memberInsert(MemberDto memberDto) throws Exception {
-		int result = 0;
+	public void memberInsert(MemberDto memberDto) throws Exception {
 		PreparedStatement pstmt = null;
 
 		try {
@@ -229,7 +228,7 @@ public class MemberDao {
 			pstmt.setString(2, pwd);
 			pstmt.setString(3, name);
 
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -245,8 +244,6 @@ public class MemberDao {
 				}
 			}
 		} // finally 종료
-
-		return result;
 	}
 
 	// 회원삭제

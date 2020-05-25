@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javafx.scene.control.Alert;
 import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
@@ -51,22 +52,19 @@ public class MemberAddServlet extends HttpServlet{
 		
 		memberDao.setConnection(conn);
 		
-		// 0이면 못 넣음 0이외에는 성공
-		int result;
-		try {
-			result = memberDao.memberInsert(memberDto);
-			
-			if(result == 0){
-				System.out.println("회원가입 실패");
+		// 0이면 못 넣음 0이외에는 성공, 유효성 검사
+	
+			try {
+				memberDao.memberInsert(memberDto);
+				res.sendRedirect("../admin/member/list");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//이미 유효성 검사하고 오는 거니까 여기까진 올 일 없다
+				System.out.println("확실해");
+				e.printStackTrace();
 			}
-			
-			res.sendRedirect("../admin/member/list");
-		} catch (Exception e) {
-			req.setAttribute("error", e);
-			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("/Error.jsp");
-			dispatcher.forward(req, res);
-		}
+	
+		
 		
 	}
 	

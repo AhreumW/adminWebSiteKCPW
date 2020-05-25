@@ -181,7 +181,7 @@
 											${boardDto.title}
 									</a>
 								</p>
-								<c:if test="${memberDto.getGrade() == 'admin'}">
+								<c:if test="${memberDto.getEmail() == boardDto.email}">
 									<a href='./update?no=${boardDto.boardNo}'
 										style="display:inline-block; font-size: 10px;
 										vertical-align: middle;">

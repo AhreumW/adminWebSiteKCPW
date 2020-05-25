@@ -45,7 +45,7 @@ public class MemberUpdateServlet extends HttpServlet {
 			MemberDto memberDto = new MemberDto();
 			int no =  Integer.parseInt(req.getParameter("no"));
 			memberDto = memberDao.memberSelectOne(no);
-			
+				
 			req.setAttribute("memberDto", memberDto);
 			
 			rd = req.getRequestDispatcher("./MemberUpdateForm.jsp");
@@ -97,7 +97,7 @@ public class MemberUpdateServlet extends HttpServlet {
 			if(result == 0) {
 				System.out.println("회원 정보 조회가 실패하였습니다.");
 			}
-			res.sendRedirect("../admin/member/list");
+			res.sendRedirect("../");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

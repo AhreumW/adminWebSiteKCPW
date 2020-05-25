@@ -10,10 +10,31 @@
 <script type="text/javascript">
 	
 
+// 	function validationChk() {
+// 		var nameObj = document.getElementById('name');
+// 		var emailObj = document.getElementById('email');
+// 		var passwordObj = document.getElementById('password');
+		
+// 		if (nameObj.value == '') {
+// 			alert("이름을 입력해주세요.");
+// 			nameObj.focus();
+// 			return false;
+// 		} else if (emailObj.value == '') {
+// 			alert("이메일을 입력해주세요.");
+// 			emailObj.focus();
+// 			return false;
+// 		}else if(passwordObj.value == '') {
+// 			alert("비밀번호를 입력해주세요.");
+// 			passwordObj.focus();
+// 			return false;
+// 		}
+// 		return;
+// 	}
+
 	function validationChk() {
-		var nameObj = document.getElementById('name');
-		var emailObj = document.getElementById('email');
-		var passwordObj = document.getElementById('password');
+		var nameObj = document.getElementsByName('name')[0];
+		var emailObj = document.getElementsByName('email')[0];
+		var passwordObj = document.getElementsByName('password')[0];
 		
 		if (nameObj.value == '') {
 			alert("이름을 입력해주세요.");
@@ -47,11 +68,11 @@
 		<h1 id='pageTitle' id='addForm'>Add Member</h1>
 		<form action='./add' method='post' onsubmit="return validationChk();">
 			<label>이름</label>
-			<input type='text' id='name' name='name' class='inputText'>
+			<input type='text' name='name' class='inputText'>
 			<label>이메일</label>
-			<input type='text' id='email' name='email' class='inputText'>
+			<input type='text' name='email' class='inputText'>
 			<label>암호</label>
-			<input type='password' id='password' name='password' class='inputText'>
+			<input type='password' name='password' class='inputText'>
 			<div id='btnsWrap'>
 				<input type='submit' value='추가' class='btns'>
 				<input type='reset' value='초기화' class='btns'>

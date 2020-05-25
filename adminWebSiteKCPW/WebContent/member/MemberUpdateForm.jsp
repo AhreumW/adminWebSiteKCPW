@@ -10,7 +10,7 @@
 	
 <script type="text/javascript">
 	function backPageMoveFnc() {
-		location.href= "../admin/member/list";
+		location.href= "../";
 	}
 	
 	function pageMoveDeleteFnc(no) {

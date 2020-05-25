@@ -11,11 +11,32 @@
 <script type="text/javascript">
 
 	function boardDeleteFnc(no){
-		location.href = "./delete=no?"+no;
+		location.href = "./delete?no="+no;
 	}
 	
 	function boardListFnc(){
 		location.href = "./list";
+	}
+	
+	function vailidationChk(){
+		var titleObj = document.getElementsByName("title")[0];
+		var contentObj = document.getElementsByName("content")[0];
+	
+		if(titleObj.value == ""){
+			alert("제목을 작성해주세요.");
+			titleObj.focus();
+			return false;
+		}else if(contentObj.value == ""){
+			alert("내용을 작성해주세요.");
+			contentObj.focus();
+			return false;
+		}
+
+		if(confirm('수정하시겠습니까?')){
+			return
+		} else{
+			return false;
+		}
 	}
 	
 </script>
@@ -29,7 +50,7 @@
 	<div id='viewWrap'>
 		<h1 id='pageTitle'>Edit Post</h1>
 	
-		<form action='./update' method='post'>
+		<form action='./update' method='post' onsubmit="return vailidationChk();">
 			<table id='viewTable'>
 				<colgroup>
 					<col width="20%">

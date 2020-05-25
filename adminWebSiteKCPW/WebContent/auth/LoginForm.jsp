@@ -21,17 +21,33 @@
 
 <script type="text/javascript">
 
+	window.onload = function(){
+		alert("유효성실행");
+	}
 	function validationChk() {
+		<% String inputEmail = (String)request.getAttribute("emailStr");%>
+		<% String inputPwd = (String)request.getAttribute("pwdStr");%>
+		
 		var emailInput = document.getElementsByName('email')[0];
 		var pwdInput = document.getElementsByName('password')[0];
 		
-		if(emailInputValue.trim() ==''){
+		var msg = "아이디와 비밀번호를 확인해주세요.";
+		
+		if(emailInput.value.trim() == ''){
 			alert('이메일을 입력하세요');
-			document.getElementsByName('password')[0].value = "";
-		}else if(pwdInputValue == ''){
+			emailInput.focus();
+			return false;
+		}else if(pwdInput.value == ''){
 			alert('패스워드를 입력하세요');
+			pwdInput.focus();
+			return false;
+		}else if(emailInput.value != <%=inputEmail%> || pwdInput.value != <%=inputPwd%>){
+			msgSpan.innerHTML = msg;
+			return false;
 		}
 		
+		
+		return;
 	}
 	
 	function findPageFnc(){
@@ -54,12 +70,10 @@
 			<label>암호</label>
 			<input type="password" class='inputText' name="password" value="${pwdStr}">
 			
-			<c:if test="${errorMsg ne null}">
-				<span style="font-size:12px; color:red;">${errorMsg}</span>
-			</c:if>
+			<span id="msgSpan" style="font-size:12px; color:red;"></span>
 			
 			<div id='btnWrap' style='margin-top: 35px;'>
-				<input type="submit" class='loginBtn' value="로그인" onclick="validationChk();">
+				<input type="submit" class='loginBtn' value="로그인">
 			</div>
 		</form>
 		

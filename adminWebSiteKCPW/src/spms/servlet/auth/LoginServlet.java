@@ -46,8 +46,6 @@ public class LoginServlet extends HttpServlet {
 		MemberDao memberDao = new MemberDao();
 		memberDao.setConnection(conn);
 		
-		String errorMsg = "";
-		
 		try {
 			if(email.length() != 0 && pwd.length() != 0 ) {
 				
@@ -69,16 +67,11 @@ public class LoginServlet extends HttpServlet {
 					req.setAttribute("emailStr", email.trim());
 					req.setAttribute("pwdStr", pwd);		
 					
-					errorMsg = "아이디와 비밀번호를 확인해주세요.";
-					req.setAttribute("errorMsg", errorMsg);
 					RequestDispatcher rd = 
 							req.getRequestDispatcher("./LoginForm.jsp");
 					rd.forward(req, res);
 				}
 			}else {
-				errorMsg = "";
-				req.setAttribute("errorMsg", errorMsg);
-				
 				req.setAttribute("emailStr", email.trim());
 				req.setAttribute("pwdStr", pwd);				
 				

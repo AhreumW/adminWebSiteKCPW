@@ -13,6 +13,27 @@
 	function toListFnc() {
 		location.href="./list";
 	}
+	
+	function validationChk() {
+		var titleInput = document.getElementById('titleInput');
+		var contTxtarea = document.getElementById('contTxtarea');
+		
+		if(titleInput.value == ''){
+			alert('제목을 작성해주세요.');
+			titleInput.focus();
+			return false;
+		} else if(contTxtarea.value == ''){
+			alert('내용을 작성해주세요.');
+			contTxtarea.focus();
+			return false;
+		}
+		
+		if(confirm('게시글을 올리겠습니까?')){
+			return;
+		} else {
+			return false;
+		}
+	}
 </script>
 
 </head>
@@ -24,7 +45,7 @@
 	<div id='viewWrap'>
 		<h1 id='pageTitle'>Write Post</h1>
 	
-		<form action="./add" method="post">
+		<form action="./add" method="post" onsubmit="return validationChk();">
 			<table id='viewTable'>
 				<colgroup>
 					<col width="20%">
@@ -34,13 +55,15 @@
 					<tr>
 						<td class='th'>제목</td>
 						<td class='td'>
-							<input type="text" name="title">
+							<input type="text" name="title" id='titleInput'
+								value="${titleStr}">
 						</td>
 					</tr>
 					<tr>
 						<td class='th'>내용</td>
 						<td class='td'>
-							<textarea rows="10" cols="30" name="content"></textarea>
+							<textarea rows="10" cols="30" name="content"
+								id='contTxtarea'>${contentStr}</textarea>
 						</td>
 					</tr>
 				</tbody>

@@ -211,7 +211,7 @@ a {
 #viewTable td.th {
 	background: #f0f0f5;
 }
-#viewTable td.td{
+#viewTable td{
 	word-wrap: break-word;
 }
 #viewTable input, #viewTable textarea {

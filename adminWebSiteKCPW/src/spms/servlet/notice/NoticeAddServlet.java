@@ -53,22 +53,29 @@ public class NoticeAddServlet extends HttpServlet {
 		// 0이면 못 넣음 0이외에는 성공
 		int result;
 		try {
-			
-			HttpSession session = req.getSession();
-			MemberDto me = (MemberDto) session.getAttribute("memberDto");
-			
-			result = noticeDao.noticeInsert(noticeDto, me); 
-			
-			if(result == 0){
-				System.out.println("글쓰기 실패");
+			if(title.length() != 0 && content.length() != 0 ) {
+				HttpSession session = req.getSession();
+				MemberDto me = (MemberDto) session.getAttribute("memberDto");
+				
+				result = noticeDao.noticeInsert(noticeDto, me);
+				
+				if(result == 0){
+					System.out.println("글쓰기 실패");
+				}
+				res.sendRedirect("./list");
+				
+			} else {
+				
+				req.setAttribute("titleStr", title);
+				req.setAttribute("contentStr", content);				
+				
+				RequestDispatcher rd = 
+						req.getRequestDispatcher("./NoticeAddForm.jsp");
+				rd.forward(req, res);
 			}
 			
-			res.sendRedirect("./list");
 		} catch (Exception e) {
-			req.setAttribute("error", e);
-			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("/Error.jsp");
-			dispatcher.forward(req, res);
+			e.printStackTrace();
 		}
 		
 	}

@@ -6,7 +6,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KCPW Homepage</title>
 <link rel="stylesheet" type="text/css" 
 	href="<%=request.getContextPath()%>/css/style.css">
 

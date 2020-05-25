@@ -17,20 +17,6 @@
 		font-size: 13px;
 		padding:15px 0px 3px;
 	}
-	
-	#btnWrap:hover #loginBtn {
-		animation: hoverAni 1s;
-	}
-	@keyframes hoverAni {
-		0% {
-			background-color: #000;
-			color: #fff;
-		}
-		20% {
-			background-color: #fff;
-			color: #000;
-		}
-	}
 </style>
 
 <script type="text/javascript">

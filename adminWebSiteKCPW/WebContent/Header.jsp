@@ -29,6 +29,7 @@
 	<c:if test="${memberDto eq null}">
 		<span style="float:right;">
 			<a href="<%=request.getContextPath()%>/auth/login" class='rightLinks'>로그인</a>
+			<a href="<%=request.getContextPath()%>/member/add" class='rightLinks'>회원가입</a>
 		</span>
 	</c:if>
 	

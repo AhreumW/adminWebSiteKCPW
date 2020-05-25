@@ -25,13 +25,17 @@
 		var emailInput = document.getElementsByName('email')[0];
 		var pwdInput = document.getElementsByName('password')[0];
 		
-		if(emailInputValue.trim() ==''){
+		if(emailInput.value.trim() == ''){
 			alert('이메일을 입력하세요');
-			document.getElementsByName('password')[0].value = "";
-		}else if(pwdInputValue == ''){
+			emailInput.focus();
+			return false;
+		}else if(pwdInput.value == ''){
 			alert('패스워드를 입력하세요');
+			pwdInput.focus();
+			return false;
 		}
 		
+		return;
 	}
 	
 	function findPageFnc(){
@@ -50,16 +54,16 @@
 	
 		<form action="" method="post" id='loginForm' onsubmit="return validationChk();">
 			<label>이메일</label>
-			<input type="text" class='inputText' name="email" value="${emailStr}">
+			<input type="text" class='inputText' name="email" value="">
 			<label>암호</label>
-			<input type="password" class='inputText' name="password" value="${pwdStr}">
+			<input type="password" class='inputText' name="password" value="">
 			
-			<c:if test="${errorMsg ne null}">
-				<span style="font-size:12px; color:red;">${errorMsg}</span>
+			<c:if test="${errorMsg != null}">
+				<span id="msgSpan" style="font-size:12px; color:red;">${errorMsg}</span>
 			</c:if>
 			
 			<div id='btnWrap' style='margin-top: 35px;'>
-				<input type="submit" class='loginBtn' value="로그인" onclick="validationChk();">
+				<input type="submit" class='loginBtn' value="로그인">
 			</div>
 		</form>
 		

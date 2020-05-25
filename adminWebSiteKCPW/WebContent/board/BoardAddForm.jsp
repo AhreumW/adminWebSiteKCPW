@@ -12,17 +12,21 @@
 
 <script type="text/javascript">
 	function validationChk() {
-		var titleInputValue = document.getElementsByName('title')[0].value;
-		var contentInputValue = document.getElementsByName('content')[0].value;
+		var titleInput = document.getElementsByName('title')[0];
+		var contentInput = document.getElementsByName('content')[0];
 
-		if (titleInputValue == "") {
-			alert('제목을 입력하세요');	
+		if (titleInput.value == "") {
+			alert('제목을 입력하세요');
+			titleInput.focus();
+			return false;
 		}
 
-		else if (contentInputValue == "") {
+		else if (contentInput.value == "") {
 			alert('내용을 입력하세요');
-			
+			contentInput.focus();
+			return false;
 		}
+		return;
 	}
 	
 	function toListFnc() {
@@ -37,7 +41,7 @@
 	<div id='viewWrap'>
 		<h1 id='pageTitle'>Write Post</h1>
 			
-		<form action="./add" method="post">
+		<form action="./add" method="post" onsubmit="return validationChk();">
 			<input type="hidden" name="email" value="${memberDto.email}">
 			<table id='viewTable'>
 				<colgroup>
@@ -79,11 +83,9 @@
 			</table>
 			
 			<div id='btnsWrap'>
-				<input type="submit" value="글쓰기" class='btns'
-					 onclick="validationChk();">
+				<input type="submit" value="글쓰기" class='btns'>
 				<input type="reset" value="초기화" class='btns'>
-				<input type="button" class='btns' 
-					value="뒤로" onclick='toListFnc();'>
+				<input type="button" class='btns' value="뒤로" onclick='toListFnc();'>
 			</div>		
 		</form>
 	</div>

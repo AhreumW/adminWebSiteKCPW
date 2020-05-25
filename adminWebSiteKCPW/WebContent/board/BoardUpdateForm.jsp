@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
 	function boardDeleteFnc(no){
-		location.href = "#";
+		location.href = "./delete=no?"+no;
 	}
 	
 	function boardListFnc(){

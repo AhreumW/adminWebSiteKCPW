@@ -37,6 +37,7 @@ public class AuthDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("dao findPwdByEmail sql 에러");
 		}	finally {
 			try {
 				if(rs != null)

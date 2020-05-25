@@ -52,6 +52,7 @@ public class FindPwdServlet extends HttpServlet {
 		authDao.setConnection(conn);
 		
 		String password="";
+		String errorMsg = "";
 		
 		try {
 			password = authDao.findPwdByEmail(email);
@@ -59,8 +60,10 @@ public class FindPwdServlet extends HttpServlet {
 			req.setAttribute("email", email);
 			req.setAttribute("password", password);
 			
-			if(password == null) {
+			if(password == "") {
 				System.out.println("가입되지 않은 회원입니다.");
+				errorMsg = "가입되지 않은 회원입니다.";
+				req.setAttribute("errorMsg", errorMsg);
 			}
 			
 			RequestDispatcher dispatcher = 
@@ -68,16 +71,17 @@ public class FindPwdServlet extends HttpServlet {
 			dispatcher.forward(req, res);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+//			System.out.println("어디야 doPost 에러창인가");
 		} finally {
-				try {
+			try {
 				if(rs != null)
 				rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	try {
+			}	
+			try {
 				if(pstmt != null)
 				pstmt.close();
 			} catch (SQLException e) {

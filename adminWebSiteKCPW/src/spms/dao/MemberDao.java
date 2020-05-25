@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import spms.dto.BoardDto;
 import spms.dto.MemberDto;
 
 public class MemberDao {
@@ -18,6 +19,51 @@ public class MemberDao {
 		this.conn = conn;
 	}
 
+	//멤버 전체 개수 조회
+	public int memberTotalCount() {
+		int totalNum = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		try {
+			sql = "SELECT COUNT(*)";
+			sql += "FROM MEMBER";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				totalNum = rs.getInt("COUNT(*)");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("memberTotalCount 에러");
+			e.printStackTrace();
+		}finally {
+			try {
+	            if (pstmt != null) {
+	               pstmt.close();
+	            }
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+			
+			try {
+	            if (rs != null) {
+	               rs.close();
+	            }
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }
+		}
+		
+		return totalNum;
+	}
+		
 	public List<MemberDto> selectList() throws Exception {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -81,6 +127,89 @@ public class MemberDao {
 
 	}
 
+	//게시글 10개 조회 - 게시글번호순서
+	public List<MemberDto> memberSelectTen(int pageNum){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<MemberDto> memberList = null;
+		String sql = "";
+		
+		try {                 
+			sql =  "SELECT *";
+			sql += " FROM (";
+			sql += " SELECT MNO, MNAME, EMAIL, CRE_DATE, GRADE, ROWNUM rnum";
+			sql += " FROM MEMBER";
+			sql += " ORDER BY MNO DESC";
+			sql += " )";
+			sql += " WHERE rnum BETWEEN ? AND ?";
+			
+			pstmt = conn.prepareStatement(sql);
+	
+			int rnum1 = 0;
+			int rnum2 = 0;
+			if(pageNum == 1) {
+				rnum1 = 1;
+				rnum2 = 10;
+			}else {
+				rnum1 = (pageNum-1) * 10 + 1;
+				rnum2 = pageNum * 10;
+			}
+			pstmt.setInt(1, rnum1);
+			pstmt.setInt(2, rnum2);
+			
+			rs = pstmt.executeQuery();
+			
+			memberList = new ArrayList<MemberDto>();
+			
+			int no = 0;
+			String name = "";
+			String email = "";
+			Date creDate = null;
+			String grade = "";
+	
+			while (rs.next()) {
+				no = rs.getInt("MNO");
+				name = rs.getString("MNAME");
+				email = rs.getString("EMAIL");
+				creDate = rs.getDate("CRE_DATE");
+				grade = rs.getString("GRADE");
+	
+				MemberDto memberDto = new MemberDto(no, name, email, creDate, grade);
+	
+				memberList.add(memberDto);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("boardSelectTen 에러");
+			e.printStackTrace();
+		}finally {
+			try {
+	            if (pstmt != null) {
+	               pstmt.close();
+	            }
+	
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+			
+			try {
+	            if (rs != null) {
+	               rs.close();
+	            }
+	
+	         } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	         }
+		}
+		
+		return memberList;
+	}
+	
 	// 회원등록
 	public int memberInsert(MemberDto memberDto) throws Exception {
 		int result = 0;

@@ -35,7 +35,7 @@ public class BoardListServlet extends HttpServlet{
 		boardDao.setConnection(conn);
 		
 		ArrayList<BoardDto> boardList = null;	
-		ArrayList<BoardDto> boardListLatest = null;	
+//		ArrayList<BoardDto> boardListLatest = null;	
 		
 		//게시글 전체 조회 
 		//boardList = (ArrayList<BoardDto>) boardDao.boardSelectList();

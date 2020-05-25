@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 					if (memberDto.getGrade().equals("user")) {
 						res.sendRedirect("../");
 					} else {
-						res.sendRedirect("../admin/member/list");
+						res.sendRedirect("../admin/AdminFunctionPage.jsp");
 					}
 					
 					

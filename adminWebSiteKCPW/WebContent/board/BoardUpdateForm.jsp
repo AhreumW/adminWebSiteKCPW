@@ -11,7 +11,9 @@
 <script type="text/javascript">
 
 	function boardDeleteFnc(no){
-		location.href = "./delete?no="+no;
+		if(confirm("삭제하시겠습니까?")){
+			location.href = "./delete?no="+no;
+		}
 	}
 	
 	function boardListFnc(){

@@ -14,6 +14,13 @@
 	function moveListFnc() {
 		location.href="./list";
 	}
+	
+	function deleteFnc(no){
+		if(confirm('삭제하시겠습니까?')){
+			location.href="./delete?no="+no;
+		}
+	}
+	
 </script>
 
 </head>
@@ -56,8 +63,11 @@
 			</table>
 			
 			<div id='btnsWrap'>
-				<c:if test='${memberDto.email == boardDto.email || memberDto.grade == "admin"}'>
+				<c:if test='${memberDto.email == boardDto.email}'>
 					<input type="submit" value="수정" class='btns'>
+				</c:if>	
+				<c:if test='${memberDto.email == boardDto.email || memberDto.grade == "admin"}'>
+					<input type="button" value="삭제" class='btns' onclick="deleteFnc(${boardDto.getBoardNo()});">
 				</c:if>	
 				<input onclick="moveListFnc();" type="button" 
 					class='btns' value="목록">

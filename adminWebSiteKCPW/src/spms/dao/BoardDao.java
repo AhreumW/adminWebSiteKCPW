@@ -554,6 +554,44 @@ public class BoardDao {
 
 	}
 	
+	//admin이면 삭제 
+	public int boardAdminDelete(int no){
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from board";
+		sql += " where board_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+
+			if(result == 0) {
+				System.out.println("이메일 정보가 일치하지 않습니다.");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+				pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	
+		return result;
+
+	}
+	
 	public BoardDto boardExist(String title, String content, String email) {
 		
 		return null;

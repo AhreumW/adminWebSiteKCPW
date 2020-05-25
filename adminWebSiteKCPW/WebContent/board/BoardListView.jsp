@@ -94,6 +94,12 @@
 	function moveLoginFnc(){
 		location.href="../auth/login";
 	}
+	
+	function deleteFnc(no) {
+		if(confirm("삭제하시겠습니까?")){
+			location.href="./delete?no=" + no;
+		}
+	}
 </script>
 </head>
 
@@ -181,7 +187,7 @@
 											${boardDto.title}
 									</a>
 								</p>
-								<c:if test="${memberDto.getEmail() == boardDto.email}">
+								<c:if test="${memberDto.getGrade() == 'admin' && boardDto.email == memberDto.getEmail()}">
 									<a href='./update?no=${boardDto.boardNo}'
 										style="display:inline-block; font-size: 10px;
 										vertical-align: middle;">
@@ -193,7 +199,7 @@
 							<td class='tCenter'>${boardDto.createdDate}</td>
 							<c:if test="${memberDto.getGrade() == 'admin'}">
 								<td class='tCenter'>
-									<a href="./delete?no=${boardDto.boardNo}"
+									<a onclick="deleteFnc(${boardDto.boardNo});"
 										style="display:inline-block; font-size: 10px;">
 										삭제
 									</a> 

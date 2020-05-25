@@ -35,11 +35,15 @@ public class BoardDeleteServlet extends HttpServlet {
 		try {
 			HttpSession session = req.getSession();
 			MemberDto memberDto = (MemberDto) session.getAttribute("memberDto");
-			String myEmail = memberDto.getEmail();
 			
 			int no = Integer.parseInt(req.getParameter("no"));
-			
-			result = boardDao.boardDelete(no, myEmail);
+
+			if(memberDto.getGrade().equals("admin")) {
+				result = boardDao.boardAdminDelete(no);
+			}else {
+				String myEmail = memberDto.getEmail();				
+				result = boardDao.boardDelete(no, myEmail);
+			}
 			
 			if (result == 0) {
 				System.out.println("게시판글이 삭제되지 않았습니다.");

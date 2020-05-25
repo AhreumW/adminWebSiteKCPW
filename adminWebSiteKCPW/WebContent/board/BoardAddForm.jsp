@@ -15,11 +15,12 @@
 		var contentInputValue = document.getElementsByName('content')[0].value;
 
 		if (titleInputValue == "") {
-			alert('제목을 입력하세요');
+			alert('제목을 입력하세요');	
 		}
 
-		if (contentInputValue == "") {
+		else if (contentInputValue == "") {
 			alert('내용을 입력하세요');
+			
 		}
 	}
 	

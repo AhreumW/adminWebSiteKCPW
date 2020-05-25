@@ -63,10 +63,7 @@ public class BoardAddServlet extends HttpServlet{
 			}
 			res.sendRedirect("./list");
 		} catch (Exception e) {
-			req.setAttribute("error", e);
-			RequestDispatcher dispatcher = 
-					req.getRequestDispatcher("/Error.jsp");
-			dispatcher.forward(req, res);
+			res.sendRedirect("./add");
 			 
 		}
 		

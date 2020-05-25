@@ -40,7 +40,6 @@
 			<input type="text" class='inputText' name="email" value="${email}">
 			<label>비밀번호</label>
 			<input type="text" class='inputText' name="password" value="${password}" style="color:red;">
-			
 			<c:if test="${errorMsg ne null}">
 				<span style="font-size:12px; color:red;">${errorMsg}</span>
 			</c:if>

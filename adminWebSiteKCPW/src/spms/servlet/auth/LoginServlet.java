@@ -23,6 +23,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		String msg = "";
+		req.setAttribute("errorMsg", msg);	
 		
 		RequestDispatcher rd = req.getRequestDispatcher("./LoginForm.jsp");
 		rd.forward(req, res);
@@ -37,8 +39,9 @@ public class LoginServlet extends HttpServlet {
 		Connection conn = null; // 연결
 
 		String email = req.getParameter("email");
+		System.out.println(email+"email");
 		String pwd = req.getParameter("password");
-		
+		System.out.println(pwd+"password");
 		
 		ServletContext sc = this.getServletContext();
 		conn = (Connection) sc.getAttribute("conn");
@@ -55,6 +58,12 @@ public class LoginServlet extends HttpServlet {
 					HttpSession session = req.getSession();
 					session.setAttribute("memberDto", memberDto);
 					
+					String emailStr = memberDto.getEmail();
+					String pwdStr = memberDto.getPassword();
+					
+					req.setAttribute("emailStr", emailStr);
+					req.setAttribute("pwdStr", pwdStr);
+					
 					System.out.println("나의 등급은 :" + memberDto.getGrade());
 					if (memberDto.getGrade().equals("user")) {
 						res.sendRedirect("../");
@@ -62,22 +71,28 @@ public class LoginServlet extends HttpServlet {
 						res.sendRedirect("../admin/AdminFunctionPage.jsp");
 					}
 					
+					System.out.println("1");
 					
 				} else {
-					req.setAttribute("emailStr", email.trim());
-					req.setAttribute("pwdStr", pwd);		
+					
+					String msg = "아이디와 비밀번호를 확인해주세요.";
+					
+					req.setAttribute("errorMsg", msg);		
 					
 					RequestDispatcher rd = 
 							req.getRequestDispatcher("./LoginForm.jsp");
 					rd.forward(req, res);
+					
+					System.out.println("2");
 				}
+				
 			}else {
-				req.setAttribute("emailStr", email.trim());
-				req.setAttribute("pwdStr", pwd);				
 				
 				RequestDispatcher rd = 
 						req.getRequestDispatcher("./LoginForm.jsp");
 				rd.forward(req, res);
+				
+				System.out.println("3");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

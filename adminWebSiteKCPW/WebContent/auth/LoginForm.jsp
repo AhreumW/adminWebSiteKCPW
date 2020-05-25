@@ -21,17 +21,9 @@
 
 <script type="text/javascript">
 
-	window.onload = function(){
-		alert("유효성실행");
-	}
 	function validationChk() {
-		<% String inputEmail = (String)request.getAttribute("emailStr");%>
-		<% String inputPwd = (String)request.getAttribute("pwdStr");%>
-		
 		var emailInput = document.getElementsByName('email')[0];
 		var pwdInput = document.getElementsByName('password')[0];
-		
-		var msg = "아이디와 비밀번호를 확인해주세요.";
 		
 		if(emailInput.value.trim() == ''){
 			alert('이메일을 입력하세요');
@@ -41,11 +33,7 @@
 			alert('패스워드를 입력하세요');
 			pwdInput.focus();
 			return false;
-		}else if(emailInput.value != <%=inputEmail%> || pwdInput.value != <%=inputPwd%>){
-			msgSpan.innerHTML = msg;
-			return false;
 		}
-		
 		
 		return;
 	}
@@ -66,11 +54,13 @@
 	
 		<form action="" method="post" id='loginForm' onsubmit="return validationChk();">
 			<label>이메일</label>
-			<input type="text" class='inputText' name="email" value="${emailStr}">
+			<input type="text" class='inputText' name="email" value="">
 			<label>암호</label>
-			<input type="password" class='inputText' name="password" value="${pwdStr}">
+			<input type="password" class='inputText' name="password" value="">
 			
-			<span id="msgSpan" style="font-size:12px; color:red;"></span>
+			<c:if test="${errorMsg != null}">
+				<span id="msgSpan" style="font-size:12px; color:red;">${errorMsg}</span>
+			</c:if>
 			
 			<div id='btnWrap' style='margin-top: 35px;'>
 				<input type="submit" class='loginBtn' value="로그인">

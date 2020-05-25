@@ -44,16 +44,16 @@
 		
 		if(currentNo == 1){
 			var firstMoveBtnObj = document.getElementById("firstMoveBtn");
-			firstMoveBtnObj.style.color = "#fff";
+			firstMoveBtnObj.style.visibility = "hidden";
 			var leftBtnObj = document.getElementById("pageleftBtn");
-			leftBtnObj.style.color = "#fff";
+			leftBtnObj.style.visibility = "hidden";
 		}
 		
 		if(currentNo == totalPage){
 			var lastMoveBtnObj = document.getElementById("lastMoveBtn");
-			lastMoveBtnObj.style.color="#fff";
+			lastMoveBtnObj.style.visibility="hidden";
 			var rightBtnObj = document.getElementById("pageRightBtn");
-			rightBtnObj.style.color="#fff";
+			rightBtnObj.style.visibility="hidden";
 		}
 		
 	}

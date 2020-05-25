@@ -10,11 +10,35 @@
 <link rel="stylesheet" type="text/css" 
 	href="<%=request.getContextPath()%>/css/style.css">
 
+<style type="text/css">
+#mainImg{
+	width: 400px;
+	height: 400px; 
+	margin: 60px auto 0px; 
+	border-radius: 50%; 
+	background:url('<%=request.getContextPath()%>/img/sky.jpg') no-repeat 0% 0%; 
+	background-size: cover;
+	animation-name: imgAni;
+	animation-duration: 20s;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+@keyframes imgAni {
+	from {
+		background-position: 0% 0%;
+	}
+	to {
+		background-position: 100%;
+	}
+}
+</style>
+
 <script type="text/javascript">
 
 	function listPageMoveFnc() {
 		location.href = '<%=request.getContextPath()%>/auth/login';
 	}
+	
 </script>
 
 </head>
@@ -24,9 +48,7 @@
 	<jsp:include page="/Header.jsp"/>
 	
 		<div id='wrap'>
-			<div style="width: 400px; height: 400px; margin: 60px auto 0px; border-radius: 50%; 
-				background:url('<%=request.getContextPath()%>/img/hello_again.jpg') no-repeat center; 
-				background-size: cover;">
+			<div id='mainImg'>
 			</div>
 			
 			<p style='margin: 20px 0px 10px; text-align: center; font-family: "Times New Roman", Times, serif;

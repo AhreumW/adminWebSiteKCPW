@@ -56,11 +56,10 @@ public class MemberAddServlet extends HttpServlet{
 	
 			try {
 				memberDao.memberInsert(memberDto);
-				res.sendRedirect("../admin/member/list");
+				res.sendRedirect("../auth/login");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				//이미 유효성 검사하고 오는 거니까 여기까진 올 일 없다
-				System.out.println("확실해");
 				e.printStackTrace();
 			}
 	

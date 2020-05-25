@@ -93,6 +93,14 @@ function lastMoveFnc(){
     location.href="./list?currentNo="+<%=pageNum%>;
 }
 
+function deleteMsgFnc(no){
+<%-- 	 href="<%=request.getContextPath()%> --%>
+// 			/member/delete?no=${memberDto.no}"
+	
+    location.href="../../member/delete?no=" + no;
+	alert("삭제 되었습니다.");
+}
+
 </script>
 </head>
 
@@ -145,8 +153,7 @@ function lastMoveFnc(){
 							</c:if>
 						</td>
 						<td class='tCenter'>
-							<a href="<%=request.getContextPath()%>
-								/member/delete?no=${memberDto.no}">Y</a>
+							<div onclick="deleteMsgFnc(${memberDto.no});">Y</div>
 						</td>
 					</tr>
 				</c:forEach>

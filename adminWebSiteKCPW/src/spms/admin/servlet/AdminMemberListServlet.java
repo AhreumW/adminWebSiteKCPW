@@ -55,7 +55,7 @@ public class AdminMemberListServlet extends HttpServlet {
 
 			
 			//멤버 10개씩 등록일 순서 조회
-			memberList = (ArrayList<MemberDto>)memberDao.memberSelectTen(pageNum);
+			memberList = (ArrayList<MemberDto>)memberDao.memberSelectTen(currentNo);
 			req.setAttribute("memberList", memberList);
 			
 			

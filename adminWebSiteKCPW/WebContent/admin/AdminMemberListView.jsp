@@ -19,6 +19,7 @@
 
 </style>
 <script type="text/javascript">
+
 window.onload = function(){
 	<% int pageNum = (Integer) request.getAttribute("pageNum");%>
 	<% int startNum = (Integer) request.getAttribute("startNum");%>
@@ -65,6 +66,8 @@ window.onload = function(){
 	}
 	
 }
+
+
 
 function pageLeftFnc(){
 	
@@ -162,10 +165,7 @@ function lastMoveFnc(){
 					style="display: inline-block;">
 					&lt;
 			</div>
-			
-			<div id="pageNumDiv" style="display: inline-block;">
-			</div>
-			
+			<div id="pageNumDiv" style="display: inline-block;"></div>
 			<div id="pageRightBtn" onclick="pageRightFnc();" 
 					style="display: inline-block;">
 					&gt;

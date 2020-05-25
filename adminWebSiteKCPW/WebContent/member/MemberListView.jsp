@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	
+	여긴 아니야 
 	<jsp:include page="/Header.jsp" />
 	
 	<div id='membersTable'>

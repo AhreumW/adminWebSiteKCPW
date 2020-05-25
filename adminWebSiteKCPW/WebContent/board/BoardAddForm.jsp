@@ -28,8 +28,6 @@
 		location.href="./list";
 	}
 </script>
-
-
 </head>
 <body>
 

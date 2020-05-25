@@ -60,7 +60,12 @@
 						<td class='th'>내용</td>
 						<td class='td'>
 							<c:if test="${content != ''}">
-								<textarea rows="10" cols="30" name="content">${content}</textarea>							</c:if>
+								<textarea rows="10" cols="30" name="content">${content}</textarea>							
+							</c:if>
+							<c:if test="${content == ''}">
+								<textarea rows="10" cols="30" name="content"></textarea>							
+							</c:if>
+							
 						</td>
 					</tr>
 					<tr>

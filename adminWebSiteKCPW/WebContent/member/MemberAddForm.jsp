@@ -32,7 +32,7 @@
 	}
 
 	function toHomeFnc() {
-		location.href='./list';
+		location.href='../';
 	}
 	
 	
@@ -55,7 +55,7 @@
 			<div id='btnsWrap'>
 				<input type='submit' value='추가' class='btns'>
 				<input type='reset' value='초기화' class='btns'>
-				<input type='button' value='뒤로' class='btns'>
+				<input type='button' onclick="toHomeFnc();" value='뒤로' class='btns'>
 					
 			</div>
 		</form>

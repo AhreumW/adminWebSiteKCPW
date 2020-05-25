@@ -48,7 +48,7 @@
 		<c:if test="${memberDto.grade == 'admin'}">
 			<span style="float:right;">
 				<a href="<%=request.getContextPath()%>/member/info?no=${memberDto.no}" 
-					class='rightLinks'>
+					class='rightLinks' style="color: #a3a3c2; font-weight: bold;">
 					 관리자
 				</a>
 				<a href="<%=request.getContextPath()%>/auth/logout" class='rightLinks'>

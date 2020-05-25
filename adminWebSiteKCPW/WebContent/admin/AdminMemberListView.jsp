@@ -100,8 +100,10 @@ function deleteMsgFnc(no){
 <%-- 	 href="<%=request.getContextPath()%> --%>
 // 			/member/delete?no=${memberDto.no}"
 	
-    location.href="../../member/delete?no=" + no;
-	alert("삭제 되었습니다.");
+	if(confirm('삭제하시겠습니까?')){
+		location.href="../../member/delete?no=" + no;
+		alert("삭제 되었습니다.");
+	}
 }
 
 </script>
@@ -156,7 +158,8 @@ function deleteMsgFnc(no){
 							</c:if>
 						</td>
 						<td class='tCenter'>
-							<div onclick="deleteMsgFnc(${memberDto.no});">Y</div>
+							<div onclick="deleteMsgFnc(${memberDto.no});"
+								style="cursor: pointer;">Y</div>
 						</td>
 					</tr>
 				</c:forEach>

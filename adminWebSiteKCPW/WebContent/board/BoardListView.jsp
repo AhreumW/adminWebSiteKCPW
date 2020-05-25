@@ -200,7 +200,7 @@
 							<c:if test="${memberDto.getGrade() == 'admin'}">
 								<td class='tCenter'>
 									<a onclick="deleteFnc(${boardDto.boardNo});"
-										style="display:inline-block; font-size: 10px;">
+										style="display:inline-block; font-size: 10px; cursor: pointer;">
 										삭제
 									</a> 
 								</td>

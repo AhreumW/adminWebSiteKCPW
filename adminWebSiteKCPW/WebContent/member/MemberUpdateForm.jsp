@@ -9,6 +9,11 @@
 	href="<%=request.getContextPath()%>/css/style.css">
 	
 <script type="text/javascript">
+
+	function successMsgFnc() {
+		alert("성공적으로 변경되었습니다!");
+		return;
+	}
 	function backPageMoveFnc() {
 		location.href= "../";
 	}
@@ -36,7 +41,7 @@
 	<div id='memberWrap'>
 		<h1 id='pageTitle'>Update Member</h1>
 	
-		<form action='./update' method='post'>
+		<form action='./update' method='post' onsubmit="successMsgFnc();">
 			<label>번호</label>
 			<input type='text' name='no' class='inputText'
 				value='${memberDto.no}' readonly='readonly'>

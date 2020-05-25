@@ -68,6 +68,7 @@ public class MemberUpdateServlet extends HttpServlet {
 					throws ServletException, IOException {
 		MemberDto memberDto = null;			
 		Connection conn = null;
+		RequestDispatcher rd = null;
 		
 		try {
 			ServletContext sc = this.getServletContext();
@@ -97,13 +98,17 @@ public class MemberUpdateServlet extends HttpServlet {
 			if(result == 0) {
 				System.out.println("회원 정보 조회가 실패하였습니다.");
 			}
-			res.sendRedirect("../");
+//			res.sendRedirect("../");
+			req.setAttribute("memberDto", newMemberDto);
+			
+			rd = req.getRequestDispatcher("./MemberUpdateForm.jsp");
+			rd.forward(req, res);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			req.setAttribute("error", e);
-			RequestDispatcher rd = req.getRequestDispatcher("/Error.jsp");
+			rd = req.getRequestDispatcher("/Error.jsp");
 			rd.forward(req, res);
 		}
 		

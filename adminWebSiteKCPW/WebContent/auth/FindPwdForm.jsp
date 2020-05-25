@@ -39,7 +39,14 @@
 			<label>이메일</label>
 			<input type="text" class='inputText' name="email" value="${email}">
 			<label>비밀번호</label>
-			<input type="text" class='inputText' name="password" value="${password}" style="color:red;">
+<%-- 			<input type="text" class='inputText' name="password" value="${password}" style="color:red;"> --%>
+			<div class="inputText" id="password" style="color:red; font-size: 13px; 
+					padding:6px 8px; font-family: Arial;">
+				<c:if test="${password ne null}">
+					${password}
+				</c:if>
+			</div>
+			
 			<c:if test="${errorMsg ne null}">
 				<span style="font-size:12px; color:red;">${errorMsg}</span>
 			</c:if>

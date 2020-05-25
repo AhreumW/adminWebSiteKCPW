@@ -8,6 +8,9 @@
 body{
 	padding: 10px;
 }
+li {
+	list-style-type: none;
+}
 a {
 	color: #000;
 	text-decoration: none;
@@ -208,6 +211,9 @@ a {
 #viewTable td.th {
 	background: #f0f0f5;
 }
+#viewTable td.td{
+	word-wrap: break-word;
+}
 #viewTable input, #viewTable textarea {
 	width: 100%;
 	border: 1px solid #f0f0f5;
@@ -260,6 +266,9 @@ a {
 #pagingWrap > div > a:hover{
 	background: #a3a3c2;
 	color: #fff;
+}
+#firstMoveBtn, #pageleftBtn, #pageRightBtn, #lastMoveBtn{
+	cursor: pointer;
 }
 
 /* footer */

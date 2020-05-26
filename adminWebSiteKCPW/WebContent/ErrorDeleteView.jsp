@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>시스템 오류</title>
+
 </head>
 <body>
 	<p>

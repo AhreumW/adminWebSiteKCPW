@@ -129,23 +129,6 @@
 					</p>
 				</c:if>
 				
-				<c:set var="orderBy" value='<%=orderBy%>'/>
-	<%-- 			${orderBy} --%>
-				<c:if test="${orderBy == null}">
-					<div class='optionWrap' style="float: right;">
-						<a href="./list?orderBy=latest">최신순</a>
-					</div>
-				</c:if>
-				<c:if test="${orderBy == 'boardNo'}">
-					<div class='optionWrap' style="float: right;">
-						<a href="./list?orderBy=latest">최신순</a>
-					</div>
-				</c:if>
-				<c:if test="${orderBy == 'latest'}">
-					<div class='optionWrap' style="float: right;">
-						<a href="./list?orderBy=boardNo">등록순</a>
-					</div>
-				</c:if>
 			</div>
 			
 			

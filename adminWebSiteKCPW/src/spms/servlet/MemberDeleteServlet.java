@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import javafx.scene.control.Alert;
 import spms.dao.MemberDao;
@@ -39,6 +40,9 @@ public class MemberDeleteServlet extends HttpServlet{
 			
 			int no = Integer.parseInt(req.getParameter("no"));
 			memberDao.memberDelete(no);
+			
+			HttpSession session = req.getSession();
+			session.invalidate();
 			
 			res.sendRedirect("../");
 		} catch (SQLException e) {

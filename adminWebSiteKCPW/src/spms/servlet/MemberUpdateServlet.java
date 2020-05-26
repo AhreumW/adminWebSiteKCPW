@@ -92,7 +92,10 @@ public class MemberUpdateServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			MemberDto newMemberDto = new MemberDto();
 			newMemberDto = (MemberDto) session.getAttribute("memberDto");
-			newMemberDto.setName(newName);
+			
+			newMemberDto.setNo(no);
+			newMemberDto.setName(newName);			
+			newMemberDto.setEmail(email);
 			session.setAttribute("memberDto", newMemberDto);
 			
 			if(result == 0) {

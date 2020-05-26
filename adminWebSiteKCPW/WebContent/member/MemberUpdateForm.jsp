@@ -21,7 +21,7 @@
 	function pageMoveDeleteFnc(no) {
 		var result = "";
 		
-		result = confirm("정말 탈퇴하시겠습니까?");
+		result = confirm("정말 탈퇴하시겠습니까?\n탈퇴 시 작성된 글은 모두 삭제됩니다.");
 		
 		if (result) {
 			var url = "./delete?no=" + no;
